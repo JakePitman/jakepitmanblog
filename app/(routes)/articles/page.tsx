@@ -1,7 +1,7 @@
 import { SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/client";
-import { ArticleLink } from "@components/ArticleLink";
+import { ArticleListItem } from "@components/ArticleListItem";
 
 const EVENTS_QUERY = `
 *[
@@ -31,7 +31,7 @@ export default async function Articles() {
       {articles.map((article) => (
         <>
           <br />
-          <ArticleLink
+          <ArticleListItem
             title={article.title}
             description={article.description}
             slug={article.slug.current}
