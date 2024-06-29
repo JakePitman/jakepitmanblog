@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     "@chromatic-com/storybook",
     "@storybook/addon-interactions",
     "@storybook/addon-backgrounds",
+    "@storybook/addon-styling-webpack"
   ],
   framework: {
     name: "@storybook/nextjs",
