@@ -55,6 +55,9 @@ const config: Config = {
       wide: "0.1em",
       widest: "0.2em",
     },
+    textShadow: {
+      default: "3px 3px 0px rgb(0, 0, 0, 0.3)",
+    },
     boxShadow: {
       sm: "2px 2px 0px 0px rgb(0, 0, 0, 0.3)",
       lg: "4px 4px 0px 0px rgb(0, 0, 0, 0.3)",
@@ -67,7 +70,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-textshadow")],
 };
 
 export default config;
