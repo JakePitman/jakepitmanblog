@@ -14,8 +14,6 @@ const DotsEmbellishment = () => {
   const numberOfDotGroups = 100;
   const staggerDuration = 0.025;
 
-  console.log(numberOfDotGroups);
-
   return (
     <div className="flex justify-center mt-4 w-full overflow-x-hidden">
       <div className="flex">
