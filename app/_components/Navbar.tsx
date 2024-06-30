@@ -8,7 +8,7 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="fixed top-0 left-0 w-full border-solid border-[1px] mt-12 px-12">
+    <div className="fixed top-0 left-0 w-full border-b-4 border-slate-900 mt-12 px-12">
       <ul className="flex">
         <NavItem
           label="Home"
