@@ -11,7 +11,7 @@ export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
   return (
     <li
       className={cx("px-8 py-8 mr-12 h-min font-medium", {
-        "bg-slate-500": !isActive,
+        "bg-slate-500 mb-8": !isActive,
         "bg-slate-900 mt-8": isActive,
       })}
     >
