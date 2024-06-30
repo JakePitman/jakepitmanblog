@@ -26,8 +26,8 @@ export const Navbar = () => {
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
-    await controls.start("itemsAppearing");
     setOpeningAnimationIsCompleted(true);
+    await controls.start("itemsAppearing");
   };
 
   return (
