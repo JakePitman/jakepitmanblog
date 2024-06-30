@@ -1,6 +1,8 @@
 import cx from "classnames";
 import { motion } from "framer-motion";
 
+import { fadeIn } from "@utils/sharedVariants";
+
 type NavItemProps = {
   label: string;
   onClick: () => void;
@@ -8,15 +10,10 @@ type NavItemProps = {
   symbol: string;
 };
 
-const NavItemVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
-};
-
 export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
   return (
     <motion.button
-      variants={NavItemVariants}
+      variants={fadeIn}
       className={cx("px-8 py-8 mr-12 h-min font-medium", {
         "bg-slate-500 mb-8": !isActive,
         "bg-slate-900 mt-8": isActive,
