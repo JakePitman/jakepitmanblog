@@ -1,6 +1,7 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 
 import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
@@ -39,9 +40,14 @@ export const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="w-full flex flex-col fixed top-0 left-0">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      transition={{ staggerChildren: 0.1 }}
+      className="w-full flex flex-col fixed top-0 left-0"
+    >
       <div className="flex justify-between w-full border-b-4 border-slate-900 mt-12 px-12">
-        <div className="flex">
+        <motion.div className="flex">
           <Bookend />
           <div className="flex">
             <NavItem
@@ -63,10 +69,10 @@ export const Navbar = () => {
               symbol="⏃"
             />
           </div>
-        </div>
+        </motion.div>
         <IoSettingsOutline size={35} className="text-slate-900 mt-4 mr-4" />
       </div>
       <DotsEmbellishment />
-    </div>
+    </motion.div>
   );
 };
