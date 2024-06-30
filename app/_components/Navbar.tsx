@@ -2,14 +2,8 @@
 import { usePathname, useRouter } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
 
+import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
-
-const Bookend = () => (
-  <div className="flex mr-12 mb-8">
-    <div className="w-16 bg-slate-500" />
-    <div className="w-4 ml-4 bg-slate-500" />
-  </div>
-);
 
 export const Navbar = () => {
   const router = useRouter();
