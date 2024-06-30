@@ -43,11 +43,8 @@ export const Navbar = () => {
     >
       <div className="flex flex-col items-center">
         <div className="flex justify-between w-full sm:mt-12 px-12">
-          {isMobile ? (
-            <MobileNavContent currentPath={pathname} goToPath={router.push} />
-          ) : (
-            <DesktopNavContent currentPath={pathname} goToPath={router.push} />
-          )}
+          <MobileNavContent currentPath={pathname} goToPath={router.push} />
+          <DesktopNavContent currentPath={pathname} goToPath={router.push} />
         </div>
         <motion.div
           variants={underlineVariants}

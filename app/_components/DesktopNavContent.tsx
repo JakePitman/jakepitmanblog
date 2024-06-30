@@ -17,7 +17,7 @@ export const DesktopNavContent = ({
   return (
     <>
       <motion.div
-        className="flex"
+        className="hidden sm:flex"
         variants={{
           itemsAppearing: {
             transition: { staggerChildren: 0.1, delay: 0 },
@@ -46,7 +46,7 @@ export const DesktopNavContent = ({
           />
         </div>
       </motion.div>
-      <motion.button variants={fadeIn} className="mb-8">
+      <motion.button variants={fadeIn} className="hidden sm:block mb-8">
         <IoSettingsOutline size={35} className="text-slate-900  mr-4" />
       </motion.button>
     </>

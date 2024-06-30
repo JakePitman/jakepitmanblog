@@ -25,7 +25,7 @@ export const MobileNavContent = ({
       label = "";
   }
   return (
-    <div className="flex">
+    <div className="flex sm:hidden">
       <motion.h1
         variants={fadeIn}
         className="text-30 text-shadow-small font-medium text-slate-900"
