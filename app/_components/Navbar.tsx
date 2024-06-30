@@ -14,6 +14,7 @@ const underlineVariants = {
   underlineExpanding: { scaleX: 1, transition: { duration: 0.7 } },
 };
 
+// This is necessary because the DotsEmbellishment component changes how many divs it renders according to the window width, which would otherwise lead to a hydration error.
 const DotsEmbellishment = dynamic(() => import("./DotsEmbellishment"), {
   ssr: false,
 });
@@ -26,6 +27,8 @@ export const Navbar = () => {
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
+    // This makes the MainContentWrapper trigger its children to render
+    // Necessary because the underline is lazy loaded
     setOpeningAnimationIsCompleted(true);
     await controls.start("itemsAppearing");
   };
