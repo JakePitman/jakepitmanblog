@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
 import { fadeIn } from "@utils/sharedVariants";
+import { useAnimationContext } from "@contexts/animationContext";
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
@@ -21,10 +22,12 @@ export const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   const controls = useAnimation();
+  const { setOpeningAnimationIsCompleted } = useAnimationContext();
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
     await controls.start("itemsAppearing");
+    setOpeningAnimationIsCompleted(true);
   };
 
   return (
