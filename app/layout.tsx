@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import cx from "classnames";
+
 import "./globals.css";
+import { Navbar } from "@components/Navbar";
+import { AnimationContextProvider } from "@contexts/animationContext";
+import { MainContentWrapper } from "@components/MainContentWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cx(inter.className, "bg-slate-300")}>{children}</body>
+      <body className={cx(inter.className, "bg-slate-300")}>
+        <AnimationContextProvider>
+          <div className="w-screen h-screen">
+            <Navbar />
+            <MainContentWrapper>{children}</MainContentWrapper>
+          </div>
+        </AnimationContextProvider>
+      </body>
     </html>
   );
 }
