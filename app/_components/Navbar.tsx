@@ -9,7 +9,7 @@ import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import { fadeIn } from "@utils/sharedVariants";
 
 const DotGroup = () => (
-  <motion.div variants={fadeIn} className="relative mx-12">
+  <motion.div variants={fadeIn} className="relative mx-12 h-12">
     <div className="absolute right-[-7px] w-[3px] h-[3px] bg-slate-900" />
     <div className="absolute right-[1px] w-[3px] h-[3px] bg-slate-900" />
     <div className="absolute top-[5px] w-[3px] h-[3px] bg-slate-900" />
@@ -23,7 +23,7 @@ const DotsEmbellishment = () => {
   const staggerDuration = 0.025;
 
   return (
-    <div className="flex justify-center mt-4 w-full">
+    <div className="flex justify-center mt-4 w-full overflow-x-hidden">
       <div className="flex">
         <motion.div
           variants={{
@@ -82,7 +82,7 @@ export const Navbar = () => {
       animate={controls}
       onViewportEnter={sequence}
       // transition={{ staggerChildren: 0.1 }}
-      className="w-full flex flex-col fixed top-0 left-0"
+      className="w-full flex flex-col"
     >
       <div className="flex flex-col items-center">
         <div className="flex justify-between w-full mt-12 px-12">

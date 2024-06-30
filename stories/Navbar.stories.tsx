@@ -6,12 +6,12 @@ const meta = {
   title: "Components/Navbar",
   component: Navbar,
   parameters: {
-    layout: "centered",
+    layout: "fullscreen",
   },
   args: {},
   decorators: [
     (Story) => (
-      <div className="absolute w-screen h-screen">
+      <div className="w-screen h-screen">
         <Story />
       </div>
     ),

@@ -1,5 +1,4 @@
 import React from "react";
-import { decorators } from "@storybook/addon-backgrounds/preview";
 import type { Preview } from "@storybook/react";
 import { Inter } from "next/font/google";
 import "../app/globals.css";
