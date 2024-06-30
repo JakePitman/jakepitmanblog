@@ -2,68 +2,20 @@
 import { usePathname, useRouter } from "next/navigation";
 import { IoSettingsOutline } from "react-icons/io5";
 import { motion, useAnimation } from "framer-motion";
+import dynamic from "next/dynamic";
 
 import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
 import { fadeIn } from "@utils/sharedVariants";
-
-const DotGroup = () => (
-  <motion.div variants={fadeIn} className="relative mx-12 h-12">
-    <div className="absolute right-[-7px] w-[3px] h-[3px] bg-slate-900" />
-    <div className="absolute right-[1px] w-[3px] h-[3px] bg-slate-900" />
-    <div className="absolute top-[5px] w-[3px] h-[3px] bg-slate-900" />
-  </motion.div>
-);
-
-const DotsEmbellishment = () => {
-  const { width } = useWindowDimensions();
-  const numberOfDotGroups = width / 20;
-  const staggerDuration = 0.025;
-
-  return (
-    <div className="flex justify-center mt-4 w-full overflow-x-hidden">
-      <div className="flex">
-        <motion.div
-          variants={{
-            itemsAppearing: {
-              transition: {
-                staggerChildren: staggerDuration,
-                staggerDirection: -1,
-              },
-            },
-          }}
-          className="flex"
-        >
-          {Array.from({ length: numberOfDotGroups / 2 }).map((_, i) => (
-            <DotGroup key={i} />
-          ))}
-        </motion.div>
-        <DotGroup />
-        <motion.div
-          className="flex"
-          variants={{
-            itemsAppearing: {
-              transition: {
-                staggerChildren: staggerDuration,
-                staggerDirection: 1,
-              },
-            },
-          }}
-        >
-          {Array.from({ length: numberOfDotGroups / 2 }).map((_, i) => (
-            <DotGroup key={i} />
-          ))}
-        </motion.div>
-      </div>
-    </div>
-  );
-};
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
   underlineExpanding: { scaleX: 1, transition: { duration: 0.7 } },
 };
+
+const DotsEmbellishment = dynamic(() => import("./DotsEmbellishment"), {
+  ssr: false,
+});
 
 export const Navbar = () => {
   const router = useRouter();
