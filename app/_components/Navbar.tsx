@@ -11,7 +11,7 @@ import { useAnimationContext } from "@contexts/animationContext";
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
-  underlineExpanding: { scaleX: 1, transition: { duration: 0.7 } },
+  underlineExpanding: { scaleX: 1, transition: { delay: 0.5, duration: 0.7 } },
 };
 
 // This is necessary because the DotsEmbellishment component changes how many divs it renders according to the window width, which would otherwise lead to a hydration error.
