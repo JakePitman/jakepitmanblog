@@ -57,6 +57,7 @@ const config: Config = {
     },
     textShadow: {
       default: "3px 3px 0px rgb(0, 0, 0, 0.3)",
+      small: "2px 2px 0px rgb(0, 0, 0, 0.3)",
     },
     boxShadow: {
       sm: "2px 2px 0px 0px rgb(0, 0, 0, 0.3)",

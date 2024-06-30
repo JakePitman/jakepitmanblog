@@ -3,9 +3,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 import dynamic from "next/dynamic";
 
-import { fadeIn } from "@utils/sharedVariants";
 import { useAnimationContext } from "@contexts/animationContext";
 import { DesktopNavContent } from "@components/DesktopNavContent";
+import { MobileNavContent } from "@components/MobileNavContent";
+import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
@@ -22,6 +23,8 @@ export const Navbar = () => {
   const pathname = usePathname();
   const controls = useAnimation();
   const { setOpeningAnimationIsCompleted } = useAnimationContext();
+  const { width } = useWindowDimensions();
+  const isMobile = width < 768;
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
@@ -39,8 +42,12 @@ export const Navbar = () => {
       className="w-full flex flex-col"
     >
       <div className="flex flex-col items-center">
-        <div className="flex justify-between w-full mt-12 px-12">
-          <DesktopNavContent currentPath={pathname} goToPath={router.push} />
+        <div className="flex justify-between w-full sm:mt-12 px-12">
+          {isMobile ? (
+            <MobileNavContent currentPath={pathname} goToPath={router.push} />
+          ) : (
+            <DesktopNavContent currentPath={pathname} goToPath={router.push} />
+          )}
         </div>
         <motion.div
           variants={underlineVariants}
