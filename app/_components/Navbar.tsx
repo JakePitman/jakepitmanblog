@@ -19,7 +19,6 @@ const DotGroup = () => (
 const DotsEmbellishment = () => {
   const { width } = useWindowDimensions();
   const numberOfDotGroups = width / 20;
-  console.log(numberOfDotGroups);
   const staggerDuration = 0.025;
 
   return (
