@@ -19,7 +19,7 @@ export const Navbar = () => {
     <div className="flex justify-between fixed top-0 left-0 w-full border-b-4 border-slate-900 mt-12 px-12">
       <div className="flex">
         <Bookend />
-        <ul className="flex">
+        <div className="flex">
           <NavItem
             label="Home"
             onClick={() => router.push("/")}
@@ -38,7 +38,7 @@ export const Navbar = () => {
             isActive={pathname === "/contact"}
             symbol="⏃"
           />
-        </ul>
+        </div>
       </div>
       <IoSettingsOutline size={35} className="text-slate-900 mt-4 mr-4" />
     </div>

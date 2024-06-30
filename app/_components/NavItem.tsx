@@ -9,13 +9,14 @@ type NavItemProps = {
 
 export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
   return (
-    <li
+    <button
       className={cx("px-8 py-8 mr-12 h-min font-medium", {
         "bg-slate-500 mb-8": !isActive,
         "bg-slate-900 mt-8": isActive,
       })}
+      onClick={onClick}
     >
-      <button onClick={onClick}>
+      <div>
         <span
           className={cx("mr-8 aspect-square w-24 inline-block", {
             "bg-slate-900 text-slate-300": !isActive,
@@ -32,7 +33,7 @@ export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
         >
           {label}
         </p>
-      </button>
-    </li>
+      </div>
+    </button>
   );
 };
