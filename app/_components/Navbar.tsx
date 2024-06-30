@@ -116,7 +116,7 @@ export const Navbar = () => {
               />
             </div>
           </motion.div>
-          <motion.button variants={fadeIn}>
+          <motion.button variants={fadeIn} className="mb-8">
             <IoSettingsOutline size={35} className="text-slate-900  mr-4" />
           </motion.button>
         </div>
