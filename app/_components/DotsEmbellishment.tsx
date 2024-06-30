@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 import { fadeIn } from "@utils/sharedVariants";
 
@@ -12,9 +11,10 @@ const DotGroup = () => (
 );
 
 const DotsEmbellishment = () => {
-  const { width } = useWindowDimensions();
-  const numberOfDotGroups = width / 20;
+  const numberOfDotGroups = 100;
   const staggerDuration = 0.025;
+
+  console.log(numberOfDotGroups);
 
   return (
     <div className="flex justify-center mt-4 w-full overflow-x-hidden">
