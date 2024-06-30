@@ -42,7 +42,7 @@ export const Navbar = () => {
       className="w-full flex flex-col"
     >
       <div className="flex flex-col items-center">
-        <div className="flex justify-between w-full sm:mt-12 px-12">
+        <div className="flex justify-between w-full sm:mt-12 sm:px-12 mb-4 sm:mb-0">
           <MobileNavContent currentPath={pathname} goToPath={router.push} />
           <DesktopNavContent currentPath={pathname} goToPath={router.push} />
         </div>

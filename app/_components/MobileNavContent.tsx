@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 import { fadeIn } from "@utils/sharedVariants";
 
@@ -25,13 +26,16 @@ export const MobileNavContent = ({
       label = "";
   }
   return (
-    <div className="flex sm:hidden">
+    <div className="px-12 w-full flex justify-between items-center sm:hidden bg-slate-900">
       <motion.h1
         variants={fadeIn}
-        className="text-30 text-shadow-small font-medium text-slate-900"
+        className="text-36 tracking-widest text-shadow font-medium text-slate-300"
       >
         {label}
       </motion.h1>
+      <motion.div variants={fadeIn}>
+        <GiHamburgerMenu className="text-slate-300" size={36} />
+      </motion.div>
     </div>
   );
 };
