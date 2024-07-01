@@ -46,14 +46,12 @@ export const Navbar = () => {
           <MobileNavContent
             currentPath={pathname}
             goToPath={router.push}
-            openDropdown={() => setDropdownIsOpen(true)}
-            closeDropdown={() => setDropdownIsOpen(false)}
+            toggleDropdown={() => setDropdownIsOpen((prev) => !prev)}
           />
           <DesktopNavContent
             currentPath={pathname}
             goToPath={router.push}
-            openDropdown={() => setDropdownIsOpen(true)}
-            closeDropdown={() => setDropdownIsOpen(false)}
+            toggleDropdown={() => setDropdownIsOpen((prev) => !prev)}
           />
         </div>
         <motion.div
@@ -63,7 +61,9 @@ export const Navbar = () => {
       </div>
       <div className="relative">
         <DotsEmbellishment />
-        <NavDropdown />
+        {dropdownIsOpen && (
+          <NavDropdown dismiss={() => setDropdownIsOpen(false)} />
+        )}
       </div>
     </motion.div>
   );

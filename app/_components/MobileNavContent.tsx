@@ -6,14 +6,12 @@ import { fadeIn } from "@utils/sharedVariants";
 type MobileNavContentProps = {
   currentPath: string;
   goToPath: (path: string) => void;
-  openDropdown: () => void;
-  closeDropdown: () => void;
+  toggleDropdown: () => void;
 };
 export const MobileNavContent = ({
   currentPath,
   goToPath,
-  openDropdown,
-  closeDropdown,
+  toggleDropdown,
 }: MobileNavContentProps) => {
   let label;
   switch (currentPath) {
@@ -38,7 +36,11 @@ export const MobileNavContent = ({
         {label}
       </motion.h1>
       <motion.div variants={fadeIn}>
-        <GiHamburgerMenu className="text-slate-300" size={36} />
+        <GiHamburgerMenu
+          className="text-slate-300"
+          size={36}
+          onClick={toggleDropdown}
+        />
       </motion.div>
     </div>
   );

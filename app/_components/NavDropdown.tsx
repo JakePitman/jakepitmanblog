@@ -1,7 +1,11 @@
 import cx from "classnames";
 import { IoCloseSharp } from "react-icons/io5";
 
-export const NavDropdown = () => {
+type NavDropdownProps = {
+  dismiss: () => void;
+};
+
+export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
   return (
     <div
       className={cx(
@@ -18,7 +22,7 @@ export const NavDropdown = () => {
           Settings
         </h2>
         <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">Menu</h2>
-        <button>
+        <button onClick={dismiss}>
           <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
         </button>
       </div>
