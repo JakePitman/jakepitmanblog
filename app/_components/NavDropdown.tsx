@@ -67,7 +67,7 @@ export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
       <div className="p-8">
         <div className="sm:hidden">
           <Subheading label="Pages" />
-          <div className="flex justify-between mt-8">
+          <div className="flex justify-around mt-8">
             <MobileNavItem label="Home" onClick={() => {}} symbol="⏀" />
             <MobileNavItem label="Articles" onClick={() => {}} symbol="⎅" />
             <MobileNavItem label="Contact" onClick={() => {}} symbol="⏃" />
