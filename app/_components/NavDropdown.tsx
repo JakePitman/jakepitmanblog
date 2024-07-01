@@ -36,17 +36,32 @@ const MobileNavItem = ({
 }: MobileNavItemProps) => {
   return (
     <button className="w-[30%] flex flex-col items-center" onClick={onClick}>
-      <p
-        className={cx(
-          "w-[70%] font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center overflow-hidden pb-4 mb-4",
-          {
-            "text-slate-900 border-b-slate-900": !isActive,
-            "bg-slate-900 text-slate-300": isActive,
-          }
-        )}
-      >
-        {symbol}
-      </p>
+      <div className="w-full flex flex-col items-center relative mb-4">
+        <div
+          className={cx(
+            "w-[70%] font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center overflow-hidden pb-4 ",
+            {
+              "text-slate-900 border-b-slate-900": !isActive,
+              "bg-slate-900 text-slate-300": isActive,
+            }
+          )}
+        >
+          {symbol}
+        </div>
+
+        <div
+          className={cx("h-full w-[3px] bg-slate-900 left-[7px]", {
+            hidden: !isActive,
+            absolute: isActive,
+          })}
+        />
+        <div
+          className={cx("h-full w-[3px] bg-slate-900 right-[7px]", {
+            hidden: !isActive,
+            absolute: isActive,
+          })}
+        />
+      </div>
       <p className="border-solid border-slate-900 text-slate-900">{label}</p>
     </button>
   );
