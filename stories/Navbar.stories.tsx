@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Navbar } from "@components/Navbar";
+import { AnimationContextProvider } from "@contexts/animationContext";
 
 const meta = {
   title: "Components/Navbar",
@@ -10,9 +11,11 @@ const meta = {
   args: {},
   decorators: [
     (Story) => (
-      <div className="w-screen h-screen">
-        <Story />
-      </div>
+      <AnimationContextProvider>
+        <div className="w-screen h-screen">
+          <Story />
+        </div>
+      </AnimationContextProvider>
     ),
   ],
 } satisfies Meta<typeof Navbar>;
