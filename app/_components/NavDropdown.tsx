@@ -35,7 +35,7 @@ const MobileNavItem = ({
   isActive,
 }: MobileNavItemProps) => {
   return (
-    <button className="w-[30%] flex flex-col items-center">
+    <button className="w-[30%] flex flex-col items-center" onClick={onClick}>
       <p
         className={cx(
           "w-[70%] font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center overflow-hidden pb-4 mb-4",
@@ -55,9 +55,14 @@ const MobileNavItem = ({
 type NavDropdownProps = {
   dismiss: () => void;
   pathname: string;
+  goToPath: (path: string) => void;
 };
 
-export const NavDropdown = ({ dismiss, pathname }: NavDropdownProps) => {
+export const NavDropdown = ({
+  dismiss,
+  pathname,
+  goToPath,
+}: NavDropdownProps) => {
   return (
     <div
       className={cx(
@@ -85,21 +90,30 @@ export const NavDropdown = ({ dismiss, pathname }: NavDropdownProps) => {
           <div className="flex justify-around mt-8">
             <MobileNavItem
               label="Home"
-              onClick={() => {}}
               symbol="⏀"
               isActive={pathname === "/"}
+              onClick={() => {
+                goToPath("/");
+                dismiss();
+              }}
             />
             <MobileNavItem
               label="Articles"
-              onClick={() => {}}
               symbol="⎅"
               isActive={pathname === "/articles"}
+              onClick={() => {
+                goToPath("/articles");
+                dismiss();
+              }}
             />
             <MobileNavItem
               label="Contact"
-              onClick={() => {}}
               symbol="⏃"
               isActive={pathname === "/contact"}
+              onClick={() => {
+                goToPath("/contact");
+                dismiss();
+              }}
             />
           </div>
         </div>

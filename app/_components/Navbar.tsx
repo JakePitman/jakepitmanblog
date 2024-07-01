@@ -65,6 +65,9 @@ export const Navbar = () => {
           <NavDropdown
             dismiss={() => setDropdownIsOpen(false)}
             pathname={pathname}
+            goToPath={(path: string) => {
+              router.push(path);
+            }}
           />
         )}
       </div>
