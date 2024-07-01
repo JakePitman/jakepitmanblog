@@ -35,10 +35,10 @@ const MobileNavItem = ({
   isActive,
 }: MobileNavItemProps) => {
   return (
-    <button className="w-[25%]">
+    <button className="w-[30%] flex flex-col items-center">
       <p
         className={cx(
-          "font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center overflow-hidden pb-4",
+          "w-[70%] font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center overflow-hidden pb-4 mb-4",
           {
             "text-slate-900 border-b-slate-900": !isActive,
             "bg-slate-900 text-slate-300": isActive,
