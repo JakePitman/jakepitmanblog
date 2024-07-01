@@ -9,7 +9,7 @@ const Subheading = ({ label, display }: SubheadingProps) => {
   return (
     <h3
       className={cx(
-        "text-slate-800 font-medium text-14 w-full border-b-[1px] border-solid border-slate-700 tracking-wide",
+        "text-slate-800 font-medium text-14 w-full border-b-[1px] border-solid border-slate-700 tracking-wide mb-12",
         {
           "sm:hidden": display === "mobileOnly",
           "sm:block hidden": display === "desktopOnly",
@@ -87,7 +87,7 @@ export const NavDropdown = ({
       <div className="p-8">
         <div className="sm:hidden">
           <Subheading label="Pages" />
-          <div className="flex justify-around mt-12">
+          <div className="flex justify-around">
             <MobileNavItem
               label="Home"
               symbol="⏀"
