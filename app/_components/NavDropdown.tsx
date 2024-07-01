@@ -87,7 +87,7 @@ export const NavDropdown = ({
       <div className="p-8">
         <div className="sm:hidden">
           <Subheading label="Pages" />
-          <div className="flex justify-around mt-8">
+          <div className="flex justify-around mt-12">
             <MobileNavItem
               label="Home"
               symbol="⏀"
