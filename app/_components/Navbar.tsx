@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import { useAnimationContext } from "@contexts/animationContext";
 import { DesktopNavContent } from "@components/DesktopNavContent";
 import { MobileNavContent } from "@components/MobileNavContent";
-import { useWindowDimensions } from "@hooks/useWindowDimensions";
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
@@ -23,8 +22,6 @@ export const Navbar = () => {
   const pathname = usePathname();
   const controls = useAnimation();
   const { setOpeningAnimationIsCompleted } = useAnimationContext();
-  const { width } = useWindowDimensions();
-  const isMobile = width < 768;
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
