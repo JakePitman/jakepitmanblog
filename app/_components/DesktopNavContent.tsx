@@ -8,11 +8,15 @@ import { fadeIn } from "@utils/sharedVariants";
 type DesktopNavContentProps = {
   currentPath: string;
   goToPath: (path: string) => void;
+  openDropdown: () => void;
+  closeDropdown: () => void;
 };
 
 export const DesktopNavContent = ({
   currentPath,
   goToPath,
+  openDropdown,
+  closeDropdown,
 }: DesktopNavContentProps) => {
   return (
     <>

@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { motion, useAnimation } from "framer-motion";
 import dynamic from "next/dynamic";
@@ -6,6 +7,7 @@ import dynamic from "next/dynamic";
 import { useAnimationContext } from "@contexts/animationContext";
 import { DesktopNavContent } from "@components/DesktopNavContent";
 import { MobileNavContent } from "@components/MobileNavContent";
+import { NavDropdown } from "@components/NavDropdown";
 
 const underlineVariants = {
   hidden: { scaleX: 0 },
@@ -22,6 +24,7 @@ export const Navbar = () => {
   const pathname = usePathname();
   const controls = useAnimation();
   const { setOpeningAnimationIsCompleted } = useAnimationContext();
+  const [dropdownIsOpen, setDropdownIsOpen] = useState<Boolean>(false);
 
   const sequence = async () => {
     await controls.start("underlineExpanding");
@@ -36,19 +39,32 @@ export const Navbar = () => {
       initial="hidden"
       animate={controls}
       onViewportEnter={sequence}
-      className="w-full flex flex-col"
+      className="w-full flex flex-col relative"
     >
       <div className="flex flex-col items-center">
         <div className="flex justify-between w-full sm:mt-12 sm:px-12 mb-4 sm:mb-0">
-          <MobileNavContent currentPath={pathname} goToPath={router.push} />
-          <DesktopNavContent currentPath={pathname} goToPath={router.push} />
+          <MobileNavContent
+            currentPath={pathname}
+            goToPath={router.push}
+            openDropdown={() => setDropdownIsOpen(true)}
+            closeDropdown={() => setDropdownIsOpen(false)}
+          />
+          <DesktopNavContent
+            currentPath={pathname}
+            goToPath={router.push}
+            openDropdown={() => setDropdownIsOpen(true)}
+            closeDropdown={() => setDropdownIsOpen(false)}
+          />
         </div>
         <motion.div
           variants={underlineVariants}
           className="h-4 w-full bg-slate-900"
         />
       </div>
-      <DotsEmbellishment />
+      <div className="relative">
+        <DotsEmbellishment />
+        <NavDropdown />
+      </div>
     </motion.div>
   );
 };

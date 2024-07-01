@@ -6,10 +6,14 @@ import { fadeIn } from "@utils/sharedVariants";
 type MobileNavContentProps = {
   currentPath: string;
   goToPath: (path: string) => void;
+  openDropdown: () => void;
+  closeDropdown: () => void;
 };
 export const MobileNavContent = ({
   currentPath,
   goToPath,
+  openDropdown,
+  closeDropdown,
 }: MobileNavContentProps) => {
   let label;
   switch (currentPath) {
