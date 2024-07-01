@@ -21,6 +21,23 @@ const Subheading = ({ label, display }: SubheadingProps) => {
   );
 };
 
+type MobileNavItemProps = {
+  label: string;
+  onClick: () => void;
+  symbol: string;
+};
+
+const MobileNavItem = ({ label, onClick, symbol }: MobileNavItemProps) => {
+  return (
+    <button>
+      <p className="font-extrabold text-48 text-slate-900">{symbol}</p>
+      <p className="border-t-2 border-solid border-slate-900 text-slate-900">
+        {label}
+      </p>
+    </button>
+  );
+};
+
 type NavDropdownProps = {
   dismiss: () => void;
 };
@@ -48,7 +65,14 @@ export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
       </div>
 
       <div className="p-8">
-        <Subheading label="Pages" display="mobileOnly" />
+        <div className="sm:hidden">
+          <Subheading label="Pages" />
+          <div className="flex justify-between mt-8">
+            <MobileNavItem label="Home" onClick={() => {}} symbol="⏀" />
+            <MobileNavItem label="Articles" onClick={() => {}} symbol="⎅" />
+            <MobileNavItem label="Contact" onClick={() => {}} symbol="⏃" />
+          </div>
+        </div>
       </div>
     </div>
   );
