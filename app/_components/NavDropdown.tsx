@@ -1,6 +1,26 @@
 import cx from "classnames";
 import { IoCloseSharp } from "react-icons/io5";
 
+type SubheadingProps = {
+  label: string;
+  display?: "desktopOnly" | "mobileOnly" | undefined;
+};
+const Subheading = ({ label, display }: SubheadingProps) => {
+  return (
+    <h3
+      className={cx(
+        "text-slate-800 font-medium text-14 w-full border-b-[1px] border-solid border-slate-700 tracking-wide",
+        {
+          "sm:hidden": display === "mobileOnly",
+          "sm:block hidden": display === "desktopOnly",
+        }
+      )}
+    >
+      {label}
+    </h3>
+  );
+};
+
 type NavDropdownProps = {
   dismiss: () => void;
 };
@@ -26,7 +46,10 @@ export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
           <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
         </button>
       </div>
-      My cool dropdown
+
+      <div className="p-8">
+        <Subheading label="Pages" display="mobileOnly" />
+      </div>
     </div>
   );
 };
