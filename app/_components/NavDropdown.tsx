@@ -25,24 +25,39 @@ type MobileNavItemProps = {
   label: string;
   onClick: () => void;
   symbol: string;
+  isActive: boolean;
 };
 
-const MobileNavItem = ({ label, onClick, symbol }: MobileNavItemProps) => {
+const MobileNavItem = ({
+  label,
+  onClick,
+  symbol,
+  isActive,
+}: MobileNavItemProps) => {
   return (
-    <button>
-      <p className="font-extrabold text-48 text-slate-900">{symbol}</p>
-      <p className="border-t-2 border-solid border-slate-900 text-slate-900">
-        {label}
+    <button className="w-[30%]">
+      <p
+        className={cx(
+          "font-extrabold text-48 aspect-square border-solid border-2 border-transparent flex justify-center items-center",
+          {
+            "text-slate-900 border-b-slate-900": !isActive,
+            "bg-slate-900 text-slate-300": isActive,
+          }
+        )}
+      >
+        {symbol}
       </p>
+      <p className="border-solid border-slate-900 text-slate-900">{label}</p>
     </button>
   );
 };
 
 type NavDropdownProps = {
   dismiss: () => void;
+  pathname: string;
 };
 
-export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
+export const NavDropdown = ({ dismiss, pathname }: NavDropdownProps) => {
   return (
     <div
       className={cx(
@@ -68,9 +83,24 @@ export const NavDropdown = ({ dismiss }: NavDropdownProps) => {
         <div className="sm:hidden">
           <Subheading label="Pages" />
           <div className="flex justify-around mt-8">
-            <MobileNavItem label="Home" onClick={() => {}} symbol="⏀" />
-            <MobileNavItem label="Articles" onClick={() => {}} symbol="⎅" />
-            <MobileNavItem label="Contact" onClick={() => {}} symbol="⏃" />
+            <MobileNavItem
+              label="Home"
+              onClick={() => {}}
+              symbol="⏀"
+              isActive={pathname === "/"}
+            />
+            <MobileNavItem
+              label="Articles"
+              onClick={() => {}}
+              symbol="⎅"
+              isActive={pathname === "/articles"}
+            />
+            <MobileNavItem
+              label="Contact"
+              onClick={() => {}}
+              symbol="⏃"
+              isActive={pathname === "/contact"}
+            />
           </div>
         </div>
       </div>

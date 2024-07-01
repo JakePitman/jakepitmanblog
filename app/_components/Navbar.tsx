@@ -62,7 +62,10 @@ export const Navbar = () => {
       <div className="relative">
         <DotsEmbellishment />
         {dropdownIsOpen && (
-          <NavDropdown dismiss={() => setDropdownIsOpen(false)} />
+          <NavDropdown
+            dismiss={() => setDropdownIsOpen(false)}
+            pathname={pathname}
+          />
         )}
       </div>
     </motion.div>
