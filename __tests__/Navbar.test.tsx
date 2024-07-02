@@ -113,4 +113,14 @@ describe("On mobile", () => {
 
     expect(navTitle).toBeInTheDocument();
   });
+
+  it("Renders 'Article' on any '/articles/[slug]' routes", () => {
+    usePathname.mockImplementationOnce(() => "/articles/my-cool-slug");
+    render(<Navbar />);
+
+    const mobileNavBar = screen.getByTestId("mobile-nav-bar");
+    const navTitle = within(mobileNavBar).getByText("Article");
+
+    expect(navTitle).toBeInTheDocument();
+  });
 });

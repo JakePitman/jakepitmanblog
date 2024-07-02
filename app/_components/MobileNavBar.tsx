@@ -14,18 +14,22 @@ export const MobileNavBar = ({
   toggleDropdown,
 }: MobileNavBarProps) => {
   let label;
-  switch (currentPath) {
-    case "/":
-      label = "Home";
-      break;
-    case "/articles":
-      label = "Articles";
-      break;
-    case "/contact":
-      label = "Contact";
-      break;
-    default:
-      label = "";
+  if (currentPath.startsWith("/articles/")) {
+    label = "Article";
+  } else {
+    switch (currentPath) {
+      case "/":
+        label = "Home";
+        break;
+      case "/articles":
+        label = "Articles";
+        break;
+      case "/contact":
+        label = "Contact";
+        break;
+      default:
+        label = "";
+    }
   }
   return (
     <div
