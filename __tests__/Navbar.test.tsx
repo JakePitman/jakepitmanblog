@@ -4,16 +4,21 @@ import "../__mocks__/observationObserverMock";
 
 import { Navbar } from "@components/Navbar";
 
-jest.mock("next/navigation", () => ({
-  useRouter() {
-    return {
-      prefetch: () => null,
-    };
-  },
-  usePathname() {
-    return "/";
-  },
+import {
+  useRouter as useRouterOriginal,
+  usePathname as usePathnameOriginal,
+} from "next/navigation";
+const useRouter = useRouterOriginal as jest.Mock;
+const usePathname = usePathnameOriginal as jest.Mock;
+
+jest.mock("next/navigation");
+
+useRouter.mockImplementation(() => ({
+  push: jest.fn(),
+  prefetch: jest.fn(),
 }));
+usePathname.mockImplementation(() => "/");
+
 jest.mock("../app/_contexts/animationContext", () => ({
   useAnimationContext() {
     return {
@@ -82,10 +87,29 @@ describe("DesktopNav", () => {
 
 describe("On mobile", () => {
   it("Renders 'Home' on the '/' route", () => {
+    usePathname.mockImplementationOnce(() => "/");
     render(<Navbar />);
 
     const mobileNavBar = screen.getByTestId("mobile-nav-bar");
     const navTitle = within(mobileNavBar).getByText("Home");
+
+    expect(navTitle).toBeInTheDocument();
+  });
+  it("Renders 'Articles' on the '/articles' route", () => {
+    usePathname.mockImplementationOnce(() => "/articles");
+    render(<Navbar />);
+
+    const mobileNavBar = screen.getByTestId("mobile-nav-bar");
+    const navTitle = within(mobileNavBar).getByText("Articles");
+
+    expect(navTitle).toBeInTheDocument();
+  });
+  it("Renders 'Contact' on the '/contact' route", () => {
+    usePathname.mockImplementationOnce(() => "/contact");
+    render(<Navbar />);
+
+    const mobileNavBar = screen.getByTestId("mobile-nav-bar");
+    const navTitle = within(mobileNavBar).getByText("Contact");
 
     expect(navTitle).toBeInTheDocument();
   });
