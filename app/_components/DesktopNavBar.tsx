@@ -25,6 +25,7 @@ export const DesktopNavBar = ({
             transition: { staggerChildren: 0.1, delay: 0 },
           },
         }}
+        data-testid="desktop-nav-bar"
       >
         <Bookend />
         <div className="flex">

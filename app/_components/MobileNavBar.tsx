@@ -14,21 +14,28 @@ export const MobileNavBar = ({
   toggleDropdown,
 }: MobileNavBarProps) => {
   let label;
-  switch (currentPath) {
-    case "/":
-      label = "Home";
-      break;
-    case "/articles":
-      label = "Articles";
-      break;
-    case "/contact":
-      label = "Contact";
-      break;
-    default:
-      label = "";
+  if (currentPath.startsWith("/articles/")) {
+    label = "Article";
+  } else {
+    switch (currentPath) {
+      case "/":
+        label = "Home";
+        break;
+      case "/articles":
+        label = "Articles";
+        break;
+      case "/contact":
+        label = "Contact";
+        break;
+      default:
+        label = "";
+    }
   }
   return (
-    <div className="px-12 w-full flex justify-between items-center sm:hidden bg-slate-900">
+    <div
+      className="px-12 w-full flex justify-between items-center sm:hidden bg-slate-900"
+      data-testid="mobile-nav-bar"
+    >
       <motion.h1
         variants={fadeIn}
         className="text-36 tracking-widest text-shadow font-medium text-slate-300"
