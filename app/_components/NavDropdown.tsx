@@ -121,7 +121,7 @@ export const NavDropdown = ({
 
       <div className="p-8">
         {/* Mobile Nav */}
-        <div className="sm:hidden mb-12">
+        <div className="sm:hidden mb-32">
           <Subheading label="Pages" />
           <div className="flex justify-around">
             {MobileNavItemsData.map(({ label, symbol, path }, i) => (

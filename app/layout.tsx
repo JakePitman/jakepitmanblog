@@ -5,6 +5,7 @@ import cx from "classnames";
 import "./globals.css";
 import { Navbar } from "@components/Navbar";
 import { AnimationContextProvider } from "@contexts/animationContext";
+import { UserSettingsContextProvider } from "@contexts/userSettingsContext";
 import { MainContentWrapper } from "@components/MainContentWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -22,12 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cx(inter.className, "bg-slate-300")}>
-        <AnimationContextProvider>
-          <div className="w-screen h-screen">
-            <Navbar />
-            <MainContentWrapper>{children}</MainContentWrapper>
-          </div>
-        </AnimationContextProvider>
+        <UserSettingsContextProvider>
+          <AnimationContextProvider>
+            <div className="w-screen h-screen">
+              <Navbar />
+              <MainContentWrapper>{children}</MainContentWrapper>
+            </div>
+          </AnimationContextProvider>
+        </UserSettingsContextProvider>
       </body>
     </html>
   );
