@@ -1,8 +1,31 @@
 import { motion } from "framer-motion";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FormattedMessage } from "react-intl";
 
 import { fadeIn } from "@utils/sharedVariants";
 
+const labelDataMap = {
+  home: {
+    messageId: "navbar.home",
+    defaultMessage: "Home",
+  },
+  article: {
+    messageId: "navbar.article",
+    defaultMessage: "Article",
+  },
+  articles: {
+    messageId: "navbar.articles",
+    defaultMessage: "Articles",
+  },
+  contact: {
+    messageId: "navbar.contact",
+    defaultMessage: "Contact",
+  },
+  default: {
+    messageId: "",
+    defaultMessage: "",
+  },
+};
 type MobileNavBarProps = {
   currentPath: string;
   goToPath: (path: string) => void;
@@ -13,22 +36,22 @@ export const MobileNavBar = ({
   goToPath,
   toggleDropdown,
 }: MobileNavBarProps) => {
-  let label;
+  let labelData;
   if (currentPath.startsWith("/articles/")) {
-    label = "Article";
+    labelData = labelDataMap.article;
   } else {
     switch (currentPath) {
       case "/":
-        label = "Home";
+        labelData = labelDataMap.home;
         break;
       case "/articles":
-        label = "Articles";
+        labelData = labelDataMap.articles;
         break;
       case "/contact":
-        label = "Contact";
+        labelData = labelDataMap.contact;
         break;
       default:
-        label = "";
+        labelData = labelDataMap.default;
     }
   }
   return (
@@ -40,7 +63,10 @@ export const MobileNavBar = ({
         variants={fadeIn}
         className="text-36 tracking-widest text-shadow font-medium text-slate-300"
       >
-        {label}
+        <FormattedMessage
+          id={labelData.messageId}
+          defaultMessage={labelData.defaultMessage}
+        />
       </motion.h1>
       <motion.div variants={fadeIn}>
         <GiHamburgerMenu
