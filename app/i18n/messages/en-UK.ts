@@ -5,6 +5,12 @@ const NAVBAR_MESSAGES = {
   "navbar.article": "Article",
   "navbar.articles": "Articles",
   "navbar.contact": "Contact",
+  "navbar.menu": "Menu",
+  "navbar.pages": "Pages",
+  "navbar.settings": "Settings",
+  "navbar.language": "Language",
+  "navbar.english": "English",
+  "navbar.japanese": "日本語",
 };
 
 const messages = {

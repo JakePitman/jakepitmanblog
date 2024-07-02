@@ -1,14 +1,21 @@
 "use client";
 import cx from "classnames";
+import { FormattedMessage } from "react-intl";
 
 import { useUserSettingsContext, LOCALES } from "@contexts/userSettingsContext";
 
 type OptionButtonProps = {
-  label: string;
+  labelMessageId: string;
+  labelDefaultMessage: string;
   isActive: boolean;
   onClick: () => void;
 };
-const OptionButton = ({ label, isActive, onClick }: OptionButtonProps) => {
+const OptionButton = ({
+  labelMessageId,
+  labelDefaultMessage,
+  isActive,
+  onClick,
+}: OptionButtonProps) => {
   return (
     <button
       onClick={onClick}
@@ -20,7 +27,10 @@ const OptionButton = ({ label, isActive, onClick }: OptionButtonProps) => {
         }
       )}
     >
-      {label}
+      <FormattedMessage
+        id={labelMessageId}
+        defaultMessage={labelDefaultMessage}
+      />
     </button>
   );
 };
@@ -37,18 +47,20 @@ export const SettingsMenu = () => {
           "sm:text-slate-800 sm:border-b-[1px] sm:border-solid sm:border-slate-700 sm:tracking-wide"
         )}
       >
-        Language
+        <FormattedMessage id="navbar.language" defaultMessage="Language" />
       </h4>
       <div className="flex">
         <OptionButton
-          label="English"
+          labelMessageId="navbar.english"
+          labelDefaultMessage="English"
           isActive={locale === LOCALES.ENGLISH}
           onClick={() =>
             dispatch({ type: "SET_LOCALE", locale: LOCALES.ENGLISH })
           }
         />
         <OptionButton
-          label="日本語"
+          labelMessageId="navbar.japanese"
+          labelDefaultMessage="日本語"
           isActive={locale === LOCALES.JAPANESE}
           onClick={() =>
             dispatch({ type: "SET_LOCALE", locale: LOCALES.JAPANESE })

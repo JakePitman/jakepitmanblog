@@ -1,13 +1,19 @@
 import cx from "classnames";
 import { IoCloseSharp } from "react-icons/io5";
+import { FormattedMessage } from "react-intl";
 
 import { SettingsMenu } from "@components/SettingsMenu";
 
 type SubheadingProps = {
-  label: string;
+  labelMessageId: string;
+  labelDefaultMessage: string;
   display?: "desktopOnly" | "mobileOnly" | undefined;
 };
-export const Subheading = ({ label, display }: SubheadingProps) => {
+export const Subheading = ({
+  labelMessageId,
+  labelDefaultMessage,
+  display,
+}: SubheadingProps) => {
   return (
     <h3
       className={cx(
@@ -18,20 +24,25 @@ export const Subheading = ({ label, display }: SubheadingProps) => {
         }
       )}
     >
-      {label}
+      <FormattedMessage
+        id={labelMessageId}
+        defaultMessage={labelDefaultMessage}
+      />
     </h3>
   );
 };
 
 type MobileNavItemProps = {
-  label: string;
+  labelMessageId: string;
+  labelDefaultMessage: string;
   onClick: () => void;
   symbol: string;
   isActive: boolean;
 };
 
 const MobileNavItem = ({
-  label,
+  labelMessageId,
+  labelDefaultMessage,
   onClick,
   symbol,
   isActive,
@@ -64,24 +75,32 @@ const MobileNavItem = ({
           })}
         />
       </div>
-      <p className="border-solid border-slate-900 text-slate-900">{label}</p>
+      <p className="border-solid border-slate-900 text-slate-900">
+        <FormattedMessage
+          id={labelMessageId}
+          defaultMessage={labelDefaultMessage}
+        />
+      </p>
     </button>
   );
 };
 
 const MobileNavItemsData = [
   {
-    label: "Home",
+    labelMessageId: "navbar.home",
+    labelDefaultMessage: "Home",
     symbol: "⏀",
     path: "/",
   },
   {
-    label: "Articles",
+    labelMessageId: "navbar.articles",
+    labelDefaultMessage: "Articles",
     symbol: "⎅",
     path: "/articles",
   },
   {
-    label: "Contact",
+    labelMessageId: "navbar.contact",
+    labelDefaultMessage: "Contact",
     symbol: "⏃",
     path: "/contact",
   },
@@ -113,7 +132,9 @@ export const NavDropdown = ({
         <h2 className="text-20 text-slate-300 tracking-wide sm:block hidden">
           Settings
         </h2>
-        <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">Menu</h2>
+        <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
+          <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
+        </h2>
         <button onClick={dismiss}>
           <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
         </button>
@@ -122,25 +143,35 @@ export const NavDropdown = ({
       <div className="p-8">
         {/* Mobile Nav */}
         <div className="sm:hidden mb-32">
-          <Subheading label="Pages" />
+          <Subheading
+            labelMessageId="navbar.pages"
+            labelDefaultMessage="Pages"
+          />
           <div className="flex justify-around">
-            {MobileNavItemsData.map(({ label, symbol, path }, i) => (
-              <MobileNavItem
-                key={path + i}
-                label={label}
-                symbol={symbol}
-                isActive={pathname === path}
-                onClick={() => {
-                  goToPath(path);
-                  dismiss();
-                }}
-              />
-            ))}
+            {MobileNavItemsData.map(
+              ({ labelMessageId, labelDefaultMessage, symbol, path }, i) => (
+                <MobileNavItem
+                  key={path + i}
+                  labelMessageId={labelMessageId}
+                  labelDefaultMessage={labelDefaultMessage}
+                  symbol={symbol}
+                  isActive={pathname === path}
+                  onClick={() => {
+                    goToPath(path);
+                    dismiss();
+                  }}
+                />
+              )
+            )}
           </div>
         </div>
 
         {/* Settings */}
-        <Subheading label="Settings" display="mobileOnly" />
+        <Subheading
+          labelMessageId="navbar.settings"
+          labelDefaultMessage="Settings"
+          display="mobileOnly"
+        />
         <SettingsMenu />
       </div>
     </div>
