@@ -1,16 +1,24 @@
 import cx from "classnames";
 import { motion } from "framer-motion";
+import { FormattedMessage } from "react-intl";
 
 import { fadeIn } from "@utils/sharedVariants";
 
 type NavItemProps = {
-  label: string;
+  labelMessageId: string;
+  labelDefaultMessage: string;
   onClick: () => void;
   isActive: boolean;
   symbol: string;
 };
 
-export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
+export const NavItem = ({
+  labelMessageId,
+  labelDefaultMessage,
+  onClick,
+  isActive,
+  symbol,
+}: NavItemProps) => {
   return (
     <motion.button
       variants={fadeIn}
@@ -35,7 +43,10 @@ export const NavItem = ({ label, onClick, isActive, symbol }: NavItemProps) => {
             "text-slate-300": isActive,
           })}
         >
-          {label}
+          <FormattedMessage
+            id={labelMessageId}
+            defaultMessage={labelDefaultMessage}
+          />
         </p>
       </div>
     </motion.button>
