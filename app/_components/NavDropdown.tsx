@@ -67,6 +67,24 @@ const MobileNavItem = ({
   );
 };
 
+const MobileNavItemsData = [
+  {
+    label: "Home",
+    symbol: "⏀",
+    path: "/",
+  },
+  {
+    label: "Articles",
+    symbol: "⎅",
+    path: "/articles",
+  },
+  {
+    label: "Contact",
+    symbol: "⏃",
+    path: "/contact",
+  },
+];
+
 type NavDropdownProps = {
   dismiss: () => void;
   pathname: string;
@@ -104,33 +122,18 @@ export const NavDropdown = ({
         <div className="sm:hidden">
           <Subheading label="Pages" />
           <div className="flex justify-around">
-            <MobileNavItem
-              label="Home"
-              symbol="⏀"
-              isActive={pathname === "/"}
-              onClick={() => {
-                goToPath("/");
-                dismiss();
-              }}
-            />
-            <MobileNavItem
-              label="Articles"
-              symbol="⎅"
-              isActive={pathname === "/articles"}
-              onClick={() => {
-                goToPath("/articles");
-                dismiss();
-              }}
-            />
-            <MobileNavItem
-              label="Contact"
-              symbol="⏃"
-              isActive={pathname === "/contact"}
-              onClick={() => {
-                goToPath("/contact");
-                dismiss();
-              }}
-            />
+            {MobileNavItemsData.map(({ label, symbol, path }, i) => (
+              <MobileNavItem
+                key={path + i}
+                label={label}
+                symbol={symbol}
+                isActive={pathname === path}
+                onClick={() => {
+                  goToPath(path);
+                  dismiss();
+                }}
+              />
+            ))}
           </div>
         </div>
 
