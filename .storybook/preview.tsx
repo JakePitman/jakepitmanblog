@@ -2,6 +2,7 @@ import React from "react";
 import type { Preview } from "@storybook/react";
 import { Inter } from "next/font/google";
 import "../app/globals.css";
+import { viewport } from "next-sanity/studio";
 
 const inter = Inter({ subsets: ["latin"] });
 

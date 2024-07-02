@@ -5,15 +5,17 @@ import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
 import { fadeIn } from "@utils/sharedVariants";
 
-type DesktopNavContentProps = {
+type DesktopNavBarProps = {
   currentPath: string;
   goToPath: (path: string) => void;
+  toggleDropdown: () => void;
 };
 
-export const DesktopNavContent = ({
+export const DesktopNavBar = ({
   currentPath,
   goToPath,
-}: DesktopNavContentProps) => {
+  toggleDropdown,
+}: DesktopNavBarProps) => {
   return (
     <>
       <motion.div
@@ -46,7 +48,11 @@ export const DesktopNavContent = ({
           />
         </div>
       </motion.div>
-      <motion.button variants={fadeIn} className="hidden sm:block mb-8">
+      <motion.button
+        variants={fadeIn}
+        className="hidden sm:block mb-8"
+        onClick={toggleDropdown}
+      >
         <IoSettingsOutline size={35} className="text-slate-900  mr-4" />
       </motion.button>
     </>

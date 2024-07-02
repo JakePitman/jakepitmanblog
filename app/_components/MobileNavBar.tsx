@@ -3,14 +3,16 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 import { fadeIn } from "@utils/sharedVariants";
 
-type MobileNavContentProps = {
+type MobileNavBarProps = {
   currentPath: string;
   goToPath: (path: string) => void;
+  toggleDropdown: () => void;
 };
-export const MobileNavContent = ({
+export const MobileNavBar = ({
   currentPath,
   goToPath,
-}: MobileNavContentProps) => {
+  toggleDropdown,
+}: MobileNavBarProps) => {
   let label;
   switch (currentPath) {
     case "/":
@@ -34,7 +36,11 @@ export const MobileNavContent = ({
         {label}
       </motion.h1>
       <motion.div variants={fadeIn}>
-        <GiHamburgerMenu className="text-slate-300" size={36} />
+        <GiHamburgerMenu
+          className="text-slate-300"
+          size={36}
+          onClick={toggleDropdown}
+        />
       </motion.div>
     </div>
   );
