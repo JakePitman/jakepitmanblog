@@ -28,7 +28,10 @@ export const MobileNavBar = ({
       label = "";
   }
   return (
-    <div className="px-12 w-full flex justify-between items-center sm:hidden bg-slate-900">
+    <div
+      className="px-12 w-full flex justify-between items-center sm:hidden bg-slate-900"
+      data-testid="mobile-nav-bar"
+    >
       <motion.h1
         variants={fadeIn}
         className="text-36 tracking-widest text-shadow font-medium text-slate-300"
