@@ -130,7 +130,7 @@ export const NavDropdown = ({
     >
       <div className="bg-slate-900 p-8 flex justify-between items-center">
         <h2 className="text-20 text-slate-300 tracking-wide sm:block hidden">
-          Settings
+          <FormattedMessage id="navbar.settings" defaultMessage="Settings" />
         </h2>
         <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
           <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
