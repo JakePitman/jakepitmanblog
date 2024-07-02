@@ -1,11 +1,13 @@
 import cx from "classnames";
 import { IoCloseSharp } from "react-icons/io5";
 
+import { SettingsMenu } from "@components/SettingsMenu";
+
 type SubheadingProps = {
   label: string;
   display?: "desktopOnly" | "mobileOnly" | undefined;
 };
-const Subheading = ({ label, display }: SubheadingProps) => {
+export const Subheading = ({ label, display }: SubheadingProps) => {
   return (
     <h3
       className={cx(
@@ -102,7 +104,7 @@ export const NavDropdown = ({
         // Base styles
         "border-solid border-[1px] h-min bg-slate-300 shadow-lg",
         // Desktop styles
-        "sm:right-24 sm:left-auto sm:absolute sm:top-[-4px] sm:bottom-auto sm:w-min",
+        "sm:right-24 sm:left-auto sm:absolute sm:top-[-4px] sm:bottom-auto sm:w-min sm:min-w-384",
         // Mobile styles
         "left-0 right-0 top-0 bottom-0 m-auto fixed w-11/12"
       )}
@@ -119,7 +121,7 @@ export const NavDropdown = ({
 
       <div className="p-8">
         {/* Mobile Nav */}
-        <div className="sm:hidden">
+        <div className="sm:hidden mb-12">
           <Subheading label="Pages" />
           <div className="flex justify-around">
             {MobileNavItemsData.map(({ label, symbol, path }, i) => (
@@ -139,6 +141,7 @@ export const NavDropdown = ({
 
         {/* Settings */}
         <Subheading label="Settings" display="mobileOnly" />
+        <SettingsMenu />
       </div>
     </div>
   );
