@@ -100,6 +100,7 @@ export const NavDropdown = ({
       </div>
 
       <div className="p-8">
+        {/* Mobile Nav */}
         <div className="sm:hidden">
           <Subheading label="Pages" />
           <div className="flex justify-around">
@@ -132,6 +133,9 @@ export const NavDropdown = ({
             />
           </div>
         </div>
+
+        {/* Settings */}
+        <Subheading label="Settings" display="mobileOnly" />
       </div>
     </div>
   );

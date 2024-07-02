@@ -3,16 +3,16 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 import { fadeIn } from "@utils/sharedVariants";
 
-type MobileNavContentProps = {
+type MobileNavBarProps = {
   currentPath: string;
   goToPath: (path: string) => void;
   toggleDropdown: () => void;
 };
-export const MobileNavContent = ({
+export const MobileNavBar = ({
   currentPath,
   goToPath,
   toggleDropdown,
-}: MobileNavContentProps) => {
+}: MobileNavBarProps) => {
   let label;
   switch (currentPath) {
     case "/":

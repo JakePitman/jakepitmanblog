@@ -5,17 +5,17 @@ import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
 import { fadeIn } from "@utils/sharedVariants";
 
-type DesktopNavContentProps = {
+type DesktopNavBarProps = {
   currentPath: string;
   goToPath: (path: string) => void;
   toggleDropdown: () => void;
 };
 
-export const DesktopNavContent = ({
+export const DesktopNavBar = ({
   currentPath,
   goToPath,
   toggleDropdown,
-}: DesktopNavContentProps) => {
+}: DesktopNavBarProps) => {
   return (
     <>
       <motion.div

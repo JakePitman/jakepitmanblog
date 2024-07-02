@@ -5,8 +5,8 @@ import { motion, useAnimation } from "framer-motion";
 import dynamic from "next/dynamic";
 
 import { useAnimationContext } from "@contexts/animationContext";
-import { DesktopNavContent } from "@components/DesktopNavContent";
-import { MobileNavContent } from "@components/MobileNavContent";
+import { DesktopNavBar } from "@components/DesktopNavBar";
+import { MobileNavBar } from "@components/MobileNavBar";
 import { NavDropdown } from "@components/NavDropdown";
 
 const underlineVariants = {
@@ -43,12 +43,12 @@ export const Navbar = () => {
     >
       <div className="flex flex-col items-center">
         <div className="flex justify-between w-full sm:mt-12 sm:px-12 mb-4 sm:mb-0">
-          <MobileNavContent
+          <MobileNavBar
             currentPath={pathname}
             goToPath={router.push}
             toggleDropdown={() => setDropdownIsOpen((prev) => !prev)}
           />
-          <DesktopNavContent
+          <DesktopNavBar
             currentPath={pathname}
             goToPath={router.push}
             toggleDropdown={() => setDropdownIsOpen((prev) => !prev)}
