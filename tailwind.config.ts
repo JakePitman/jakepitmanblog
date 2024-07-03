@@ -65,6 +65,9 @@ const config: Config = {
       lg: "4px 4px 0px 0px rgb(0, 0, 0, 0.3)",
     },
     extend: {
+      borderWidth: {
+        "1": "1px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
