@@ -7,7 +7,7 @@ type CardProps = {
   children: React.ReactNode;
 };
 const Card = ({ border, children }: CardProps) => (
-  <div className={cx("relative bg-slate-400 h-max w-max")}>
+  <div className={cx("relative bg-slate-400 h-max w-max shadow-lg")}>
     <div
       className={cx("absolute w-8 h-full bg-slate-900", {
         "right-0": border === "right",
