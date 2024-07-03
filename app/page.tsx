@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { FormattedMessage } from "react-intl";
 import cx from "classnames";
+import { MdOpenInNew } from "react-icons/md";
 
 type CardProps = {
   border: "left" | "right";
@@ -87,6 +88,19 @@ export default function Home() {
               </p>
             </div>
           </Card>
+        </div>
+        <div className="mb-32 fixed bottom-12">
+          <a
+            href="https://jakepitman.com"
+            target="_blank"
+            className=" underline underline-offset-2 relative"
+          >
+            <FormattedMessage
+              id="home.goToPortfolio"
+              defaultMessage="See my portfolio site"
+            />
+            <MdOpenInNew className="absolute top-[-8px] right-[-15px] text-slate-800" />
+          </a>
         </div>
       </div>
 
