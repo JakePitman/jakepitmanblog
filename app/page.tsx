@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <div className="relative h-full">
       <div className="flex justify-around h-full">
-        <div className="flex items-start h-full pt-128 z-20">
+        <div className="flex items-start h-full sm:pt-128 pt-12 z-20">
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -53,8 +53,8 @@ export default function Home() {
             </p>
           </Card>
         </div>
-        <div />
-        <div className="flex flex-col justify-end h-full pb-128 z-20">
+        <div className="hidden sm:block" />
+        <div className="hidden sm:flex flex-col justify-end h-full pb-128 z-20">
           <Card border="right">
             <div className="flex">
               <b className="mr-8">1.</b>
