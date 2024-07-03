@@ -118,7 +118,7 @@ export const NavDropdown = ({
   goToPath,
 }: NavDropdownProps) => {
   return (
-    <div className="relative" data-testid="navbar-dropdown">
+    <div className="relative z-50" data-testid="navbar-dropdown">
       <div
         className="bg-slate-900/40 w-screen h-screen fixed top-0"
         onClick={dismiss}
