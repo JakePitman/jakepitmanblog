@@ -122,6 +122,7 @@ export const NavDropdown = ({
       <div
         className="bg-slate-900/40 w-screen h-screen fixed top-0"
         onClick={dismiss}
+        data-testid="dropdown-backdrop"
       />
       <div
         className={cx(
