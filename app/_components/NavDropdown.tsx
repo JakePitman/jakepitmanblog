@@ -122,14 +122,13 @@ export const NavDropdown = ({
       <div
         className="bg-slate-900/40 w-screen h-screen fixed top-0"
         onClick={dismiss}
-        data-testid="dropdown-backdrop"
       />
       <div
         className={cx(
           // Base styles
-          "border-solid border-[1px] h-min bg-slate-300 shadow-lg",
+          "h-min bg-slate-300 shadow-lg",
           // Desktop styles
-          "sm:right-24 sm:left-auto sm:absolute sm:top-[-4px] sm:bottom-auto sm:w-min sm:min-w-384",
+          "sm:right-24 sm:left-auto sm:absolute sm:top-[-20px] sm:bottom-auto sm:w-min sm:min-w-384",
           // Mobile styles
           "left-0 right-0 top-0 bottom-0 m-auto fixed w-11/12"
         )}
