@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { screen, within } from "@testing-library/react";
+import { screen, within, fireEvent } from "@testing-library/react";
 import "../__mocks__/observationObserverMock";
 import { render } from "../testUtils";
 
@@ -123,5 +123,98 @@ describe("On mobile", () => {
     const navTitle = within(mobileNavBar).getByText("Article");
 
     expect(navTitle).toBeInTheDocument();
+  });
+});
+
+describe("Dropdown", () => {
+  it("Is closed by default", () => {
+    render(<Navbar />);
+
+    const dropdown = screen.queryByTestId("navbar-dropdown");
+
+    expect(dropdown).not.toBeInTheDocument();
+  });
+
+  it("Closes when clicking the dismiss button", () => {
+    render(<Navbar />);
+
+    const settingsButton = screen.getByTestId("desktop-nav-settings-button");
+    fireEvent.click(settingsButton);
+    const dismissButton = screen.getByTestId("dropdown-dismiss-button");
+    fireEvent.click(dismissButton);
+    const dropdown = screen.queryByTestId("navbar-dropdown");
+
+    expect(dropdown).not.toBeInTheDocument();
+  });
+
+  it("Closes when clicking the backdrop", () => {
+    render(<Navbar />);
+
+    const settingsButton = screen.getByTestId("desktop-nav-settings-button");
+    fireEvent.click(settingsButton);
+    const backdrop = screen.getByTestId("dropdown-backdrop");
+    fireEvent.click(backdrop);
+    const dropdown = screen.queryByTestId("navbar-dropdown");
+
+    expect(dropdown).not.toBeInTheDocument();
+  });
+
+  describe("On desktop", () => {
+    it("Opens the dropdown menu when settings icon is clicked", async () => {
+      render(<Navbar />);
+
+      const settingsButton = screen.getByTestId("desktop-nav-settings-button");
+      fireEvent.click(settingsButton);
+      const dropdown = screen.getByTestId("navbar-dropdown");
+
+      expect(dropdown).toBeInTheDocument();
+    });
+  });
+
+  describe("On mobile", () => {
+    it("Opens the dropdown menu when hamburger icon is clicked", async () => {
+      render(<Navbar />);
+
+      const hamburgerButton = screen.getByTestId("mobile-nav-hamburger-button");
+      fireEvent.click(hamburgerButton);
+      const dropdown = screen.getByTestId("navbar-dropdown");
+
+      expect(dropdown).toBeInTheDocument();
+    });
+
+    it("Renders links to pages", () => {
+      render(<Navbar />);
+
+      const hamburgerButton = screen.getByTestId("mobile-nav-hamburger-button");
+      fireEvent.click(hamburgerButton);
+      const dropdown = screen.getByTestId("navbar-dropdown");
+      const homeLink = within(dropdown).getByRole("button", {
+        name: "⏀ Home",
+      });
+      const articlesLink = within(dropdown).getByRole("button", {
+        name: "⎅ Articles",
+      });
+      const contactLink = within(dropdown).getByRole("button", {
+        name: "⏃ Contact",
+      });
+
+      expect(homeLink).toBeInTheDocument();
+      expect(articlesLink).toBeInTheDocument();
+      expect(contactLink).toBeInTheDocument();
+    });
+
+    it("Closes the dropdown when a nav link is clicked", () => {
+      render(<Navbar />);
+
+      const hamburgerButton = screen.getByTestId("mobile-nav-hamburger-button");
+      fireEvent.click(hamburgerButton);
+      const dropdown = screen.getByTestId("navbar-dropdown");
+      const articlesLink = within(dropdown).getByRole("button", {
+        name: "⎅ Articles",
+      });
+      fireEvent.click(articlesLink);
+
+      expect(dropdown).not.toBeInTheDocument();
+    });
   });
 });

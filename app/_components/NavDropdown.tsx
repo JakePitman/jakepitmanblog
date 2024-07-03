@@ -118,10 +118,11 @@ export const NavDropdown = ({
   goToPath,
 }: NavDropdownProps) => {
   return (
-    <div className="relative">
+    <div className="relative" data-testid="navbar-dropdown">
       <div
         className="bg-slate-900/40 w-screen h-screen fixed top-0"
         onClick={dismiss}
+        data-testid="dropdown-backdrop"
       />
       <div
         className={cx(
@@ -140,7 +141,7 @@ export const NavDropdown = ({
           <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
             <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
           </h2>
-          <button onClick={dismiss}>
+          <button onClick={dismiss} data-testid="dropdown-dismiss-button">
             <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
           </button>
         </div>
