@@ -127,7 +127,7 @@ export const NavDropdown = ({
       <div
         className={cx(
           // Base styles
-          "h-min bg-slate-300 shadow-lg",
+          "h-min bg-slate-300 shadow-lg border-[1px] border-slate-900",
           // Desktop styles
           "sm:right-24 sm:left-auto sm:absolute sm:top-[-20px] sm:bottom-auto sm:w-min sm:min-w-384",
           // Mobile styles
