@@ -6,9 +6,12 @@ import cx from "classnames";
 type CardProps = {
   border: "left" | "right";
   children: React.ReactNode;
+  classNames?: string;
 };
-const Card = ({ border, children }: CardProps) => (
-  <div className={cx("relative bg-slate-400 h-max w-max shadow-lg")}>
+const Card = ({ border, children, classNames }: CardProps) => (
+  <div
+    className={cx("relative bg-slate-400 h-max w-384 shadow-lg", classNames)}
+  >
     <div
       className={cx("absolute w-8 h-full bg-slate-900", {
         "right-0": border === "right",
@@ -32,16 +35,54 @@ export default function Home() {
       <div className="flex justify-around h-full">
         <div className="flex items-start h-full pt-128 z-20">
           <Card border="left">
-            <FormattedMessage
-              id="home.helloFriend"
-              defaultMessage="Hello friend"
-            />
+            <h3 className="font-medium tracking-wide text-24">
+              <FormattedMessage
+                id="home.helloFriend"
+                defaultMessage="Hello friend"
+              />
+            </h3>
+            <p>
+              <FormattedMessage
+                id="home.welcome"
+                defaultMessage="I'm Jake. Welcome to my tech blog."
+              />
+            </p>
           </Card>
         </div>
         <div />
-        <div className="flex items-end h-full pb-128 z-20">
+        <div className="flex flex-col justify-end h-full pb-128 z-20">
           <Card border="right">
-            <p>Hello world</p>
+            <div className="flex">
+              <b className="mr-8">1.</b>
+              <p>
+                <FormattedMessage
+                  id="home.objectiveOne"
+                  defaultMessage="Deepen my coding knowledge."
+                />
+              </p>
+            </div>
+          </Card>
+          <Card border="right" classNames="mt-8">
+            <div className="flex">
+              <b className="mr-8">2.</b>
+              <p>
+                <FormattedMessage
+                  id="home.objectiveTwo"
+                  defaultMessage="Share my learning with others."
+                />
+              </p>
+            </div>
+          </Card>
+          <Card border="right" classNames="mt-8">
+            <div className="flex">
+              <b className="mr-8">3.</b>
+              <p>
+                <FormattedMessage
+                  id="home.objectiveThree"
+                  defaultMessage="Practice communicating about code in Japanese."
+                />
+              </p>
+            </div>
           </Card>
         </div>
       </div>
