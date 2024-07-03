@@ -10,7 +10,10 @@ type CardProps = {
 };
 const Card = ({ border, children, classNames }: CardProps) => (
   <div
-    className={cx("relative bg-slate-400 h-max w-384 shadow-lg", classNames)}
+    className={cx(
+      "relative border-[1px] border-l-slate-900 bg-slate-400 h-max w-384 shadow-lg",
+      classNames
+    )}
   >
     <div
       className={cx("absolute w-8 h-full bg-slate-900", {
