@@ -118,61 +118,68 @@ export const NavDropdown = ({
   goToPath,
 }: NavDropdownProps) => {
   return (
-    <div
-      className={cx(
-        // Base styles
-        "border-solid border-[1px] h-min bg-slate-300 shadow-lg",
-        // Desktop styles
-        "sm:right-24 sm:left-auto sm:absolute sm:top-[-4px] sm:bottom-auto sm:w-min sm:min-w-384",
-        // Mobile styles
-        "left-0 right-0 top-0 bottom-0 m-auto fixed w-11/12"
-      )}
-    >
-      <div className="bg-slate-900 p-8 flex justify-between items-center">
-        <h2 className="text-20 text-slate-300 tracking-wide sm:block hidden">
-          <FormattedMessage id="navbar.settings" defaultMessage="Settings" />
-        </h2>
-        <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
-          <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
-        </h2>
-        <button onClick={dismiss}>
-          <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
-        </button>
-      </div>
-
-      <div className="p-8">
-        {/* Mobile Nav */}
-        <div className="sm:hidden mb-32">
-          <Subheading
-            labelMessageId="navbar.pages"
-            labelDefaultMessage="Pages"
-          />
-          <div className="flex justify-around">
-            {MobileNavItemsData.map(
-              ({ labelMessageId, labelDefaultMessage, symbol, path }, i) => (
-                <MobileNavItem
-                  key={path + i}
-                  labelMessageId={labelMessageId}
-                  labelDefaultMessage={labelDefaultMessage}
-                  symbol={symbol}
-                  isActive={pathname === path}
-                  onClick={() => {
-                    goToPath(path);
-                    dismiss();
-                  }}
-                />
-              )
-            )}
-          </div>
+    <div className="relative" data-testid="navbar-dropdown">
+      <div
+        className="bg-slate-900/40 w-screen h-screen fixed top-0"
+        onClick={dismiss}
+        data-testid="dropdown-backdrop"
+      />
+      <div
+        className={cx(
+          // Base styles
+          "h-min bg-slate-300 shadow-lg",
+          // Desktop styles
+          "sm:right-24 sm:left-auto sm:absolute sm:top-[-20px] sm:bottom-auto sm:w-min sm:min-w-384",
+          // Mobile styles
+          "left-0 right-0 top-0 bottom-0 m-auto fixed w-11/12"
+        )}
+      >
+        <div className="bg-slate-900 p-8 flex justify-between items-center">
+          <h2 className="text-20 text-slate-300 tracking-wide sm:block hidden">
+            <FormattedMessage id="navbar.settings" defaultMessage="Settings" />
+          </h2>
+          <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
+            <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
+          </h2>
+          <button onClick={dismiss} data-testid="dropdown-dismiss-button">
+            <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
+          </button>
         </div>
 
-        {/* Settings */}
-        <Subheading
-          labelMessageId="navbar.settings"
-          labelDefaultMessage="Settings"
-          display="mobileOnly"
-        />
-        <SettingsMenu />
+        <div className="p-8">
+          {/* Mobile Nav */}
+          <div className="sm:hidden mb-32">
+            <Subheading
+              labelMessageId="navbar.pages"
+              labelDefaultMessage="Pages"
+            />
+            <div className="flex justify-around">
+              {MobileNavItemsData.map(
+                ({ labelMessageId, labelDefaultMessage, symbol, path }, i) => (
+                  <MobileNavItem
+                    key={path + i}
+                    labelMessageId={labelMessageId}
+                    labelDefaultMessage={labelDefaultMessage}
+                    symbol={symbol}
+                    isActive={pathname === path}
+                    onClick={() => {
+                      goToPath(path);
+                      dismiss();
+                    }}
+                  />
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Settings */}
+          <Subheading
+            labelMessageId="navbar.settings"
+            labelDefaultMessage="Settings"
+            display="mobileOnly"
+          />
+          <SettingsMenu />
+        </div>
       </div>
     </div>
   );

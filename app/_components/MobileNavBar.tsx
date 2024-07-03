@@ -73,6 +73,7 @@ export const MobileNavBar = ({
           className="text-slate-300"
           size={36}
           onClick={toggleDropdown}
+          data-testid="mobile-nav-hamburger-button"
         />
       </motion.div>
     </div>

@@ -56,6 +56,7 @@ export const DesktopNavBar = ({
         variants={fadeIn}
         className="hidden sm:block mb-8"
         onClick={toggleDropdown}
+        data-testid="desktop-nav-settings-button"
       >
         <IoSettingsOutline size={35} className="text-slate-900  mr-4" />
       </motion.button>
