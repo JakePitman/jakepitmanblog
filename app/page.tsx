@@ -28,7 +28,7 @@ const Card = ({ border, children }: CardProps) => (
 export default function Home() {
   return (
     <div className="relative h-full">
-      <div className="flex justify-around border-[1px] h-full">
+      <div className="flex justify-around h-full">
         <div className="flex items-start h-full pt-128 z-20">
           <Card border="left">
             <p>Hello world</p>
