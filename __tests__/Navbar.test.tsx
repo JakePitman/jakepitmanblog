@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom";
-import { render, screen, within } from "@testing-library/react";
+import { screen, within } from "@testing-library/react";
 import "../__mocks__/observationObserverMock";
+import { render } from "../testUtils";
 
 import { Navbar } from "@components/Navbar";
 
