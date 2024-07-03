@@ -2,7 +2,8 @@ import React from "react";
 import type { Preview } from "@storybook/react";
 import { Inter } from "next/font/google";
 import "../app/globals.css";
-import { viewport } from "next-sanity/studio";
+import I18nProvider from "../app/i18n/Provider";
+import { UserSettingsContextProvider } from "../app/_contexts/userSettingsContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,9 +38,13 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className={inter.className}>
-        <Story />
-      </div>
+      <UserSettingsContextProvider>
+        <I18nProvider>
+          <div className={inter.className}>
+            <Story />
+          </div>
+        </I18nProvider>
+      </UserSettingsContextProvider>
     ),
   ],
 };

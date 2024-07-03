@@ -30,19 +30,22 @@ export const DesktopNavBar = ({
         <Bookend />
         <div className="flex">
           <NavItem
-            label="Home"
+            labelMessageId="navbar.home"
+            labelDefaultMessage="Home"
             onClick={() => goToPath("/")}
             isActive={currentPath === "/"}
             symbol="⏀"
           />
           <NavItem
-            label="Articles"
+            labelMessageId="navbar.articles"
+            labelDefaultMessage="Articles"
             onClick={() => goToPath("/articles")}
             isActive={currentPath === "/articles"}
             symbol="⎅"
           />
           <NavItem
-            label="Contact"
+            labelMessageId="navbar.contact"
+            labelDefaultMessage="Contact"
             onClick={() => goToPath("/contact")}
             isActive={currentPath === "/contact"}
             symbol="⏃"
