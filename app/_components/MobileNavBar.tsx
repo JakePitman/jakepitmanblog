@@ -22,8 +22,8 @@ const labelDataMap = {
     defaultMessage: "Contact",
   },
   default: {
-    messageId: "",
-    defaultMessage: "",
+    messageId: "navbar.unknownPage",
+    defaultMessage: "Unknown Page",
   },
 };
 type MobileNavBarProps = {

@@ -11,6 +11,7 @@ const NAVBAR_MESSAGES = {
   "navbar.language": "Language",
   "navbar.english": "English",
   "navbar.japanese": "日本語",
+  "navbar.unknownPage": "Unknown Page",
 };
 
 const messages = {
