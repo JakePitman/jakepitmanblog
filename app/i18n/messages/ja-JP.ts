@@ -14,9 +14,19 @@ const NAVBAR_MESSAGES = {
   "navbar.unknownPage": "ページ不明",
 };
 
+const HOME_PAGE_MESSAGES = {
+  "home.helloFriend": "こんにちは",
+  "home.welcome": "私はジェイクです。私のブログえようこそ。",
+  "home.objectiveOne": "プログラミングの知識を深める。",
+  "home.objectiveTwo": "習った知識をみんなにシェアする。",
+  "home.objectiveThree": "日本語でプログラミングについての話し合いを練習する。",
+  "home.goToPortolio": "私のポートフォリオサイトはこっちです",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...NAVBAR_MESSAGES,
+    ...HOME_PAGE_MESSAGES,
   },
 };
 

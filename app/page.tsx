@@ -1,5 +1,6 @@
+"use client"; // TODO: Find out why this needed
 import Image from "next/image";
-import { useIntl } from "react-intl";
+import { FormattedMessage } from "react-intl";
 import cx from "classnames";
 
 type CardProps = {
@@ -31,7 +32,10 @@ export default function Home() {
       <div className="flex justify-around h-full">
         <div className="flex items-start h-full pt-128 z-20">
           <Card border="left">
-            <p>Hello world</p>
+            <FormattedMessage
+              id="home.helloFriend"
+              defaultMessage="Hello friend"
+            />
           </Card>
         </div>
         <div />
