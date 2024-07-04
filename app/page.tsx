@@ -6,13 +6,18 @@ import { MdOpenInNew } from "react-icons/md";
 import { HomeImage } from "@components/HomeImage";
 import { motion, useAnimation } from "framer-motion";
 
+const cardVariants = {
+  hidden: { opacity: 0 },
+  itemsAppearing: { opacity: 1 },
+};
 type CardProps = {
   border: "left" | "right";
   children: React.ReactNode;
   classNames?: string;
 };
 const Card = ({ border, children, classNames }: CardProps) => (
-  <div
+  <motion.div
+    variants={cardVariants}
     className={cx(
       "relative border-1 border-l-slate-900 bg-slate-400 h-max w-384 max-w-[90vw] shadow-lg",
       classNames
@@ -32,7 +37,7 @@ const Card = ({ border, children, classNames }: CardProps) => (
     >
       {children}
     </div>
-  </div>
+  </motion.div>
 );
 
 export default function Home() {
@@ -51,7 +56,10 @@ export default function Home() {
   return (
     <motion.div className="relative h-full" animate={controls} initial="hidden">
       <div className="flex justify-around h-full">
-        <div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
+        <motion.div
+          variants={{ itemsAppearing: { transition: { delayChildren: 0.2 } } }}
+          className="flex items-start h-full sm:pt-128 pt-[5vh] z-20"
+        >
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -66,9 +74,16 @@ export default function Home() {
               />
             </p>
           </Card>
-        </div>
+        </motion.div>
         <div className="hidden sm:block" />
-        <div className="hidden sm:flex flex-col justify-start h-full pt-128 z-20">
+        <motion.div
+          className="hidden sm:flex flex-col justify-start h-full pt-128 z-20"
+          variants={{
+            itemsAppearing: {
+              transition: { delayChildren: 0.4, staggerChildren: 0.2 },
+            },
+          }}
+        >
           <Card border="right">
             <div className="flex">
               <b className="mr-8">1.</b>
@@ -102,7 +117,7 @@ export default function Home() {
               </p>
             </div>
           </Card>
-        </div>
+        </motion.div>
         <div className="absolute bottom-0 h-[10vh] flex items-center z-30">
           <a
             href="https://jakepitman.com"
