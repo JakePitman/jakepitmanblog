@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { motion, useAnimation } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import dynamic from "next/dynamic";
 
 import { useAnimationContext } from "@contexts/animationContext";
@@ -61,15 +61,17 @@ export const Navbar = () => {
       </div>
       <div className="relative">
         <DotsEmbellishment />
-        {dropdownIsOpen && (
-          <NavDropdown
-            dismiss={() => setDropdownIsOpen(false)}
-            pathname={pathname}
-            goToPath={(path: string) => {
-              router.push(path);
-            }}
-          />
-        )}
+        <AnimatePresence>
+          {dropdownIsOpen && (
+            <NavDropdown
+              dismiss={() => setDropdownIsOpen(false)}
+              pathname={pathname}
+              goToPath={(path: string) => {
+                router.push(path);
+              }}
+            />
+          )}
+        </AnimatePresence>
       </div>
     </motion.div>
   );

@@ -5,7 +5,6 @@ import cx from "classnames";
 import { MdOpenInNew } from "react-icons/md";
 import { HomeImage } from "@components/HomeImage";
 import { motion, useAnimation } from "framer-motion";
-import { transcode } from "buffer";
 
 const cardVariants = (slideFrom: "left" | "right") => ({
   hidden: { opacity: 0, left: slideFrom === "left" ? -20 : 20 },

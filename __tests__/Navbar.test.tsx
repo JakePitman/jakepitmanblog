@@ -127,6 +127,9 @@ describe("On mobile", () => {
 });
 
 describe("Dropdown", () => {
+  // Fade out animation takes 0.5s
+  const fadeoutBufferTime = 600;
+
   it("Is closed by default", () => {
     render(<Navbar />);
 
@@ -144,7 +147,9 @@ describe("Dropdown", () => {
     fireEvent.click(dismissButton);
     const dropdown = screen.queryByTestId("navbar-dropdown");
 
-    expect(dropdown).not.toBeInTheDocument();
+    setTimeout(() => {
+      expect(dropdown).not.toBeInTheDocument();
+    }, fadeoutBufferTime);
   });
 
   it("Closes when clicking the backdrop", () => {
@@ -156,7 +161,9 @@ describe("Dropdown", () => {
     fireEvent.click(backdrop);
     const dropdown = screen.queryByTestId("navbar-dropdown");
 
-    expect(dropdown).not.toBeInTheDocument();
+    setTimeout(() => {
+      expect(dropdown).not.toBeInTheDocument();
+    }, fadeoutBufferTime);
   });
 
   describe("On desktop", () => {
@@ -214,7 +221,9 @@ describe("Dropdown", () => {
       });
       fireEvent.click(articlesLink);
 
-      expect(dropdown).not.toBeInTheDocument();
+      setTimeout(() => {
+        expect(dropdown).not.toBeInTheDocument();
+      }, fadeoutBufferTime);
     });
   });
 });
