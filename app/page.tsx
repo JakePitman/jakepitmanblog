@@ -5,10 +5,15 @@ import cx from "classnames";
 import { MdOpenInNew } from "react-icons/md";
 import { HomeImage } from "@components/HomeImage";
 import { motion, useAnimation } from "framer-motion";
+import { transcode } from "buffer";
 
 const cardVariants = {
   hidden: { opacity: 0 },
-  itemsAppearing: { opacity: 1 },
+  cardsAppearing: { opacity: 1, transition: { stagger: 0.2 } },
+};
+const portfolioLinkVariants = {
+  hidden: { opacity: 0 },
+  portfolioLinkAppearing: { opacity: 1 },
 };
 type CardProps = {
   border: "left" | "right";
@@ -46,7 +51,9 @@ export default function Home() {
 
   useEffect(() => {
     const sequence = async () => {
-      await controls.start("itemsAppearing");
+      await controls.start("imageAppearing");
+      await controls.start("cardsAppearing");
+      await controls.start("portfolioLinkAppearing");
     };
     if (imageIsLoaded) {
       sequence();
@@ -54,12 +61,14 @@ export default function Home() {
   }, [imageIsLoaded, controls]);
 
   return (
-    <motion.div className="relative h-full" animate={controls} initial="hidden">
+    <motion.div
+      className="relative h-full"
+      animate={controls}
+      initial="hidden"
+      variants={{ cardsAppearing: { transition: { staggerChildren: 0.2 } } }}
+    >
       <div className="flex justify-around h-full">
-        <motion.div
-          variants={{ itemsAppearing: { transition: { delayChildren: 0.2 } } }}
-          className="flex items-start h-full sm:pt-128 pt-[5vh] z-20"
-        >
+        <motion.div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -76,14 +85,7 @@ export default function Home() {
           </Card>
         </motion.div>
         <div className="hidden sm:block" />
-        <motion.div
-          className="hidden sm:flex flex-col justify-start h-full pt-128 z-20"
-          variants={{
-            itemsAppearing: {
-              transition: { delayChildren: 0.4, staggerChildren: 0.2 },
-            },
-          }}
-        >
+        <motion.div className="hidden sm:flex flex-col justify-start h-full pt-128 z-20">
           <Card border="right">
             <div className="flex">
               <b className="mr-8">1.</b>
@@ -118,7 +120,10 @@ export default function Home() {
             </div>
           </Card>
         </motion.div>
-        <div className="absolute bottom-0 h-[10vh] flex items-center z-30">
+        <motion.div
+          className="absolute bottom-0 h-[10vh] flex items-center z-30"
+          variants={portfolioLinkVariants}
+        >
           <a
             href="https://jakepitman.com"
             target="_blank"
@@ -130,7 +135,7 @@ export default function Home() {
             />
             <MdOpenInNew className="absolute top-[-8px] right-[-15px] text-slate-800" />
           </a>
-        </div>
+        </motion.div>
       </div>
       <HomeImage
         imageIsLoaded={imageIsLoaded}

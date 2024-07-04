@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const variants = {
   hidden: { opacity: 0 },
-  itemsAppearing: { opacity: 1 },
+  imageAppearing: { opacity: 1 },
 };
 
 type HomeImageProps = {
