@@ -12,7 +12,7 @@ type CardProps = {
 const Card = ({ border, children, classNames }: CardProps) => (
   <div
     className={cx(
-      "relative border-1 border-l-slate-900 bg-slate-400 h-max w-384 shadow-lg",
+      "relative border-1 border-l-slate-900 bg-slate-400 h-max w-384 max-w-[90vw] shadow-lg",
       classNames
     )}
   >
@@ -37,7 +37,7 @@ export default function Home() {
   return (
     <div className="relative h-full">
       <div className="flex justify-around h-full">
-        <div className="flex items-start h-full sm:pt-128 pt-12 z-20">
+        <div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -89,7 +89,8 @@ export default function Home() {
             </div>
           </Card>
         </div>
-        <div className="mb-32 fixed bottom-12">
+        <div className="fixed bottom-0 h-[10vh] flex items-center z-30">
+          {/* <div className="mb-32 fixed bottom-12"> */}
           <a
             href="https://jakepitman.com"
             target="_blank"
@@ -105,7 +106,7 @@ export default function Home() {
       </div>
 
       {/* Image */}
-      <div className="w-4/6 aspect-square absolute top-0 right-0 bottom-0 left-0  m-auto max-h-[60vh]">
+      {/* <div className="sm:w-4/6 w-[150%] aspect-square absolute top-0 right-0 bottom-0 left-0  m-auto max-h-[60vh] ">
         <div className="relative w-full h-full">
           <Image
             src={"/images/washitsu.jpeg"}
@@ -114,6 +115,14 @@ export default function Home() {
             alt={"Washitsu"}
           />
         </div>
+      </div> */}
+      <div className="absolute top-[10vh] bottom-[10vh] w-full">
+        <Image
+          src={"/images/washitsu.jpeg"}
+          fill
+          style={{ objectFit: "cover" }}
+          alt={"Washitsu"}
+        />
       </div>
     </div>
   );
