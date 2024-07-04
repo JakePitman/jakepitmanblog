@@ -89,7 +89,7 @@ export default function Home() {
             </div>
           </Card>
         </div>
-        <div className="fixed bottom-0 h-[10vh] flex items-center z-30">
+        <div className="absolute bottom-0 h-[10vh] flex items-center z-30">
           <a
             href="https://jakepitman.com"
             target="_blank"
