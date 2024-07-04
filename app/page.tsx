@@ -7,10 +7,10 @@ import { HomeImage } from "@components/HomeImage";
 import { motion, useAnimation } from "framer-motion";
 import { transcode } from "buffer";
 
-const cardVariants = {
-  hidden: { opacity: 0 },
-  cardsAppearing: { opacity: 1, transition: { stagger: 0.2 } },
-};
+const cardVariants = (slideFrom: "left" | "right") => ({
+  hidden: { opacity: 0, left: slideFrom === "left" ? -20 : 20 },
+  cardsAppearing: { opacity: 1, left: 0, transition: { stagger: 0.2 } },
+});
 const portfolioLinkVariants = {
   hidden: { opacity: 0 },
   portfolioLinkAppearing: { opacity: 1 },
@@ -22,7 +22,7 @@ type CardProps = {
 };
 const Card = ({ border, children, classNames }: CardProps) => (
   <motion.div
-    variants={cardVariants}
+    variants={cardVariants(border === "left" ? "left" : "right")}
     className={cx(
       "relative border-1 border-l-slate-900 bg-slate-400 h-max w-384 max-w-[90vw] shadow-lg",
       classNames
