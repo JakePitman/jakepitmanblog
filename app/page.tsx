@@ -54,7 +54,7 @@ export default function Home() {
           </Card>
         </div>
         <div className="hidden sm:block" />
-        <div className="hidden sm:flex flex-col justify-end h-full pb-128 z-20">
+        <div className="hidden sm:flex flex-col justify-start h-full pt-128 z-20">
           <Card border="right">
             <div className="flex">
               <b className="mr-8">1.</b>
