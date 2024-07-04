@@ -39,7 +39,7 @@ export const Navbar = () => {
       initial="hidden"
       animate={controls}
       onViewportEnter={sequence}
-      className="w-full flex flex-col relative"
+      className="w-full flex flex-col relative h-min"
     >
       <div className="flex flex-col items-center">
         <div className="flex justify-between w-full sm:mt-12 sm:px-12 mb-4 sm:mb-0">

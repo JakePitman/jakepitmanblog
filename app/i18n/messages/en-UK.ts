@@ -14,9 +14,19 @@ const NAVBAR_MESSAGES = {
   "navbar.unknownPage": "Unknown Page",
 };
 
+const HOME_PAGE_MESSAGES = {
+  "home.helloFriend": "Hello friend",
+  "home.welcome": "I'm Jake. Welcome to my tech blog.",
+  "home.objectiveOne": "Deepen my coding knowledge.",
+  "home.objectiveTwo": "Share my learning with others.",
+  "home.objectiveThree": "Practice communicating about code in Japanese.",
+  "home.goToPortolio": "See my portfolio site",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...NAVBAR_MESSAGES,
+    ...HOME_PAGE_MESSAGES,
   },
 };
 

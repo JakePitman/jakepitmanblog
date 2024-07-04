@@ -118,7 +118,7 @@ export const NavDropdown = ({
   goToPath,
 }: NavDropdownProps) => {
   return (
-    <div className="relative" data-testid="navbar-dropdown">
+    <div className="relative z-50" data-testid="navbar-dropdown">
       <div
         className="bg-slate-900/40 w-screen h-screen fixed top-0"
         onClick={dismiss}
@@ -127,7 +127,7 @@ export const NavDropdown = ({
       <div
         className={cx(
           // Base styles
-          "h-min bg-slate-300 shadow-lg",
+          "h-min bg-slate-300 shadow-lg border-1 border-slate-900",
           // Desktop styles
           "sm:right-24 sm:left-auto sm:absolute sm:top-[-20px] sm:bottom-auto sm:w-min sm:min-w-384",
           // Mobile styles
