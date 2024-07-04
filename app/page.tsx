@@ -1,8 +1,10 @@
-"use client"; // TODO: Find out why this needed
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import cx from "classnames";
 import { MdOpenInNew } from "react-icons/md";
+import { HomeImage } from "@components/HomeImage";
+import { motion, useAnimation } from "framer-motion";
 
 type CardProps = {
   border: "left" | "right";
@@ -34,8 +36,20 @@ const Card = ({ border, children, classNames }: CardProps) => (
 );
 
 export default function Home() {
+  const [imageIsLoaded, setImageIsLoaded] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      await controls.start("itemsAppearing");
+    };
+    if (imageIsLoaded) {
+      sequence();
+    }
+  }, [imageIsLoaded, controls]);
+
   return (
-    <div className="relative h-full">
+    <motion.div className="relative h-full" animate={controls} initial="hidden">
       <div className="flex justify-around h-full">
         <div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
           <Card border="left">
@@ -103,15 +117,10 @@ export default function Home() {
           </a>
         </div>
       </div>
-
-      <div className="absolute top-[10vh] bottom-[10vh] w-full sm:w-4/5 sm:left-0 sm:right-0 sm:mx-auto">
-        <Image
-          src={"/images/washitsu.jpeg"}
-          fill
-          style={{ objectFit: "cover" }}
-          alt={"Washitsu"}
-        />
-      </div>
-    </div>
+      <HomeImage
+        imageIsLoaded={imageIsLoaded}
+        setImageIsLoaded={setImageIsLoaded}
+      />
+    </motion.div>
   );
 }

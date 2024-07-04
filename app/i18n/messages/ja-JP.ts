@@ -20,7 +20,7 @@ const HOME_PAGE_MESSAGES = {
   "home.objectiveOne": "プログラミングの知識を深める。",
   "home.objectiveTwo": "習った知識をみんなにシェアする。",
   "home.objectiveThree": "日本語でプログラミングについての話し合いを練習する。",
-  "home.goToPortolio": "私のポートフォリオサイトはこっちです",
+  "home.goToPortfolio": "私のポートフォリオサイトはこっちです",
 };
 
 const messages = {
