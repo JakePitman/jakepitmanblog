@@ -90,7 +90,6 @@ export default function Home() {
           </Card>
         </div>
         <div className="fixed bottom-0 h-[10vh] flex items-center z-30">
-          {/* <div className="mb-32 fixed bottom-12"> */}
           <a
             href="https://jakepitman.com"
             target="_blank"
@@ -105,18 +104,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Image */}
-      {/* <div className="sm:w-4/6 w-[150%] aspect-square absolute top-0 right-0 bottom-0 left-0  m-auto max-h-[60vh] ">
-        <div className="relative w-full h-full">
-          <Image
-            src={"/images/washitsu.jpeg"}
-            fill
-            style={{ objectFit: "contain" }}
-            alt={"Washitsu"}
-          />
-        </div>
-      </div> */}
-      <div className="absolute top-[10vh] bottom-[10vh] w-full">
+      <div className="absolute top-[10vh] bottom-[10vh] w-full sm:w-4/5 sm:left-0 sm:right-0 sm:mx-auto">
         <Image
           src={"/images/washitsu.jpeg"}
           fill
