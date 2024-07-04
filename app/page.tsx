@@ -1,16 +1,28 @@
-"use client"; // TODO: Find out why this needed
-import Image from "next/image";
+"use client";
+import { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import cx from "classnames";
 import { MdOpenInNew } from "react-icons/md";
+import { HomeImage } from "@components/HomeImage";
+import { motion, useAnimation } from "framer-motion";
+import { transcode } from "buffer";
 
+const cardVariants = (slideFrom: "left" | "right") => ({
+  hidden: { opacity: 0, left: slideFrom === "left" ? -20 : 20 },
+  cardsAppearing: { opacity: 1, left: 0, transition: { stagger: 0.2 } },
+});
+const portfolioLinkVariants = {
+  hidden: { opacity: 0 },
+  portfolioLinkAppearing: { opacity: 1 },
+};
 type CardProps = {
   border: "left" | "right";
   children: React.ReactNode;
   classNames?: string;
 };
 const Card = ({ border, children, classNames }: CardProps) => (
-  <div
+  <motion.div
+    variants={cardVariants(border === "left" ? "left" : "right")}
     className={cx(
       "relative border-1 border-l-slate-900 bg-slate-400 h-max w-384 max-w-[90vw] shadow-lg",
       classNames
@@ -30,14 +42,33 @@ const Card = ({ border, children, classNames }: CardProps) => (
     >
       {children}
     </div>
-  </div>
+  </motion.div>
 );
 
 export default function Home() {
+  const [imageIsLoaded, setImageIsLoaded] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      await controls.start("imageAppearing");
+      await controls.start("cardsAppearing");
+      await controls.start("portfolioLinkAppearing");
+    };
+    if (imageIsLoaded) {
+      sequence();
+    }
+  }, [imageIsLoaded, controls]);
+
   return (
-    <div className="relative h-full">
+    <motion.div
+      className="relative h-full"
+      animate={controls}
+      initial="hidden"
+      variants={{ cardsAppearing: { transition: { staggerChildren: 0.2 } } }}
+    >
       <div className="flex justify-around h-full">
-        <div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
+        <motion.div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -52,9 +83,9 @@ export default function Home() {
               />
             </p>
           </Card>
-        </div>
+        </motion.div>
         <div className="hidden sm:block" />
-        <div className="hidden sm:flex flex-col justify-start h-full pt-128 z-20">
+        <motion.div className="hidden sm:flex flex-col justify-start h-full pt-128 z-20">
           <Card border="right">
             <div className="flex">
               <b className="mr-8">1.</b>
@@ -88,8 +119,11 @@ export default function Home() {
               </p>
             </div>
           </Card>
-        </div>
-        <div className="absolute bottom-0 h-[10vh] flex items-center z-30">
+        </motion.div>
+        <motion.div
+          className="absolute bottom-0 h-[10vh] flex items-center z-30"
+          variants={portfolioLinkVariants}
+        >
           <a
             href="https://jakepitman.com"
             target="_blank"
@@ -101,17 +135,12 @@ export default function Home() {
             />
             <MdOpenInNew className="absolute top-[-8px] right-[-15px] text-slate-800" />
           </a>
-        </div>
+        </motion.div>
       </div>
-
-      <div className="absolute top-[10vh] bottom-[10vh] w-full sm:w-4/5 sm:left-0 sm:right-0 sm:mx-auto">
-        <Image
-          src={"/images/washitsu.jpeg"}
-          fill
-          style={{ objectFit: "cover" }}
-          alt={"Washitsu"}
-        />
-      </div>
-    </div>
+      <HomeImage
+        imageIsLoaded={imageIsLoaded}
+        setImageIsLoaded={setImageIsLoaded}
+      />
+    </motion.div>
   );
 }
