@@ -41,7 +41,7 @@ export const MobileArticleLink = ({
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
           <button
-            className="relative text-left mr-24"
+            className="relative text-left mr-12"
             onClick={() => alert(alertMessage)}
           >
             <h3
