@@ -23,10 +23,15 @@ const HOME_PAGE_MESSAGES = {
   "home.goToPortolio": "See my portfolio site",
 };
 
+const ARTICLES_PAGE_MESSAGES = {
+  "articles.go": "Go",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...NAVBAR_MESSAGES,
     ...HOME_PAGE_MESSAGES,
+    ...ARTICLES_PAGE_MESSAGES,
   },
 };
 

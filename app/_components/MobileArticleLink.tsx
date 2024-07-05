@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { FormattedDate } from "react-intl";
+import { FormattedDate, FormattedMessage } from "react-intl";
 import { LuChevronDownSquare, LuChevronUpSquare } from "react-icons/lu";
 import { Bebas_Neue } from "next/font/google";
 import { useIntl } from "react-intl";
@@ -122,7 +122,9 @@ export const MobileArticleLink = ({
           </p>
           <hr className="flex-grow border-slate-600" />
           <button className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center">
-            <p className="inline-block mr-8">Go</p>
+            <p className="inline-block mr-8 w-max">
+              <FormattedMessage id="articles.go" defaultMessage="Go" />
+            </p>
             <BsBoxArrowRight />
           </button>
         </em>
