@@ -3,9 +3,9 @@ import { useState } from "react";
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { LuChevronDownSquare, LuChevronUpSquare } from "react-icons/lu";
 import { Bebas_Neue } from "next/font/google";
-import { useIntl } from "react-intl";
 import cx from "classnames";
 import { BsBoxArrowRight } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 import styles from "./mobileArticleLink.module.css";
 
@@ -28,8 +28,8 @@ export const MobileArticleLink = ({
   description,
   tags,
 }: BlogEntryProps) => {
+  const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
-  const intl = useIntl();
 
   return (
     <div className="bg-slate-300 mb-16 last:mb-0 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600">
@@ -121,7 +121,10 @@ export const MobileArticleLink = ({
             <FormattedDate value={createdAt} />
           </p>
           <hr className="flex-grow border-slate-600" />
-          <button className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center">
+          <button
+            className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center"
+            onClick={() => router.push(`/articles/${slug}`)}
+          >
             <p className="inline-block mr-8 w-max">
               <FormattedMessage id="articles.go" defaultMessage="Go" />
             </p>
