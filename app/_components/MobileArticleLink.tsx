@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FormattedDate } from "react-intl";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { LuChevronDownSquare, LuChevronUpSquare } from "react-icons/lu";
 import { Bebas_Neue } from "next/font/google";
 import { useIntl } from "react-intl";
 import cx from "classnames";
@@ -31,20 +31,11 @@ export const MobileArticleLink = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const intl = useIntl();
 
-  const alertMessage = intl.formatMessage({
-    id: "blogSiteComingSoon",
-    defaultMessage:
-      "Jake is currently working on a blog site. Once it's complete, you can link to articles from here. Please stay tuned!",
-  });
-
   return (
     <div className="bg-slate-300 mb-16 last:mb-0 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-500">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
-          <button
-            className="relative text-left overflow-hidden"
-            onClick={() => alert(alertMessage)}
-          >
+          <div className="relative text-left overflow-hidden">
             <h3
               className={cx("text-24 relative", bebasNeue.className, {
                 [styles.title]: !isExpanded,
@@ -53,17 +44,17 @@ export const MobileArticleLink = ({
             >
               {title}
             </h3>
-          </button>
+          </div>
         </div>
 
-        <div className="h-full mt-8 text-slate-900">
+        <div className="h-full  text-slate-900 text-24 mt-[1px]">
           {isExpanded ? (
             <button onClick={() => setIsExpanded(false)}>
-              <FaChevronUp />
+              <LuChevronUpSquare />
             </button>
           ) : (
             <button onClick={() => setIsExpanded(true)}>
-              <FaChevronDown />
+              <LuChevronDownSquare />
             </button>
           )}
         </div>
