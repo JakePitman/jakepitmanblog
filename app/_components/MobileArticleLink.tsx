@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { MdOpenInNew } from "react-icons/md";
 import { Bebas_Neue } from "next/font/google";
 import { useIntl } from "react-intl";
 import classnames from "classnames";
+import { BsBoxArrowRight } from "react-icons/bs";
 
 import styles from "./mobileArticleLink.module.css";
 
@@ -41,7 +41,7 @@ export const MobileArticleLink = ({
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
           <button
-            className="relative text-left mr-12"
+            className="relative text-left overflow-hidden"
             onClick={() => alert(alertMessage)}
           >
             <h3
@@ -52,7 +52,6 @@ export const MobileArticleLink = ({
             >
               {title}
             </h3>
-            <MdOpenInNew className="absolute top-[-2px] right-[-20px] text-slate-800" />
           </button>
           <hr className="flex-grow mx-12 border-slate-600" />
         </div>
@@ -104,7 +103,7 @@ export const MobileArticleLink = ({
             {tags.map(({ value }, i) => (
               <p
                 className={classnames(
-                  "text-14 bg-slate-800 py-4 px-8 text-slate-400 mr-8",
+                  "text-14 bg-slate-500 py-4 px-8 text-slate-900 mr-8",
                   styles.tag,
                   {
                     "mt-12": isExpanded,
@@ -126,9 +125,13 @@ export const MobileArticleLink = ({
           )}
         >
           <hr className="flex-grow border-slate-600" />
-          <p className="ml-12">
+          {/* <p className="ml-12">
             <FormattedDate value={createdAt} />
-          </p>
+          </p> */}
+          <button className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center">
+            <p className="inline-block mr-8">Go</p>
+            <BsBoxArrowRight />
+          </button>
         </em>
       </div>
     </div>
