@@ -28,19 +28,17 @@ export default async function Articles() {
   const articles = await getArticles();
 
   return (
-    <div>
-      <div className="w-full flex flex-col items-center mt-12">
-        {articles.map((article, i) => (
-          <MobileArticleLink
-            key={article.title + i}
-            title={article.title}
-            slug={article.slug.current}
-            description={article.description}
-            createdAt={article._createdAt}
-            tags={article.tags}
-          />
-        ))}
-      </div>
+    <div className="w-full flex flex-col items-center mt-12">
+      {articles.map((article, i) => (
+        <MobileArticleLink
+          key={article.title + i}
+          title={article.title}
+          slug={article.slug.current}
+          description={article.description}
+          createdAt={article._createdAt}
+          tags={article.tags}
+        />
+      ))}
     </div>
   );
 }

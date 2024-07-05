@@ -12,5 +12,5 @@ export const MainContentWrapper = ({ children }: MainContentWrapperProps) => {
   if (!openingAnimationIsCompleted) {
     return null;
   }
-  return <main className="flex-grow">{children}</main>;
+  return <main className="flex-grow overflow-scroll">{children}</main>;
 };
