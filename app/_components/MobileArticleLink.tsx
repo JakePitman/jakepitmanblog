@@ -3,7 +3,7 @@ import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 import { Bebas_Neue } from "next/font/google";
 import { useIntl } from "react-intl";
-import classnames from "classnames";
+import cx from "classnames";
 import { BsBoxArrowRight } from "react-icons/bs";
 
 import styles from "./mobileArticleLink.module.css";
@@ -45,7 +45,7 @@ export const MobileArticleLink = ({
             onClick={() => alert(alertMessage)}
           >
             <h3
-              className={classnames("text-24 relative", bebasNeue.className, {
+              className={cx("text-24 relative", bebasNeue.className, {
                 [styles.title]: !isExpanded,
                 [styles.titleExpanded]: isExpanded,
               })}
@@ -53,7 +53,6 @@ export const MobileArticleLink = ({
               {title}
             </h3>
           </button>
-          <hr className="flex-grow mx-12 border-slate-600" />
         </div>
 
         <div className="h-full mt-8 text-slate-900">
@@ -76,33 +75,30 @@ export const MobileArticleLink = ({
       )}
 
       <div
-        className={classnames("flex justify-between items-center", {
+        className={cx("flex justify-between items-center", {
           "flex-wrap": isExpanded,
         })}
       >
         <div
-          className={classnames(
-            "relative overflow-scroll w-full",
-            styles.tagContainer
-          )}
+          className={cx("relative overflow-scroll w-full", styles.tagContainer)}
         >
           {!isExpanded && (
             <div
-              className={classnames(
+              className={cx(
                 "absolute h-full right-0 w-[10px]",
                 styles.tagContainerFadeBar
               )}
             />
           )}
           <div
-            className={classnames("flex flex-grow", styles.tagContainer, {
+            className={cx("flex flex-grow", styles.tagContainer, {
               "overflow-scroll": !isExpanded,
               "flex-wrap": isExpanded,
             })}
           >
             {tags.map(({ value }, i) => (
               <p
-                className={classnames(
+                className={cx(
                   "text-14 bg-slate-500 py-4 px-8 text-slate-900 mr-8",
                   styles.tag,
                   {
@@ -117,17 +113,22 @@ export const MobileArticleLink = ({
           </div>
         </div>
         <em
-          className={classnames(
+          className={cx(
             "text-12 text-slate-700 text-end flex justify-end items-center",
             {
               "w-full mt-12": isExpanded,
             }
           )}
         >
-          <hr className="flex-grow border-slate-600" />
-          {/* <p className="ml-12">
+          <p
+            className={cx("mr-12", {
+              hidden: !isExpanded,
+              "inline-block": isExpanded,
+            })}
+          >
             <FormattedDate value={createdAt} />
-          </p> */}
+          </p>
+          <hr className="flex-grow border-slate-600" />
           <button className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center">
             <p className="inline-block mr-8">Go</p>
             <BsBoxArrowRight />
