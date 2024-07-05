@@ -3,6 +3,7 @@ import { SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { ArticleListItem } from "@components/ArticleListItem";
 import { ArticleLink } from "@components/ArticleLink";
+import { MobileArticleLink } from "@components/MobileArticleLink";
 
 const EVENTS_QUERY = `
 *[
@@ -28,18 +29,18 @@ export default async function Articles() {
 
   return (
     <div>
-      <h1 className="text-5xl">Articles</h1>
-      {articles.map((article) => (
-        <>
-          <br />
-          <ArticleListItem
+      <div className="w-full flex flex-col items-center mt-12">
+        {articles.map((article, i) => (
+          <MobileArticleLink
+            key={article.title + i}
             title={article.title}
-            description={article.description}
             slug={article.slug.current}
+            description={article.description}
+            createdAt={article._createdAt}
+            tags={article.tags}
           />
-          <ArticleLink slug={article.slug.current} />
-        </>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

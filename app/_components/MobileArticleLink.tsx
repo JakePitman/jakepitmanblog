@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { FormattedDate } from "react-intl";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
@@ -37,7 +38,7 @@ export const MobileArticleLink = ({
   });
 
   return (
-    <div className="bg-slate-300 mb-3 last:mb-0 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-500">
+    <div className="bg-slate-300 mb-16 last:mb-0 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-500">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
           <button
