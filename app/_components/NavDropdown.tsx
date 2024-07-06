@@ -133,7 +133,7 @@ export const NavDropdown = ({
       data-testid="navbar-dropdown"
     >
       <motion.div
-        className="bg-slate-900/40 w-screen h-screen fixed top-0"
+        className="bg-black/70 w-screen h-screen fixed top-0"
         onClick={dismiss}
         data-testid="dropdown-backdrop"
         variants={fadeInVariants}

@@ -17,6 +17,7 @@ const config: Config = {
         800: "#635F54",
         900: "#4E4B42",
       },
+      black: "black",
       transparent: "transparent",
     },
     spacing: {
