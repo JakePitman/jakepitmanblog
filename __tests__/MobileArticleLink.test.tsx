@@ -52,3 +52,17 @@ describe("closed state", () => {
     expect(description).not.toBeInTheDocument();
   });
 });
+
+describe("expanded state", () => {
+  it("displays the description of the article", () => {
+    render(<MobileArticleLink {...props} />);
+
+    const dropdownChevron = screen.getByTestId(
+      "mobile-article-link-chevron-down"
+    );
+    fireEvent.click(dropdownChevron);
+    const description = screen.getByText(props.description);
+
+    expect(description).toBeInTheDocument();
+  });
+});

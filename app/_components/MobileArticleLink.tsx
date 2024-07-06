@@ -71,11 +71,17 @@ export const MobileArticleLink = ({
 
         <div className="h-full  text-slate-900 text-24 mt-[1px]">
           {isExpanded ? (
-            <button onClick={() => setIsExpanded(false)}>
+            <button
+              onClick={() => setIsExpanded(false)}
+              data-testid="mobile-article-link-chevron-up"
+            >
               <LuChevronUpSquare />
             </button>
           ) : (
-            <button onClick={() => setIsExpanded(true)}>
+            <button
+              onClick={() => setIsExpanded(true)}
+              data-testid="mobile-article-link-chevron-down"
+            >
               <LuChevronDownSquare />
             </button>
           )}
