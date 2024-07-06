@@ -1,8 +1,7 @@
 import { SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/client";
-import { ArticleListItem } from "@components/ArticleListItem";
-import { ArticleLink } from "@components/ArticleLink";
+import { MobileArticleLinks } from "@components/MobileArticleLinks";
 
 const EVENTS_QUERY = `
 *[
@@ -15,7 +14,7 @@ const EVENTS_QUERY = `
   tags,
   titleImage,
   mainContent,
-}
+} | order(_createdAt desc)
 `;
 
 const getArticles = async () => {
@@ -26,20 +25,5 @@ const getArticles = async () => {
 export default async function Articles() {
   const articles = await getArticles();
 
-  return (
-    <div>
-      <h1 className="text-5xl">Articles</h1>
-      {articles.map((article) => (
-        <>
-          <br />
-          <ArticleListItem
-            title={article.title}
-            description={article.description}
-            slug={article.slug.current}
-          />
-          <ArticleLink slug={article.slug.current} />
-        </>
-      ))}
-    </div>
-  );
+  return <MobileArticleLinks articles={articles} />;
 }

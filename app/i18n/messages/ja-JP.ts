@@ -23,10 +23,15 @@ const HOME_PAGE_MESSAGES = {
   "home.goToPortfolio": "私のポートフォリオサイトはこっちです",
 };
 
+const ARTICLES_PAGE_MESSAGES = {
+  "articles.go": "読む",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...NAVBAR_MESSAGES,
     ...HOME_PAGE_MESSAGES,
+    ...ARTICLES_PAGE_MESSAGES,
   },
 };
 

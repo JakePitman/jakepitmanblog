@@ -1,0 +1,8 @@
+/* Remove scroll styles */
+.mainContainer {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.mainContainer::-webkit-scrollbar {
+  display: none;
+}
