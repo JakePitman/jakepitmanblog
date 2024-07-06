@@ -14,7 +14,7 @@ const EVENTS_QUERY = `
   tags,
   titleImage,
   mainContent,
-}
+} | order(_createdAt desc)
 `;
 
 const getArticles = async () => {
