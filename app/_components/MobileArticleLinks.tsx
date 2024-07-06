@@ -10,6 +10,7 @@ type Props = {
 };
 export const MobileArticleLinks = ({ articles }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+
   const intersectionObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -23,7 +24,8 @@ export const MobileArticleLinks = ({ articles }: Props) => {
       });
     },
     {
-      threshold: 0.5,
+      root: containerRef.current,
+      rootMargin: "-50px",
     }
   );
 
