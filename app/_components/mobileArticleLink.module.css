@@ -27,3 +27,7 @@
 .tag {
   text-wrap: nowrap;
 }
+
+.show {
+  opacity: 1
+}

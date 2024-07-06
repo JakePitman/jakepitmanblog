@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FormattedDate, FormattedMessage } from "react-intl";
 import { LuChevronDownSquare, LuChevronUpSquare } from "react-icons/lu";
 import { Bebas_Neue } from "next/font/google";
@@ -20,6 +20,7 @@ export type ArticleProps = {
   slug: string;
   description: string;
   tags: { value: string }[];
+  interSectionObserver?: IntersectionObserver;
 };
 export const MobileArticleLink = ({
   createdAt,
@@ -27,12 +28,33 @@ export const MobileArticleLink = ({
   slug, // TODO: Use this to link to blog site when completed
   description,
   tags,
+  interSectionObserver,
 }: ArticleProps) => {
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!interSectionObserver) {
+      return;
+    }
+    const { current } = ref;
+    if (current) {
+      interSectionObserver.observe(current);
+    }
+
+    return () => {
+      if (current) {
+        interSectionObserver.unobserve(current);
+      }
+    };
+  }, [interSectionObserver]);
 
   return (
-    <div className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600 opacity-5">
+    <div
+      className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600 opacity-5 transition-all"
+      ref={ref}
+    >
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
           <div className="relative text-left overflow-hidden">
