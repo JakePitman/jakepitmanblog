@@ -4,6 +4,7 @@ import cx from "classnames";
 import { client } from "@/sanity/client";
 import { FormattedDate } from "@components/FormattedDate";
 import { Tag } from "@components/Tag";
+import { BlockContent } from "@customTypes/BlockContentTypes";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -30,7 +31,7 @@ type ArticleData = {
   description: string;
   tags: Tag[];
   titleImage: typeof Image;
-  mainContent: {};
+  mainContent: BlockContent[];
 };
 export async function generateStaticParams() {
   const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
@@ -74,6 +75,7 @@ export default async function Article({ params }: ArticleProps) {
     tags,
     mainContent,
   } = article;
+
   return (
     <div className="w-full flex justify-center mt-12">
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8">
