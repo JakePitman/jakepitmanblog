@@ -25,7 +25,7 @@ export type ArticleProps = {
 export const MobileArticleLink = ({
   createdAt,
   title,
-  slug, // TODO: Use this to link to blog site when completed
+  slug,
   description,
   tags,
   interSectionObserver,
@@ -52,7 +52,7 @@ export const MobileArticleLink = ({
 
   return (
     <div
-      className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600 opacity-5 transition-all"
+      className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600 opacity-0 ml-48 transition-all"
       ref={ref}
     >
       <div className="w-full flex items-start mb-2">

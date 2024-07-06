@@ -10,14 +10,22 @@ type Props = {
 };
 export const MobileArticleLinks = ({ articles }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const intersectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      entry.target.classList.toggle(
-        mobileArticleLinkStyles.show,
-        entry.isIntersecting
-      );
-    });
-  });
+  const intersectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle(
+          mobileArticleLinkStyles.show,
+          entry.isIntersecting
+        );
+        if (entry.isIntersecting) {
+          intersectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.5,
+    }
+  );
 
   return (
     <div className="w-full flex flex-col items-center mt-12" ref={containerRef}>
