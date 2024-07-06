@@ -3,6 +3,7 @@ import cx from "classnames";
 
 import { client } from "@/sanity/client";
 import { FormattedDate } from "@components/FormattedDate";
+import { Tag } from "@components/Tag";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -82,14 +83,9 @@ export default async function Article({ params }: ArticleProps) {
           {description}
         </h3>
 
-        <div className="flex flex-wrap mb-12">
+        <div className="flex flex-wrap mb-8">
           {tags.map(({ value }, i) => (
-            <p
-              className="text-14 py-4 px-8 mr-8 last:mr-0 my-4 bg-slate-500 text-slate-900"
-              key={value + i}
-            >
-              {value}
-            </p>
+            <Tag label={value} key={value + i} />
           ))}
         </div>
 
