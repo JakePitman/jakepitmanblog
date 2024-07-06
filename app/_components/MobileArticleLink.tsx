@@ -14,7 +14,7 @@ const bebasNeue = Bebas_Neue({
   subsets: ["latin"],
 });
 
-type BlogEntryProps = {
+export type ArticleProps = {
   createdAt: string;
   title: string;
   slug: string;
@@ -27,12 +27,12 @@ export const MobileArticleLink = ({
   slug, // TODO: Use this to link to blog site when completed
   description,
   tags,
-}: BlogEntryProps) => {
+}: ArticleProps) => {
   const router = useRouter();
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600">
+    <div className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 shadow-sm border-1 border-slate-600 opacity-5">
       <div className="w-full flex items-start mb-2">
         <div className="flex items-center overflow-hidden flex-grow mb-4">
           <div className="relative text-left overflow-hidden">
