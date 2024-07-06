@@ -75,7 +75,6 @@ export default async function Article({ params }: ArticleProps) {
         <em className="w-full flex items-center text-12">
           <hr className="flex-grow text-slate-500 mr-4" />
           <FormattedDate value={createdAt} />
-          <hr className="flex-grow text-slate-500 ml-4" />
         </em>
       </div>
     </div>
