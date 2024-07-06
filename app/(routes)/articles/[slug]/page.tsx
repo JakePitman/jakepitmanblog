@@ -69,7 +69,7 @@ export default async function Article({ params }: ArticleProps) {
   const { _createdAt: createdAt, title, description, mainContent } = article;
   return (
     <div className="w-full flex justify-center mt-12">
-      <div className="w-11/12 shadow-lg border-1 border-slate-600 p-8">
+      <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8">
         <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
         <h3 className="border-l-8 border-slate-800 pl-8 mb-8">{description}</h3>
         <em className="w-full flex items-center text-12">
