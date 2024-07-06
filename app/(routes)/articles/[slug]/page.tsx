@@ -66,12 +66,33 @@ export default async function Article({ params }: ArticleProps) {
     return <div>Article of slug {params.slug} not found</div>;
   }
 
-  const { _createdAt: createdAt, title, description, mainContent } = article;
+  const {
+    _createdAt: createdAt,
+    title,
+    description,
+    tags,
+    mainContent,
+  } = article;
   return (
     <div className="w-full flex justify-center mt-12">
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8">
         <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
-        <h3 className="border-l-8 border-slate-800 pl-8 mb-8">{description}</h3>
+
+        <h3 className="border-l-8 border-slate-800 pl-8 mb-12">
+          {description}
+        </h3>
+
+        <div className="flex flex-wrap mb-12">
+          {tags.map(({ value }, i) => (
+            <p
+              className="text-14 py-4 px-8 mr-8 last:mr-0 my-4 bg-slate-500 text-slate-900"
+              key={value + i}
+            >
+              {value}
+            </p>
+          ))}
+        </div>
+
         <em className="w-full flex items-center text-12">
           <hr className="flex-grow text-slate-500 mr-4" />
           <FormattedDate value={createdAt} />
