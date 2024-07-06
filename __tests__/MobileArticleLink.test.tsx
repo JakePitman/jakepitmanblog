@@ -14,8 +14,10 @@ const usePathname = usePathnameOriginal as jest.Mock;
 
 jest.mock("next/navigation");
 
+const mockPush = jest.fn();
+
 useRouter.mockImplementation(() => ({
-  push: jest.fn(),
+  push: mockPush,
   prefetch: jest.fn(),
 }));
 usePathname.mockImplementation(() => "/");
@@ -28,6 +30,15 @@ const props = {
     "You won't see them often. For wherever the crowd is, they are not. Those odd ones, not many - but from them come the few good paintings, the few good symphonies, the few good books.",
   tags: [{ value: "Tag 1" }, { value: "Tag 2" }, { value: "Tag 3" }],
 };
+
+it("Navigates to the corresponding article when the 'Go' button is clicked", () => {
+  render(<MobileArticleLink {...props} />);
+
+  const goButton = screen.getByRole("button", { name: "Go" });
+  fireEvent.click(goButton);
+
+  expect(mockPush).toHaveBeenCalledWith("/articles/my-cool-slug");
+});
 
 describe("closed state", () => {
   it("Displays the title and tags of the article", () => {
