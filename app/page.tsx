@@ -67,7 +67,7 @@ export default function Home() {
       variants={{ cardsAppearing: { transition: { staggerChildren: 0.2 } } }}
     >
       <div className="flex justify-around h-full">
-        <motion.div className="flex items-start h-full sm:pt-128 pt-[5vh] z-20">
+        <motion.div className="flex items-start h-full sm:pt-128 pt-[5dvh] z-20">
           <Card border="left">
             <h3 className="font-medium tracking-wide text-24">
               <FormattedMessage
@@ -120,7 +120,7 @@ export default function Home() {
           </Card>
         </motion.div>
         <motion.div
-          className="absolute bottom-0 h-[10vh] flex items-center z-30"
+          className="absolute bottom-0 h-[10dvh] flex items-center z-30"
           variants={portfolioLinkVariants}
         >
           <a
