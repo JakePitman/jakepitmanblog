@@ -9,8 +9,23 @@ const SLUGS_QUERY = `
   slug,
 }
 `;
+type Slug = {
+  current: string;
+};
+type Tag = {
+  value: string;
+};
+type ArticleData = {
+  _createdAt: string;
+  title: string;
+  slug: Slug;
+  description: string;
+  tags: Tag[];
+  titleImage: typeof Image;
+  mainContent: {};
+};
 export async function generateStaticParams() {
-  const res = await client.fetch<SanityDocument[]>(SLUGS_QUERY);
+  const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
 
   const slugs: { params: { slug: string } }[] = res.map((articleData) => ({
     params: { slug: articleData.slug.current },
@@ -25,7 +40,7 @@ type ArticleProps = {
   };
 };
 export default async function Article({ params }: ArticleProps) {
-  const article = await client.fetch(`
+  const article = await client.fetch<ArticleData>(`
     *[
       _type == "blogEntry" &&
       slug.current == "${params.slug}"
@@ -44,7 +59,7 @@ export default async function Article({ params }: ArticleProps) {
     return <div>Article of slug {params.slug} not found</div>;
   }
 
-  const { _createdAt: createdAt, title, description } = article;
+  const { _createdAt: createdAt, title, description, mainContent } = article;
   return (
     <div>
       <h1 className="text-4xl">{title}</h1>
