@@ -8,8 +8,8 @@ type BlockBase = {
 };
 
 type WithoutSpecialFields = {
-  listItem: never;
-  level: never;
+  listItem?: undefined;
+  level?: undefined;
 };
 type WithListItem = {
   listItem: "bullet" | "number";
