@@ -310,3 +310,14 @@ export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent
 export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContent[] = STYLES.map(
   (style) => generateWithUniqueStyle(style, ["code"])
 );
+
+export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContent[] = [
+  generateWithUniqueStyle("h2"),
+  {
+    _type: "code",
+    _key: "123",
+    code: `// This is a TS code block\n\nconst foo = "bar"\nconst myObj {\n  foo: "bar"\n}\n"Will this be delineated?"`,
+    language: "typescript",
+  },
+  generateWithUniqueStyle("normal"),
+];

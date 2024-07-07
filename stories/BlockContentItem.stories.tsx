@@ -8,6 +8,7 @@ import {
   DUMMY_BLOCK_CONTENT_STRIKETHROUGH,
   DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH,
   DUMMY_BLOCK_CONTENT_INLINE_CODE,
+  DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK,
 } from "./dummyBlockContent";
 
 const meta = {
@@ -123,6 +124,18 @@ export const BlockInlineCode: Story = {
     return (
       <>
         {DUMMY_BLOCK_CONTENT_INLINE_CODE.map((blockContent, i) => (
+          <BlockContentItem key={i} blockContent={blockContent} />
+        ))}
+      </>
+    );
+  },
+};
+
+export const WithCodeBlockPlugin: Story = {
+  render: () => {
+    return (
+      <>
+        {DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK.map((blockContent, i) => (
           <BlockContentItem key={i} blockContent={blockContent} />
         ))}
       </>
