@@ -2,12 +2,12 @@ import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
 
 import { BlockContentItem } from "@components/BlockContentItem";
-import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
+import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
 
-describe("_type = block", () => {
+const TestWithMarks = (style: Style, testId: string) => {
   const generatePropsWithMarks = (marks: Mark[]): BlockContent => ({
     _type: "block",
-    style: "normal",
+    style: style,
     children: [
       {
         marks: marks,
@@ -15,9 +15,105 @@ describe("_type = block", () => {
       },
     ],
   });
+  describe("marks includes 'em'", () => {
+    it("Wraps contents of element in <em>", () => {
+      const blockContent: BlockContent = generatePropsWithMarks(["em"]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId(testId);
+      const em = within(element).getByTestId("blockContent-em");
+
+      expect(em).toBeInTheDocument();
+    });
+  });
+  describe("marks includes 'strong'", () => {
+    it("Wraps contents of element in <strong>", () => {
+      const blockContent: BlockContent = generatePropsWithMarks(["strong"]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-p");
+      const strong = within(element).getByTestId("blockContent-strong");
+
+      expect(strong).toBeInTheDocument();
+    });
+  });
+  describe("marks includes 'underline'", () => {
+    it("Wraps contents of element in <u>", () => {
+      const text = "Hello";
+      const blockContent: BlockContent = generatePropsWithMarks(["underline"]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-p");
+      const underline = within(element).getByTestId("blockContent-u");
+
+      expect(underline).toBeInTheDocument();
+    });
+  });
+  describe("marks includes 'strikethrough'", () => {
+    it("Wraps contents of element in <s>", () => {
+      const blockContent: BlockContent = generatePropsWithMarks([
+        "strikethrough",
+      ]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-p");
+      const strikethrough = within(element).getByTestId("blockContent-s");
+
+      expect(strikethrough).toBeInTheDocument();
+    });
+  });
+  describe("marks includes 'code'", () => {
+    it("Wraps contents of element in <code>", () => {
+      const blockContent: BlockContent = generatePropsWithMarks(["code"]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-p");
+      const code = within(element).getByTestId("blockContent-code");
+
+      expect(code).toBeInTheDocument();
+    });
+  });
+  describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
+    it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
+      const blockContent: BlockContent = generatePropsWithMarks([
+        "strong",
+        "em",
+        "underline",
+        "strikethrough",
+        "code",
+      ]);
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-p");
+      const strong = within(element).getByTestId("blockContent-strong");
+      const em = within(element).getByTestId("blockContent-em");
+      const u = within(element).getByTestId("blockContent-u");
+      const s = within(element).getByTestId("blockContent-s");
+      const code = within(element).getByTestId("blockContent-code");
+
+      expect(strong).toBeInTheDocument();
+      expect(em).toBeInTheDocument();
+      expect(u).toBeInTheDocument();
+      expect(s).toBeInTheDocument();
+      expect(code).toBeInTheDocument();
+    });
+  });
+};
+
+describe("_type = block", () => {
   describe("style = normal", () => {
+    const style = "normal"; // <p>
     it("Renders in a <p> tag", () => {
-      const blockContent: BlockContent = generatePropsWithMarks([]);
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
       render(<BlockContentItem blockContent={blockContent} />);
 
       const element = screen.getByTestId("blockContent-p");
@@ -25,91 +121,6 @@ describe("_type = block", () => {
       expect(element.nodeName).toBe("P");
     });
 
-    describe("marks includes 'em'", () => {
-      it("Wraps contents of element in <em>", () => {
-        const blockContent: BlockContent = generatePropsWithMarks(["em"]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const em = within(element).getByTestId("blockContent-em");
-
-        expect(em).toBeInTheDocument();
-      });
-    });
-    describe("marks includes 'strong'", () => {
-      it("Wraps contents of element in <strong>", () => {
-        const blockContent: BlockContent = generatePropsWithMarks(["strong"]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const strong = within(element).getByTestId("blockContent-strong");
-
-        expect(strong).toBeInTheDocument();
-      });
-    });
-    describe("marks includes 'underline'", () => {
-      it("Wraps contents of element in <u>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = generatePropsWithMarks([
-          "underline",
-        ]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const underline = within(element).getByTestId("blockContent-u");
-
-        expect(underline).toBeInTheDocument();
-      });
-    });
-    describe("marks includes 'strikethrough'", () => {
-      it("Wraps contents of element in <s>", () => {
-        const blockContent: BlockContent = generatePropsWithMarks([
-          "strikethrough",
-        ]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const strikethrough = within(element).getByTestId("blockContent-s");
-
-        expect(strikethrough).toBeInTheDocument();
-      });
-    });
-    describe("marks includes 'code'", () => {
-      it("Wraps contents of element in <code>", () => {
-        const blockContent: BlockContent = generatePropsWithMarks(["code"]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const code = within(element).getByTestId("blockContent-code");
-
-        expect(code).toBeInTheDocument();
-      });
-    });
-    describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
-      it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = generatePropsWithMarks([
-          "strong",
-          "em",
-          "underline",
-          "strikethrough",
-          "code",
-        ]);
-        render(<BlockContentItem blockContent={blockContent} />);
-
-        const element = screen.getByTestId("blockContent-p");
-        const strong = within(element).getByTestId("blockContent-strong");
-        const em = within(element).getByTestId("blockContent-em");
-        const u = within(element).getByTestId("blockContent-u");
-        const s = within(element).getByTestId("blockContent-s");
-        const code = within(element).getByTestId("blockContent-code");
-
-        expect(strong).toBeInTheDocument();
-        expect(em).toBeInTheDocument();
-        expect(u).toBeInTheDocument();
-        expect(s).toBeInTheDocument();
-        expect(code).toBeInTheDocument();
-      });
-    });
+    TestWithMarks(style, "blockContent-p");
   });
 });

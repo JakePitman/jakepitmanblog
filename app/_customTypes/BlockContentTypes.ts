@@ -1,4 +1,12 @@
-type Style = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote" | "normal";
+export type Style =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "h6"
+  | "blockquote"
+  | "normal";
 export type Mark = "strong" | "em" | "underline" | "strikethrough" | "code";
 type BlockBase = {
   _type: "block";
