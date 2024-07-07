@@ -27,20 +27,30 @@ const TestWithBullet = (style: Style, testId: string) => {
 
       expect(li.nodeName).toBe("LI");
     });
+
+    TestWithMarks(style, "blockContent-li", "bullet");
   });
 };
 
-const TestWithMarks = (style: Style, testId: string) => {
-  const generatePropsWithMarks = (marks: Mark[]): BlockContent => ({
-    _type: "block",
-    style: style,
-    children: [
-      {
-        marks: marks,
-        text: "Hello",
-      },
-    ],
-  });
+const TestWithMarks = (
+  style: Style,
+  testId: string,
+  listItem?: "bullet" | "number"
+) => {
+  const generatePropsWithMarks = (marks: Mark[]): BlockContent => {
+    const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
+    return {
+      _type: "block",
+      style: style,
+      children: [
+        {
+          marks: marks,
+          text: "Hello",
+        },
+      ],
+      ...listItemProps,
+    };
+  };
   describe("marks includes 'em'", () => {
     it("Wraps contents of element in <em>", () => {
       const blockContent: BlockContent = generatePropsWithMarks(["em"]);
@@ -172,6 +182,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h1");
+    TestWithBullet(style, "blockContent-h1");
   });
 
   describe("style = h2", () => {
@@ -195,6 +206,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h2");
+    TestWithBullet(style, "blockContent-h2");
   });
 
   describe("style = h3", () => {
@@ -218,6 +230,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h3");
+    TestWithBullet(style, "blockContent-h3");
   });
 
   describe("style = h4", () => {
@@ -241,6 +254,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h4");
+    TestWithBullet(style, "blockContent-h4");
   });
 
   describe("style = h5", () => {
@@ -264,6 +278,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h5");
+    TestWithBullet(style, "blockContent-h5");
   });
 
   describe("style = h6", () => {
@@ -287,5 +302,6 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h6");
+    TestWithBullet(style, "blockContent-h6");
   });
 });
