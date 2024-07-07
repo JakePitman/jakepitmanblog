@@ -41,4 +41,4 @@ export type Code = {
   code: string;
 };
 
-export type BlockContent = Block | Code;
+export type BlockContentItemData = Block | Code;

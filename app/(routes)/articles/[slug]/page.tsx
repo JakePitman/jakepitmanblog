@@ -4,7 +4,7 @@ import cx from "classnames";
 import { client } from "@/sanity/client";
 import { FormattedDate } from "@components/FormattedDate";
 import { Tag } from "@components/Tag";
-import { BlockContent } from "@customTypes/BlockContentTypes";
+import { BlockContentItemData } from "@customTypes/BlockContentTypes";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -31,7 +31,7 @@ type ArticleData = {
   description: string;
   tags: Tag[];
   titleImage: typeof Image;
-  mainContent: BlockContent[];
+  mainContent: BlockContentItemData[];
 };
 export async function generateStaticParams() {
   const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);

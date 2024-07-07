@@ -2,10 +2,10 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
+import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
 
 type BlockContentItemProps = {
-  blockContent: BlockContent;
+  blockContent: BlockContentItemData;
 };
 
 type WithListItemProps = {

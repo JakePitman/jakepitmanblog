@@ -1,6 +1,10 @@
-import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
+import {
+  BlockContentItemData,
+  Mark,
+  Style,
+} from "@customTypes/BlockContentTypes";
 
-export const DUMMY_BLOCK_CONTENT: BlockContent[] = [
+export const DUMMY_BLOCK_CONTENT: BlockContentItemData[] = [
   {
     _key: "972d19a9b108",
     markDefs: [],
@@ -269,7 +273,7 @@ const STYLES = [
 const generateWithUniqueStyle = (
   style: Style,
   marks: Mark[] = []
-): BlockContent => ({
+): BlockContentItemData => ({
   _key: "123",
   markDefs: [],
   children: [
@@ -283,22 +287,21 @@ const generateWithUniqueStyle = (
   _type: "block",
   style,
 });
-export const DUMMY_BLOCK_CONTENT_NO_MARKS: BlockContent[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_NO_MARKS: BlockContentItemData[] = STYLES.map(
   (style) => generateWithUniqueStyle(style)
 );
-export const DUMMY_BLOCK_CONTENT_STRONG: BlockContent[] = STYLES.map((style) =>
-  generateWithUniqueStyle(style, ["strong"])
+export const DUMMY_BLOCK_CONTENT_STRONG: BlockContentItemData[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["strong"])
 );
-export const DUMMY_BLOCK_CONTENT_EM: BlockContent[] = STYLES.map((style) =>
-  generateWithUniqueStyle(style, ["em"])
+export const DUMMY_BLOCK_CONTENT_EM: BlockContentItemData[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["em"])
 );
-export const DUMMY_BLOCK_CONTENT_UNDERLINE: BlockContent[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_UNDERLINE: BlockContentItemData[] = STYLES.map(
   (style) => generateWithUniqueStyle(style, ["underline"])
 );
-export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: BlockContent[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["strike-through"])
-);
-export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent[] =
+export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: BlockContentItemData[] =
+  STYLES.map((style) => generateWithUniqueStyle(style, ["strike-through"]));
+export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContentItemData[] =
   STYLES.map((style) =>
     generateWithUniqueStyle(style, [
       "strong",
@@ -307,11 +310,10 @@ export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent
       "strike-through",
     ])
   );
-export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContent[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["code"])
-);
+export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContentItemData[] =
+  STYLES.map((style) => generateWithUniqueStyle(style, ["code"]));
 
-export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContent[] = [
+export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
   generateWithUniqueStyle("h2"),
   {
     _type: "code",
