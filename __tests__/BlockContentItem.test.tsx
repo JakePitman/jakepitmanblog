@@ -4,6 +4,9 @@ import { screen, render, within } from "@testing-library/react";
 import { BlockContentItem } from "@components/BlockContentItem";
 import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
 
+jest.mock("react-syntax-highlighter", () => ({}));
+jest.mock("react-syntax-highlighter/dist/esm/styles/hljs", () => ({}));
+
 const TestWithListItem = (
   style: Style,
   testId: string,
