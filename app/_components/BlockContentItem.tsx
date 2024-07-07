@@ -73,7 +73,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h1")
         return (
-          <h1 key={i} data-testid="blockContent-h1">
+          <h1 className="text-30" key={i} data-testid="blockContent-h1">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -81,7 +81,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h2")
         return (
-          <h2 key={i} data-testid="blockContent-h2">
+          <h2 className="text-24" key={i} data-testid="blockContent-h2">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -89,7 +89,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h3")
         return (
-          <h3 key={i} data-testid="blockContent-h3">
+          <h3 className="text-20" key={i} data-testid="blockContent-h3">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -97,7 +97,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h4")
         return (
-          <h4 key={i} data-testid="blockContent-h4">
+          <h4 className="text-18" key={i} data-testid="blockContent-h4">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -105,7 +105,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h5")
         return (
-          <h5 key={i} data-testid="blockContent-h5">
+          <h5 className="text-16" key={i} data-testid="blockContent-h5">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -113,7 +113,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h6")
         return (
-          <h6 key={i} data-testid="blockContent-h6">
+          <h6 className="text-14" key={i} data-testid="blockContent-h6">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
