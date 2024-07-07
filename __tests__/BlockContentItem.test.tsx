@@ -4,7 +4,11 @@ import { screen, render, within } from "@testing-library/react";
 import { BlockContentItem } from "@components/BlockContentItem";
 import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
 
-const TestWithBullet = (style: Style, testId: string) => {
+const TestWithListItem = (
+  style: Style,
+  testId: string,
+  listItem: "bullet" | "number"
+) => {
   const props: BlockContent = {
     _type: "block",
     style: style,
@@ -14,11 +18,11 @@ const TestWithBullet = (style: Style, testId: string) => {
         marks: [],
       },
     ],
-    listItem: "bullet",
+    listItem,
     level: 1,
   };
 
-  describe("listItem = bullet", () => {
+  describe("listItem = 'bullet' | 'number'", () => {
     it("Renders text content in a <li> tag within element", () => {
       render(<BlockContentItem blockContent={props} />);
 
@@ -158,11 +162,12 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-p");
-    TestWithBullet(style, "blockContent-p");
+    TestWithListItem(style, "blockContent-p", "bullet");
+    TestWithListItem(style, "blockContent-p", "number");
   });
 
   describe("style = h1", () => {
-    const style = "h1"; // <p>
+    const style = "h1";
     it("Renders in a <h1> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
@@ -182,11 +187,12 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h1");
-    TestWithBullet(style, "blockContent-h1");
+    TestWithListItem(style, "blockContent-h1", "bullet");
+    TestWithListItem(style, "blockContent-h1", "number");
   });
 
   describe("style = h2", () => {
-    const style = "h2"; // <p>
+    const style = "h2";
     it("Renders in a <h2> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
@@ -206,7 +212,8 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h2");
-    TestWithBullet(style, "blockContent-h2");
+    TestWithListItem(style, "blockContent-h2", "bullet");
+    TestWithListItem(style, "blockContent-h2", "number");
   });
 
   describe("style = h3", () => {
@@ -230,7 +237,8 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h3");
-    TestWithBullet(style, "blockContent-h3");
+    TestWithListItem(style, "blockContent-h3", "bullet");
+    TestWithListItem(style, "blockContent-h3", "number");
   });
 
   describe("style = h4", () => {
@@ -254,7 +262,8 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h4");
-    TestWithBullet(style, "blockContent-h4");
+    TestWithListItem(style, "blockContent-h4", "bullet");
+    TestWithListItem(style, "blockContent-h4", "number");
   });
 
   describe("style = h5", () => {
@@ -278,7 +287,8 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h5");
-    TestWithBullet(style, "blockContent-h5");
+    TestWithListItem(style, "blockContent-h5", "bullet");
+    TestWithListItem(style, "blockContent-h5", "number");
   });
 
   describe("style = h6", () => {
@@ -302,6 +312,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-h6");
-    TestWithBullet(style, "blockContent-h6");
+    TestWithListItem(style, "blockContent-h6", "bullet");
+    TestWithListItem(style, "blockContent-h6", "number");
   });
 });

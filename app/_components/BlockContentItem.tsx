@@ -9,7 +9,7 @@ type WithListItemProps = {
   children: React.ReactNode;
 };
 const WithListItem = ({ listItem, children }: WithListItemProps) => {
-  if (listItem === "bullet") {
+  if (listItem === "bullet" || listItem === "number") {
     return <li data-testid="blockContent-li">{children}</li>;
   }
   return children;
