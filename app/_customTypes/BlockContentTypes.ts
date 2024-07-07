@@ -42,3 +42,10 @@ export type Code = {
 };
 
 export type BlockContentItemData = Block | Code;
+
+type GroupedListItems = {
+  _type: "bullet" | "number";
+  listItems: BlockContentItemData[];
+};
+
+export type GroupedBlockContent = (BlockContentItemData | GroupedListItems)[];

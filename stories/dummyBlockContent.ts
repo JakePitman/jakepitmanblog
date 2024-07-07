@@ -2,6 +2,7 @@ import {
   BlockContentItemData,
   Mark,
   Style,
+  GroupedBlockContent,
 } from "@customTypes/BlockContentTypes";
 
 export const DUMMY_BLOCK_CONTENT: BlockContentItemData[] = [
@@ -323,3 +324,176 @@ export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
   },
   generateWithUniqueStyle("normal"),
 ];
+
+const ul1_1: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "bullet",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ul 1, group 1",
+      _key: "123",
+    },
+  ],
+};
+const ul2_1: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "bullet",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ul 2, group 1",
+      _key: "123",
+    },
+  ],
+};
+const ul1_2: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "bullet",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ul 1, group 2",
+      _key: "123",
+    },
+  ],
+};
+const ul2_2: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "bullet",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ul 2, group 2",
+      _key: "123",
+    },
+  ],
+};
+export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST: BlockContentItemData[] = [
+  generateWithUniqueStyle("h2"),
+  ul1_1,
+  ul2_1,
+  generateWithUniqueStyle("h3"),
+  ul1_2,
+  ul2_2,
+];
+export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: GroupedBlockContent =
+  [
+    generateWithUniqueStyle("h2"),
+    {
+      _type: "bullet",
+      listItems: [ul1_1, ul2_1],
+    },
+    generateWithUniqueStyle("h3"),
+    {
+      _type: "bullet",
+      listItems: [ul1_2, ul2_2],
+    },
+  ];
+
+const ol1_1: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "number",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ol 1, group 1",
+      _key: "123",
+    },
+  ],
+};
+const ol2_1: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "number",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ol 2, group 1",
+      _key: "123",
+    },
+  ],
+};
+const ol1_2: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "number",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ol 1, group 2",
+      _key: "123",
+    },
+  ],
+};
+const ol2_2: BlockContentItemData = {
+  _type: "block",
+  style: "normal",
+  _key: "123",
+  listItem: "number",
+  level: 1,
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks: [],
+      text: "This is ol 2, group 2",
+      _key: "123",
+    },
+  ],
+};
+export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST: BlockContentItemData[] = [
+  generateWithUniqueStyle("h2"),
+  ol1_1,
+  ol2_1,
+  generateWithUniqueStyle("h3"),
+  ol1_2,
+  ol2_2,
+];
+
+export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: GroupedBlockContent =
+  [
+    generateWithUniqueStyle("h2"),
+    {
+      _type: "number",
+      listItems: [ol1_1, ol2_1],
+    },
+    generateWithUniqueStyle("h3"),
+    {
+      _type: "number",
+      listItems: [ol1_2, ol2_2],
+    },
+  ];
