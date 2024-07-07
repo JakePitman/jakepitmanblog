@@ -169,4 +169,96 @@ describe("_type = block", () => {
 
     TestWithMarks(style, "blockContent-h2");
   });
+
+  describe("style = h3", () => {
+    const style = "h3";
+    it("Renders in a <h3> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h3");
+
+      expect(element.nodeName).toBe("H3");
+    });
+
+    TestWithMarks(style, "blockContent-h3");
+  });
+
+  describe("style = h4", () => {
+    const style = "h4";
+    it("Renders in a <h4> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h4");
+
+      expect(element.nodeName).toBe("H4");
+    });
+
+    TestWithMarks(style, "blockContent-h4");
+  });
+
+  describe("style = h5", () => {
+    const style = "h5";
+    it("Renders in a <h5> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h5");
+
+      expect(element.nodeName).toBe("H5");
+    });
+
+    TestWithMarks(style, "blockContent-h5");
+  });
+
+  describe("style = h6", () => {
+    const style = "h6";
+    it("Renders in a <h6> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h6");
+
+      expect(element.nodeName).toBe("H6");
+    });
+
+    TestWithMarks(style, "blockContent-h6");
+  });
 });
