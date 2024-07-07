@@ -1,4 +1,4 @@
-import { BlockContent } from "@customTypes/BlockContentTypes";
+import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
 
 export const DUMMY_BLOCK_CONTENT: BlockContent[] = [
   {
@@ -254,3 +254,59 @@ export const DUMMY_BLOCK_CONTENT: BlockContent[] = [
     _type: "code",
   },
 ];
+
+const STYLES = [
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "blockquote",
+  "normal",
+] as const;
+
+const generateWithUniqueStyle = (
+  style: Style,
+  marks: Mark[] = []
+): BlockContent => ({
+  _key: "123",
+  markDefs: [],
+  children: [
+    {
+      _type: "span",
+      marks,
+      text: `This is a ${style} tag`,
+      _key: "123",
+    },
+  ],
+  _type: "block",
+  style,
+});
+export const DUMMY_BLOCK_CONTENT_NO_MARKS: BlockContent[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style)
+);
+export const DUMMY_BLOCK_CONTENT_STRONG: BlockContent[] = STYLES.map((style) =>
+  generateWithUniqueStyle(style, ["strong"])
+);
+export const DUMMY_BLOCK_CONTENT_EM: BlockContent[] = STYLES.map((style) =>
+  generateWithUniqueStyle(style, ["em"])
+);
+export const DUMMY_BLOCK_CONTENT_UNDERLINE: BlockContent[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["underline"])
+);
+export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: BlockContent[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["strike-through"])
+);
+export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent[] =
+  STYLES.map((style) =>
+    generateWithUniqueStyle(style, [
+      "strong",
+      "em",
+      "underline",
+      "strike-through",
+    ])
+  );
+export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContent[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["code"])
+);
