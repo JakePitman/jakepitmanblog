@@ -22,6 +22,7 @@
     "react-dom": "^18",
     "react-icons": "^5.2.1",
     "react-intl": "^6.6.8",
+    "react-syntax-highlighter": "^15.5.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
     "eslint-plugin-storybook": "^0.8.0",

@@ -1,5 +1,9 @@
-import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
 import React from "react";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
+
 type BlockContentItemProps = {
   blockContent: BlockContent;
 };
@@ -44,7 +48,16 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
 
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "code") {
-    return <p>CODE BLOCK</p>;
+    return (
+      <SyntaxHighlighter
+        language={blockContent.language}
+        showLineNumbers
+        style={tomorrowNightBright}
+        customStyle={{ padding: "1rem" }}
+      >
+        {blockContent.code}
+      </SyntaxHighlighter>
+    );
   }
 
   if (blockContent._type === "block") {
