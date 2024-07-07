@@ -11,9 +11,13 @@ const TestWithListItem = (
 ) => {
   const props: BlockContent = {
     _type: "block",
+    _key: "123",
     style: style,
+    markDefs: [],
     children: [
       {
+        _key: "123",
+        _type: "span",
         text: "Hello",
         marks: [],
       },
@@ -45,9 +49,13 @@ const TestWithMarks = (
     const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
     return {
       _type: "block",
+      _key: "123",
+      markDefs: [],
       style: style,
       children: [
         {
+          _key: "123",
+          _type: "span",
           marks: marks,
           text: "Hello",
         },
@@ -92,7 +100,7 @@ const TestWithMarks = (
   describe("marks includes 'strikethrough'", () => {
     it("Wraps contents of element in <s>", () => {
       const blockContent: BlockContent = generatePropsWithMarks([
-        "strikethrough",
+        "strike-through",
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
 
@@ -119,7 +127,7 @@ const TestWithMarks = (
         "strong",
         "em",
         "underline",
-        "strikethrough",
+        "strike-through",
         "code",
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
@@ -146,9 +154,13 @@ describe("_type = block", () => {
     it("Renders in a <p> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
+        markDefs: [],
         style: style,
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -171,9 +183,13 @@ describe("_type = block", () => {
     it("Renders in a <h1> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
+        markDefs: [],
         style: style,
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -196,9 +212,13 @@ describe("_type = block", () => {
     it("Renders in a <h2> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
+        markDefs: [],
         style: style,
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -221,9 +241,13 @@ describe("_type = block", () => {
     it("Renders in a <h3> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
+        markDefs: [],
         style: style,
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -246,9 +270,13 @@ describe("_type = block", () => {
     it("Renders in a <h4> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
         style: style,
+        markDefs: [],
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -271,9 +299,13 @@ describe("_type = block", () => {
     it("Renders in a <h5> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
         style: style,
+        markDefs: [],
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },
@@ -296,9 +328,13 @@ describe("_type = block", () => {
     it("Renders in a <h6> tag", () => {
       const blockContent: BlockContent = {
         _type: "block",
+        _key: "123",
         style: style,
+        markDefs: [],
         children: [
           {
+            _key: "123",
+            _type: "span",
             text: "Hello",
             marks: [],
           },

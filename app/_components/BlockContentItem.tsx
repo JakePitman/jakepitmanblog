@@ -33,7 +33,7 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
   if (marks.includes("underline")) {
     element = <u data-testid="blockContent-u">{element}</u>;
   }
-  if (marks.includes("strikethrough")) {
+  if (marks.includes("strike-through")) {
     element = <s data-testid="blockContent-s">{element}</s>;
   }
   if (marks.includes("code")) {
@@ -43,6 +43,10 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
 };
 
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
+  if (blockContent._type === "code") {
+    return <p>CODE BLOCK</p>;
+  }
+
   if (blockContent._type === "block") {
     const { _type, style, children, listItem } = blockContent;
     return children.map((child, i) => {

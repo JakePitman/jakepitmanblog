@@ -7,14 +7,19 @@ export type Style =
   | "h6"
   | "blockquote"
   | "normal";
-export type Mark = "strong" | "em" | "underline" | "strikethrough" | "code";
+export type Mark = "strong" | "em" | "underline" | "strike-through" | "code";
 type BlockBase = {
   _type: "block";
+  _key?: string;
+  markDefs?: unknown[];
   style: Style;
   children: {
+    _type?: "span";
+    _key?: string;
     text: string | null; // TODO: Check if empty lines are null or ""
     marks: Mark[];
   }[];
+  language?: undefined;
 };
 
 type WithoutSpecialFields = {
@@ -30,9 +35,10 @@ type WithListItem = {
 export type Block = BlockBase & (WithoutSpecialFields | WithListItem);
 
 export type Code = {
+  _key: string;
   _type: "code";
+  language: string;
   code: string;
-  language: "typescript";
 };
 
 export type BlockContent = Block | Code;
