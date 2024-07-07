@@ -48,6 +48,15 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         </h1>
       ));
     }
+    if (style === "h2") {
+      return children.map((child, i) => (
+        <h2 key={i} data-testid="blockContent-h2">
+          <WithMarks marks={child.marks}>
+            {child.text ? child.text : ""}
+          </WithMarks>
+        </h2>
+      ));
+    }
   }
   return <p>Hello</p>;
 };

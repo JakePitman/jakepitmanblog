@@ -146,4 +146,27 @@ describe("_type = block", () => {
 
     TestWithMarks(style, "blockContent-h1");
   });
+
+  describe("style = h2", () => {
+    const style = "h2"; // <p>
+    it("Renders in a <h2> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h2");
+
+      expect(element.nodeName).toBe("H2");
+    });
+
+    TestWithMarks(style, "blockContent-h2");
+  });
 });
