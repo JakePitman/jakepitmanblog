@@ -4,11 +4,14 @@ type BlockContentItemProps = {
 };
 
 type WithMarksProps = {
-  children: string;
-  marks: Mark[];
+  blockChild: {
+    text: string | null;
+    marks: Mark[];
+  };
 };
-const WithMarks = ({ children, marks }: WithMarksProps) => {
-  let element: React.ReactNode = children;
+const WithMarks = ({ blockChild }: WithMarksProps) => {
+  const { text, marks } = blockChild;
+  let element: React.ReactNode = text;
   if (marks.includes("strong")) {
     element = <strong data-testid="blockContent-strong">{element}</strong>;
   }
@@ -34,25 +37,19 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
       if (style === "normal")
         return (
           <p key={i} data-testid="blockContent-p">
-            <WithMarks marks={child.marks}>
-              {child.text ? child.text : ""}
-            </WithMarks>
+            <WithMarks blockChild={child} />
           </p>
         );
       if (style === "h1")
         return (
           <h1 key={i} data-testid="blockContent-h1">
-            <WithMarks marks={child.marks}>
-              {child.text ? child.text : ""}
-            </WithMarks>
+            <WithMarks blockChild={child} />
           </h1>
         );
       if (style === "h2")
         return (
           <h2 key={i} data-testid="blockContent-h2">
-            <WithMarks marks={child.marks}>
-              {child.text ? child.text : ""}
-            </WithMarks>
+            <WithMarks blockChild={child} />
           </h2>
         );
     });
