@@ -2,21 +2,22 @@ import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
 
 import { BlockContentItem } from "@components/BlockContentItem";
-import { BlockContent } from "@customTypes/BlockContentTypes";
+import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
 
 describe("_type = block", () => {
+  const generatePropsWithMarks = (marks: Mark[]): BlockContent => ({
+    _type: "block",
+    style: "normal",
+    children: [
+      {
+        marks: marks,
+        text: "Hello",
+      },
+    ],
+  });
   describe("style = normal", () => {
     it("Renders in a <p> tag", () => {
-      const blockContent: BlockContent = {
-        _type: "block",
-        style: "normal",
-        children: [
-          {
-            marks: [],
-            text: "Hello",
-          },
-        ],
-      };
+      const blockContent: BlockContent = generatePropsWithMarks([]);
       render(<BlockContentItem blockContent={blockContent} />);
 
       const element = screen.getByTestId("blockContent-p");
@@ -26,17 +27,7 @@ describe("_type = block", () => {
 
     describe("marks includes 'em'", () => {
       it("Wraps contents of element in <em>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["em"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks(["em"]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
@@ -47,17 +38,7 @@ describe("_type = block", () => {
     });
     describe("marks includes 'strong'", () => {
       it("Wraps contents of element in <strong>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["strong"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks(["strong"]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
@@ -69,16 +50,9 @@ describe("_type = block", () => {
     describe("marks includes 'underline'", () => {
       it("Wraps contents of element in <u>", () => {
         const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["underline"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks([
+          "underline",
+        ]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
@@ -89,17 +63,9 @@ describe("_type = block", () => {
     });
     describe("marks includes 'strikethrough'", () => {
       it("Wraps contents of element in <s>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["strikethrough"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks([
+          "strikethrough",
+        ]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
@@ -110,17 +76,7 @@ describe("_type = block", () => {
     });
     describe("marks includes 'code'", () => {
       it("Wraps contents of element in <code>", () => {
-        const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["code"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks(["code"]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
@@ -132,16 +88,13 @@ describe("_type = block", () => {
     describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
       it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
         const text = "Hello";
-        const blockContent: BlockContent = {
-          _type: "block",
-          style: "normal",
-          children: [
-            {
-              marks: ["strong", "em", "underline", "strikethrough", "code"],
-              text: text,
-            },
-          ],
-        };
+        const blockContent: BlockContent = generatePropsWithMarks([
+          "strong",
+          "em",
+          "underline",
+          "strikethrough",
+          "code",
+        ]);
         render(<BlockContentItem blockContent={blockContent} />);
 
         const element = screen.getByTestId("blockContent-p");
