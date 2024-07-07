@@ -30,33 +30,31 @@ const WithMarks = ({ children, marks }: WithMarksProps) => {
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "block") {
     const { _type, style, children } = blockContent;
-    if (style === "normal") {
-      return children.map((child, i) => (
-        <p key={i} data-testid="blockContent-p">
-          <WithMarks marks={child.marks}>
-            {child.text ? child.text : ""}
-          </WithMarks>
-        </p>
-      ));
-    }
-    if (style === "h1") {
-      return children.map((child, i) => (
-        <h1 key={i} data-testid="blockContent-h1">
-          <WithMarks marks={child.marks}>
-            {child.text ? child.text : ""}
-          </WithMarks>
-        </h1>
-      ));
-    }
-    if (style === "h2") {
-      return children.map((child, i) => (
-        <h2 key={i} data-testid="blockContent-h2">
-          <WithMarks marks={child.marks}>
-            {child.text ? child.text : ""}
-          </WithMarks>
-        </h2>
-      ));
-    }
+    return children.map((child, i) => {
+      if (style === "normal")
+        return (
+          <p key={i} data-testid="blockContent-p">
+            <WithMarks marks={child.marks}>
+              {child.text ? child.text : ""}
+            </WithMarks>
+          </p>
+        );
+      if (style === "h1")
+        return (
+          <h1 key={i} data-testid="blockContent-h1">
+            <WithMarks marks={child.marks}>
+              {child.text ? child.text : ""}
+            </WithMarks>
+          </h1>
+        );
+      if (style === "h2")
+        return (
+          <h2 key={i} data-testid="blockContent-h2">
+            <WithMarks marks={child.marks}>
+              {child.text ? child.text : ""}
+            </WithMarks>
+          </h2>
+        );
+    });
   }
-  return <p>Hello</p>;
 };
