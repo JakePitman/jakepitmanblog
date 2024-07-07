@@ -31,7 +31,7 @@ const TestWithMarks = (style: Style, testId: string) => {
       const blockContent: BlockContent = generatePropsWithMarks(["strong"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
-      const element = screen.getByTestId("blockContent-p");
+      const element = screen.getByTestId(testId);
       const strong = within(element).getByTestId("blockContent-strong");
 
       expect(strong).toBeInTheDocument();
@@ -43,7 +43,7 @@ const TestWithMarks = (style: Style, testId: string) => {
       const blockContent: BlockContent = generatePropsWithMarks(["underline"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
-      const element = screen.getByTestId("blockContent-p");
+      const element = screen.getByTestId(testId);
       const underline = within(element).getByTestId("blockContent-u");
 
       expect(underline).toBeInTheDocument();
@@ -56,7 +56,7 @@ const TestWithMarks = (style: Style, testId: string) => {
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
 
-      const element = screen.getByTestId("blockContent-p");
+      const element = screen.getByTestId(testId);
       const strikethrough = within(element).getByTestId("blockContent-s");
 
       expect(strikethrough).toBeInTheDocument();
@@ -67,7 +67,7 @@ const TestWithMarks = (style: Style, testId: string) => {
       const blockContent: BlockContent = generatePropsWithMarks(["code"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
-      const element = screen.getByTestId("blockContent-p");
+      const element = screen.getByTestId(testId);
       const code = within(element).getByTestId("blockContent-code");
 
       expect(code).toBeInTheDocument();
@@ -84,7 +84,7 @@ const TestWithMarks = (style: Style, testId: string) => {
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
 
-      const element = screen.getByTestId("blockContent-p");
+      const element = screen.getByTestId(testId);
       const strong = within(element).getByTestId("blockContent-strong");
       const em = within(element).getByTestId("blockContent-em");
       const u = within(element).getByTestId("blockContent-u");
@@ -122,5 +122,28 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-p");
+  });
+
+  describe("style = h1", () => {
+    const style = "h1"; // <p>
+    it("Renders in a <h1> tag", () => {
+      const blockContent: BlockContent = {
+        _type: "block",
+        style: style,
+        children: [
+          {
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-h1");
+
+      expect(element.nodeName).toBe("H1");
+    });
+
+    TestWithMarks(style, "blockContent-h1");
   });
 });
