@@ -4,6 +4,32 @@ import { screen, render, within } from "@testing-library/react";
 import { BlockContentItem } from "@components/BlockContentItem";
 import { BlockContent, Mark, Style } from "@customTypes/BlockContentTypes";
 
+const TestWithBullet = (style: Style, testId: string) => {
+  const props: BlockContent = {
+    _type: "block",
+    style: style,
+    children: [
+      {
+        text: "Hello",
+        marks: [],
+      },
+    ],
+    listItem: "bullet",
+    level: 1,
+  };
+
+  describe("listItem = bullet", () => {
+    it("Renders text content in a <li> tag within element", () => {
+      render(<BlockContentItem blockContent={props} />);
+
+      const element = screen.getByTestId(testId);
+      const li = within(element).getByTestId("blockContent-li");
+
+      expect(li.nodeName).toBe("LI");
+    });
+  });
+};
+
 const TestWithMarks = (style: Style, testId: string) => {
   const generatePropsWithMarks = (marks: Mark[]): BlockContent => ({
     _type: "block",
@@ -122,6 +148,7 @@ describe("_type = block", () => {
     });
 
     TestWithMarks(style, "blockContent-p");
+    TestWithBullet(style, "blockContent-p");
   });
 
   describe("style = h1", () => {

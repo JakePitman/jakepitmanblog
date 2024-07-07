@@ -1,6 +1,18 @@
 import { BlockContent, Mark } from "@customTypes/BlockContentTypes";
+import React from "react";
 type BlockContentItemProps = {
   blockContent: BlockContent;
+};
+
+type WithListItemProps = {
+  listItem: "bullet" | "number" | undefined;
+  children: React.ReactNode;
+};
+const WithListItem = ({ listItem, children }: WithListItemProps) => {
+  if (listItem === "bullet") {
+    return <li data-testid="blockContent-li">{children}</li>;
+  }
+  return children;
 };
 
 type WithMarksProps = {
@@ -32,48 +44,62 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
 
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "block") {
-    const { _type, style, children } = blockContent;
+    const { _type, style, children, listItem } = blockContent;
     return children.map((child, i) => {
       if (style === "normal")
         return (
           <p key={i} data-testid="blockContent-p">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </p>
         );
       if (style === "h1")
         return (
           <h1 key={i} data-testid="blockContent-h1">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h1>
         );
       if (style === "h2")
         return (
           <h2 key={i} data-testid="blockContent-h2">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h2>
         );
       if (style === "h3")
         return (
           <h3 key={i} data-testid="blockContent-h3">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h3>
         );
       if (style === "h4")
         return (
           <h4 key={i} data-testid="blockContent-h4">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h4>
         );
       if (style === "h5")
         return (
           <h5 key={i} data-testid="blockContent-h5">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h5>
         );
       if (style === "h6")
         return (
           <h6 key={i} data-testid="blockContent-h6">
-            <WithMarks blockChild={child} />
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
           </h6>
         );
     });
