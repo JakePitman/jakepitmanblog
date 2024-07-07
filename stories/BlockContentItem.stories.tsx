@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BlockContentItem } from "@components/BlockContentItem";
+import { BlockContent } from "@components/BlockContent";
 import {
   DUMMY_BLOCK_CONTENT_NO_MARKS,
   DUMMY_BLOCK_CONTENT_STRONG,
@@ -12,26 +12,28 @@ import {
 } from "./dummyBlockContent";
 
 const meta = {
-  title: "Components/BlockContentItem",
-  component: BlockContentItem,
+  title: "Components/BlockContent",
+  component: BlockContent,
   parameters: {
     layout: "fullscreen",
   },
   args: {
-    blockContent: {
-      _type: "block",
-      _key: "123",
-      style: "normal",
-      markDefs: [],
-      children: [
-        {
-          _key: "123",
-          _type: "span",
-          text: "Hello",
-          marks: [],
-        },
-      ],
-    },
+    blockContent: [
+      {
+        _type: "block",
+        _key: "123",
+        style: "normal",
+        markDefs: [],
+        children: [
+          {
+            _key: "123",
+            _type: "span",
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      },
+    ],
   },
   decorators: [
     (Story) => (
@@ -40,105 +42,59 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof BlockContentItem>;
+} satisfies Meta<typeof BlockContent>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BlockNoMarks: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_NO_MARKS.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_NO_MARKS} />;
   },
 };
 
 export const BlockStrong: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_STRONG.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_STRONG} />;
   },
 };
 
 export const BlockEm: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_EM.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_EM} />;
   },
 };
 
 export const BlockUnderline: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_UNDERLINE.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_UNDERLINE} />;
   },
 };
 
 export const BlockStrikethrough: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_STRIKETHROUGH.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_STRIKETHROUGH} />;
   },
 };
 
 export const BlockStrongEmUnderlineStrikethrough: Story = {
   render: () => {
     return (
-      <>
-        {DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH.map(
-          (blockContent, i) => (
-            <BlockContentItem key={i} blockContent={blockContent} />
-          )
-        )}
-      </>
+      <BlockContent
+        blockContent={DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH}
+      />
     );
   },
 };
 
 export const BlockInlineCode: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_INLINE_CODE.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_INLINE_CODE} />;
   },
 };
 
 export const WithCodeBlockPlugin: Story = {
   render: () => {
-    return (
-      <>
-        {DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK.map((blockContent, i) => (
-          <BlockContentItem key={i} blockContent={blockContent} />
-        ))}
-      </>
-    );
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK} />;
   },
 };
