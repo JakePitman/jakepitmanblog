@@ -39,13 +39,16 @@ export type Code = {
   _type: "code";
   language: string;
   code: string;
+  listItem?: undefined;
+  level?: undefined;
 };
 
 export type BlockContentItemData = Block | Code;
 
-type GroupedListItems = {
-  _type: "bullet" | "number";
-  listItems: BlockContentItemData[];
+export type GroupedListItems = {
+  _type: "groupedListItems";
+  listItem: "bullet" | "number";
+  blockContent: BlockContentItemData[];
 };
 
 export type GroupedBlockContent = (BlockContentItemData | GroupedListItems)[];

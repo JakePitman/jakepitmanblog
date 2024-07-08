@@ -31,8 +31,6 @@ describe("With ordered list", () => {
 describe("With ordered and unordered lists", () => {
   const result = groupListItems(DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS);
   it("Groups the unordered and ordered lists into _type: 'bullet' and _type: 'number' respectively", () => {
-    expect(result).toEqual(
-      DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING
-    );
+    expect(result).toEqual(DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING);
   });
 });

@@ -401,13 +401,15 @@ export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: GroupedBloc
   [
     generateWithUniqueStyle("h2"),
     {
-      _type: "bullet",
-      listItems: [ul1_1, ul2_1],
+      _type: "groupedListItems",
+      listItem: "bullet",
+      blockContent: [ul1_1, ul2_1],
     },
     generateWithUniqueStyle("h3"),
     {
-      _type: "bullet",
-      listItems: [ul1_2, ul2_2],
+      _type: "groupedListItems",
+      listItem: "bullet",
+      blockContent: [ul1_2, ul2_2],
     },
   ];
 
@@ -488,13 +490,15 @@ export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: GroupedBlockC
   [
     generateWithUniqueStyle("h2"),
     {
-      _type: "number",
-      listItems: [ol1_1, ol2_1],
+      _type: "groupedListItems",
+      listItem: "number",
+      blockContent: [ol1_1, ol2_1],
     },
     generateWithUniqueStyle("h3"),
     {
-      _type: "number",
-      listItems: [ol1_2, ol2_2],
+      _type: "groupedListItems",
+      listItem: "number",
+      blockContent: [ol1_2, ol2_2],
     },
   ];
 
@@ -515,12 +519,14 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: GroupedBlockCon
   [
     generateWithUniqueStyle("h2"),
     {
-      _type: "number",
-      listItems: [ol1_1, ol2_1, ol1_2, ol2_2],
+      _type: "groupedListItems",
+      listItem: "number",
+      blockContent: [ol1_1, ol2_1, ol1_2, ol2_2],
     },
     generateWithUniqueStyle("h3"),
     {
-      _type: "bullet",
-      listItems: [ul1_1, ul1_2, ul2_1, ul2_2],
+      _type: "groupedListItems",
+      listItem: "bullet",
+      blockContent: [ul1_1, ul1_2, ul2_1, ul2_2],
     },
   ];
