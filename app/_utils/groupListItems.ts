@@ -4,6 +4,9 @@ import {
 } from "@customTypes/BlockContentTypes";
 type ReturnValue = (BlockContentItemData | GroupedListItems)[];
 
+// Block content list items come from Sanity as separate items with a listItem property of "bullet" | "number". However, to make this distinction in html, <li> items need to be wrapped in either <ul> | <ol>
+
+// This function groups consecutive list items of the same type into an object with _type: "groupedListItems" and listItem: "bullet" | "number", and all the list items grouped into an array called "blockContent"
 export const groupListItems = (
   blockData: BlockContentItemData[]
 ): ReturnValue => {
@@ -12,7 +15,8 @@ export const groupListItems = (
   blockData.forEach((blockContentItem, i) => {
     if (
       blockContentItem._type === "block" &&
-      blockContentItem.listItem === "bullet"
+      (blockContentItem.listItem === "bullet" ||
+        blockContentItem.listItem === "number")
     ) {
       const groupedListItemsLength = blockContentWithListItemsGrouped.length;
       const lastItem =
@@ -20,16 +24,19 @@ export const groupListItems = (
           ? null
           : blockContentWithListItemsGrouped[groupedListItemsLength - 1];
 
-      const lastItemIsBullet =
+      const lastItemIsBulletGroup =
         lastItem?._type === "groupedListItems" &&
         lastItem.listItem === "bullet";
+      const lastItemIsNumberedGroup =
+        lastItem?._type === "groupedListItems" &&
+        lastItem.listItem === "number";
+      const currentBelongsToPreviousGroup =
+        (lastItemIsBulletGroup && blockContentItem.listItem === "bullet") ||
+        (lastItemIsNumberedGroup && blockContentItem.listItem === "number");
 
-      if (lastItemIsBullet) {
-        // If last item is bullet, push to the last object's listItems
-        console.log("LAST ITEM: ", lastItem);
+      if (currentBelongsToPreviousGroup) {
         lastItem.blockContent.push(blockContentItem);
       } else {
-        // If last item is not bullet, push new object
         blockContentWithListItemsGrouped.push({
           _type: "groupedListItems",
           listItem: blockContentItem.listItem,
