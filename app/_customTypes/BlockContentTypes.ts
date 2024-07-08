@@ -49,6 +49,7 @@ export type GroupedListItems = {
   _type: "groupedListItems";
   listItem: "bullet" | "number";
   blockContent: BlockContentItemData[];
+  level: number;
 };
 
 export type GroupedBlockContent = (BlockContentItemData | GroupedListItems)[];

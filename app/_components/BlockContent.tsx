@@ -7,19 +7,24 @@ import {
 
 type WrappedInListProps = {
   listItemType: "bullet" | "number";
+  level: number;
   children: React.ReactNode;
 };
-const WrappedInList = ({ listItemType, children }: WrappedInListProps) => {
+const WrappedInList = ({
+  listItemType,
+  level,
+  children,
+}: WrappedInListProps) => {
   if (listItemType === "bullet") {
     return (
-      <ul className="list-disc" style={{ marginLeft: "1.5em" }}>
+      <ul className="list-disc" style={{ marginLeft: `${level * 1.5}em` }}>
         {children}
       </ul>
     );
   }
   if (listItemType === "number") {
     return (
-      <ol className="list-decimal" style={{ marginLeft: "1.5em" }}>
+      <ol className="list-decimal" style={{ marginLeft: `${level * 1.5}em` }}>
         {children}
       </ol>
     );
@@ -38,7 +43,11 @@ export const BlockContent = ({ blockContent }: BlockContentProps) => {
       {blockContentWithListItemsGrouped.map((blockContentItem, i) => {
         if (blockContentItem._type === "groupedListItems") {
           return (
-            <WrappedInList listItemType={blockContentItem.listItem} key={i}>
+            <WrappedInList
+              listItemType={blockContentItem.listItem}
+              key={i}
+              level={blockContentItem.level}
+            >
               <>
                 {blockContentItem.blockContent.map((blockContentItem, i) => (
                   <BlockContentItem key={i} blockContent={blockContentItem} />

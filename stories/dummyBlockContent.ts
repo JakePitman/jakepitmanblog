@@ -107,7 +107,7 @@ const ul1_2: BlockContentItemData = {
   style: "normal",
   _key: "123",
   listItem: "bullet",
-  level: 1,
+  level: 2,
   markDefs: [],
   children: [
     {
@@ -123,7 +123,7 @@ const ul2_2: BlockContentItemData = {
   style: "normal",
   _key: "123",
   listItem: "bullet",
-  level: 1,
+  level: 2,
   markDefs: [],
   children: [
     {
@@ -149,12 +149,14 @@ export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: GroupedBloc
       _type: "groupedListItems",
       listItem: "bullet",
       blockContent: [ul1_1, ul2_1],
+      level: 1,
     },
     generateWithUniqueStyle("h3"),
     {
       _type: "groupedListItems",
       listItem: "bullet",
       blockContent: [ul1_2, ul2_2],
+      level: 2,
     },
   ];
 
@@ -194,8 +196,8 @@ const ol1_2: BlockContentItemData = {
   _type: "block",
   style: "normal",
   _key: "123",
+  level: 2,
   listItem: "number",
-  level: 1,
   markDefs: [],
   children: [
     {
@@ -210,8 +212,8 @@ const ol2_2: BlockContentItemData = {
   _type: "block",
   style: "normal",
   _key: "123",
+  level: 2,
   listItem: "number",
-  level: 1,
   markDefs: [],
   children: [
     {
@@ -238,12 +240,14 @@ export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: GroupedBlockC
       _type: "groupedListItems",
       listItem: "number",
       blockContent: [ol1_1, ol2_1],
+      level: 1,
     },
     generateWithUniqueStyle("h3"),
     {
       _type: "groupedListItems",
       listItem: "number",
       blockContent: [ol1_2, ol2_2],
+      level: 2,
     },
   ];
 
@@ -255,8 +259,8 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: BlockContentItemData[] = [
   ol2_2,
   generateWithUniqueStyle("h3"),
   ul1_1,
-  ul1_2,
   ul2_1,
+  ul1_2,
   ul2_2,
 ];
 
@@ -266,12 +270,26 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: GroupedBlockCon
     {
       _type: "groupedListItems",
       listItem: "number",
-      blockContent: [ol1_1, ol2_1, ol1_2, ol2_2],
+      blockContent: [ol1_1, ol2_1],
+      level: 1,
+    },
+    {
+      _type: "groupedListItems",
+      listItem: "number",
+      blockContent: [ol1_2, ol2_2],
+      level: 2,
     },
     generateWithUniqueStyle("h3"),
     {
       _type: "groupedListItems",
       listItem: "bullet",
-      blockContent: [ul1_1, ul1_2, ul2_1, ul2_2],
+      blockContent: [ul1_1, ul2_1],
+      level: 1,
+    },
+    {
+      _type: "groupedListItems",
+      listItem: "bullet",
+      blockContent: [ul1_2, ul2_2],
+      level: 2,
     },
   ];

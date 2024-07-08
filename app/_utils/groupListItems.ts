@@ -30,10 +30,12 @@ export const groupListItems = (
       const lastItemIsNumberedGroup =
         lastItem?._type === "groupedListItems" &&
         lastItem.listItem === "number";
-      const currentBelongsToPreviousGroup =
-        (lastItemIsBulletGroup && blockContentItem.listItem === "bullet") ||
-        (lastItemIsNumberedGroup && blockContentItem.listItem === "number");
 
+      const currentBelongsToPreviousGroup =
+        ((lastItemIsBulletGroup && blockContentItem.listItem === "bullet") ||
+          (lastItemIsNumberedGroup &&
+            blockContentItem.listItem === "number")) &&
+        lastItem.level === blockContentItem.level;
       if (currentBelongsToPreviousGroup) {
         lastItem.blockContent.push(blockContentItem);
       } else {
@@ -41,6 +43,7 @@ export const groupListItems = (
           _type: "groupedListItems",
           listItem: blockContentItem.listItem,
           blockContent: [blockContentItem],
+          level: blockContentItem.level,
         });
       }
     } else {
