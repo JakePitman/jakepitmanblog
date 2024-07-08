@@ -119,6 +119,18 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
             </WithListItem>
           </h6>
         );
+      if (style === "blockquote")
+        return (
+          <p
+            className="border-l-4 bg-slate-400 p-4"
+            key={i}
+            data-testid="blockContent-blockquote"
+          >
+            <WithListItem listItem={listItem}>
+              <WithMarks blockChild={child} />
+            </WithListItem>
+          </p>
+        );
     });
   }
 };

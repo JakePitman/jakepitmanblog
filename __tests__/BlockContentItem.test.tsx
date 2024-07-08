@@ -191,6 +191,38 @@ describe("_type = block", () => {
     TestWithListItem(style, "blockContent-p", "number");
   });
 
+  describe("style = blockquote", () => {
+    const style = "blockquote"; // <p>
+    it("Renders in a <p> tag with blockquote styling", () => {
+      const blockContent: BlockContentItemData = {
+        _type: "block",
+        _key: "123",
+        markDefs: [],
+        style: style,
+        children: [
+          {
+            _key: "123",
+            _type: "span",
+            text: "Hello",
+            marks: [],
+          },
+        ],
+      };
+      render(<BlockContentItem blockContent={blockContent} />);
+
+      const element = screen.getByTestId("blockContent-blockquote");
+
+      expect(element.nodeName).toBe("P");
+      expect(element.classList.contains("border-l-4")).toBe(true);
+      expect(element.classList.contains("bg-slate-400")).toBe(true);
+      expect(element.classList.contains("p-4")).toBe(true);
+    });
+
+    TestWithMarks(style, "blockContent-blockquote");
+    TestWithListItem(style, "blockContent-blockquote", "bullet");
+    TestWithListItem(style, "blockContent-blockquote", "number");
+  });
+
   describe("style = h1", () => {
     const style = "h1";
     it("Renders in a <h1> tag", () => {

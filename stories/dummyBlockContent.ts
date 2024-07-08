@@ -12,8 +12,8 @@ const STYLES = [
   "h4",
   "h5",
   "h6",
-  "blockquote",
   "normal",
+  "blockquote",
 ] as const;
 
 const generateWithUniqueStyle = (

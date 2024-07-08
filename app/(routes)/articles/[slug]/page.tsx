@@ -75,7 +75,14 @@ export default async function Article({ params }: ArticleProps) {
     tags,
     mainContent,
   } = article;
-
+  console.log(
+    "MAIN_CONTENT: ",
+    mainContent.forEach((item) => {
+      if (item._type === "block" && item.style === "blockquote") {
+        console.log("ITEM: ", item);
+      }
+    })
+  );
   return (
     <div className="w-full flex justify-center mt-12">
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8">
