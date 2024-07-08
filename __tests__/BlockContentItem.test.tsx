@@ -37,10 +37,11 @@ const TestWithListItem = (
     it("Renders text content in a <li> tag within element", () => {
       render(<BlockContentItem blockContent={props} />);
 
-      const element = screen.getByTestId(testId);
-      const li = within(element).getByTestId("blockContent-li");
+      const li = screen.getByTestId("blockContent-li");
+      const element = within(li).getByTestId(testId);
 
       expect(li.nodeName).toBe("LI");
+      expect(element).toBeInTheDocument();
     });
 
     TestWithMarks(style, "blockContent-li", "bullet");
