@@ -81,7 +81,7 @@ const ul1_1: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ul 1, group 1",
+      text: "This is ul 1, level 1",
       _key: "123",
     },
   ],
@@ -97,7 +97,7 @@ const ul2_1: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ul 2, group 1",
+      text: "This is ul 2, level 1",
       _key: "123",
     },
   ],
@@ -113,7 +113,7 @@ const ul1_2: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ul 1, group 2",
+      text: "This is ul 1, level 2",
       _key: "123",
     },
   ],
@@ -129,7 +129,7 @@ const ul2_2: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ul 2, group 2",
+      text: "This is ul 2, level 2",
       _key: "123",
     },
   ],
@@ -171,7 +171,7 @@ const ol1_1: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ol 1, group 1",
+      text: "This is ol 1, level 1",
       _key: "123",
     },
   ],
@@ -187,7 +187,7 @@ const ol2_1: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ol 2, group 1",
+      text: "This is ol 2, level 1",
       _key: "123",
     },
   ],
@@ -203,7 +203,7 @@ const ol1_2: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ol 1, group 2",
+      text: "This is ol 1, level 2",
       _key: "123",
     },
   ],
@@ -219,7 +219,7 @@ const ol2_2: BlockContentItemData = {
     {
       _type: "span",
       marks: [],
-      text: "This is ol 2, group 2",
+      text: "This is ol 2, level 2",
       _key: "123",
     },
   ],
