@@ -11,10 +11,18 @@ type WrappedInListProps = {
 };
 const WrappedInList = ({ listItemType, children }: WrappedInListProps) => {
   if (listItemType === "bullet") {
-    return <ul>{children}</ul>;
+    return (
+      <ul className="list-disc" style={{ marginLeft: "1.5em" }}>
+        {children}
+      </ul>
+    );
   }
   if (listItemType === "number") {
-    return <ol>{children}</ol>;
+    return (
+      <ol className="list-decimal" style={{ marginLeft: "1.5em" }}>
+        {children}
+      </ol>
+    );
   }
 };
 
