@@ -65,7 +65,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
     return children.map((child, i) => {
       if (style === "normal")
         return (
-          <p key={i} data-testid="blockContent-p">
+          <p key={i} className="text-slate-900" data-testid="blockContent-p">
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -73,7 +73,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h1")
         return (
-          <h1 className="text-30" key={i} data-testid="blockContent-h1">
+          <h1
+            className="text-30 text-slate-900"
+            key={i}
+            data-testid="blockContent-h1"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -81,7 +85,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h2")
         return (
-          <h2 className="text-24" key={i} data-testid="blockContent-h2">
+          <h2
+            className="text-24 text-slate-900"
+            key={i}
+            data-testid="blockContent-h2"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -89,7 +97,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h3")
         return (
-          <h3 className="text-20" key={i} data-testid="blockContent-h3">
+          <h3
+            className="text-20 text-slate-900"
+            key={i}
+            data-testid="blockContent-h3"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -97,7 +109,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h4")
         return (
-          <h4 className="text-18" key={i} data-testid="blockContent-h4">
+          <h4
+            className="text-18 text-slate-900"
+            key={i}
+            data-testid="blockContent-h4"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -105,7 +121,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h5")
         return (
-          <h5 className="text-16" key={i} data-testid="blockContent-h5">
+          <h5
+            className="text-16 text-slate-900"
+            key={i}
+            data-testid="blockContent-h5"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
@@ -113,7 +133,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
         );
       if (style === "h6")
         return (
-          <h6 className="text-14" key={i} data-testid="blockContent-h6">
+          <h6
+            className="text-14 text-slate-900"
+            key={i}
+            data-testid="blockContent-h6"
+          >
             <WithListItem listItem={listItem}>
               <WithMarks blockChild={child} />
             </WithListItem>
