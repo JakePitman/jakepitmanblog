@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import { FormattedDate } from "@components/FormattedDate";
 import { Tag } from "@components/Tag";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
+import { BlockContent } from "@components/BlockContent";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -76,8 +77,8 @@ export default async function Article({ params }: ArticleProps) {
     mainContent,
   } = article;
   return (
-    <div className="w-full flex justify-center mt-12">
-      <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8">
+    <div className="w-full flex flex-col items-center mt-12">
+      <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
         <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
 
         <h3 className="border-l-8 border-slate-800 pl-8 mb-12">
@@ -94,6 +95,11 @@ export default async function Article({ params }: ArticleProps) {
           <hr className="flex-grow text-slate-500 mr-4" />
           <FormattedDate value={createdAt} />
         </em>
+      </div>
+
+      {/* Main content */}
+      <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
+        {<BlockContent blockContent={mainContent} />}
       </div>
     </div>
   );
