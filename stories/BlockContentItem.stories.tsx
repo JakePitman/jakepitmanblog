@@ -9,6 +9,7 @@ import {
   DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH,
   DUMMY_BLOCK_CONTENT_INLINE_CODE,
   DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK,
+  DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS,
 } from "./dummyBlockContent";
 
 const meta = {
@@ -90,6 +91,35 @@ export const BlockStrongEmUnderlineStrikethrough: Story = {
 export const BlockInlineCode: Story = {
   render: () => {
     return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_INLINE_CODE} />;
+  },
+};
+
+export const WithLists: Story = {
+  render: () => {
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS} />;
+  },
+};
+
+// TODO: Figure out how to render this
+// with list-styles, then delete
+export const WithListsTEST: Story = {
+  render: () => {
+    return (
+      <>
+        <ul className="list-disc">
+          <li>One</li>
+          <li>Two</li>
+        </ul>
+        <ul className="list-disc">
+          <p>
+            <li>One</li>
+          </p>
+          <p>
+            <li>Two</li>
+          </p>
+        </ul>
+      </>
+    );
   },
 };
 
