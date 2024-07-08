@@ -9,7 +9,7 @@ import {
 } from "@/stories/dummyBlockContent";
 
 describe("With unordered list", () => {
-  it("Groups the list items in an object with _type: 'bullet'", () => {
+  it("Groups the list items in an object with _type: 'bullet' and splits by level", () => {
     const result = groupListItems(DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST);
 
     expect(result).toEqual(
@@ -19,7 +19,7 @@ describe("With unordered list", () => {
 });
 
 describe("With ordered list", () => {
-  it("Groups the list items in an object with _type: 'number'", () => {
+  it("Groups the list items in an object with _type: 'number' and splits by level", () => {
     const result = groupListItems(DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST);
 
     expect(result).toEqual(
@@ -30,7 +30,8 @@ describe("With ordered list", () => {
 
 describe("With ordered and unordered lists", () => {
   const result = groupListItems(DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS);
-  it("Groups the unordered and ordered lists into _type: 'bullet' and _type: 'number' respectively", () => {
+
+  it("Groups the unordered and ordered lists into _type: 'bullet' and _type: 'number' respectively, and splits groups by level", () => {
     expect(result).toEqual(DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING);
   });
 });
