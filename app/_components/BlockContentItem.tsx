@@ -16,7 +16,7 @@ const WithListItem = ({ listItem, children }: WithListItemProps) => {
   if (listItem === "bullet" || listItem === "number") {
     return <li data-testid="blockContent-li">{children}</li>;
   }
-  return children;
+  return <div>{children}</div>;
 };
 
 type WithMarksProps = {
@@ -86,7 +86,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "block") {
     const { _type, style, children, listItem } = blockContent;
     return (
-      <div>
+      <WithListItem listItem={listItem}>
         {children.map((child, i) => {
           if (style === "normal")
             return (
@@ -95,9 +95,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 className="text-slate-900 inline"
                 data-testid="blockContent-p"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </p>
             );
           if (style === "h1")
@@ -107,9 +105,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h1"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h1>
             );
           if (style === "h2")
@@ -119,9 +115,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h2"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h2>
             );
           if (style === "h3")
@@ -131,9 +125,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h3"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h3>
             );
           if (style === "h4")
@@ -143,9 +135,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h4"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h4>
             );
           if (style === "h5")
@@ -155,9 +145,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h5"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h5>
             );
           if (style === "h6")
@@ -167,9 +155,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-h6"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </h6>
             );
           if (style === "blockquote")
@@ -179,13 +165,11 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                 key={i}
                 data-testid="blockContent-blockquote"
               >
-                <WithListItem listItem={listItem}>
-                  <WithMarks blockChild={child} />
-                </WithListItem>
+                <WithMarks blockChild={child} />
               </p>
             );
         })}
-      </div>
+      </WithListItem>
     );
   }
 };
