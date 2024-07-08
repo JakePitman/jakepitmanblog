@@ -85,99 +85,107 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
 
   if (blockContent._type === "block") {
     const { _type, style, children, listItem } = blockContent;
-    return children.map((child, i) => {
-      if (style === "normal")
-        return (
-          <p key={i} className="text-slate-900" data-testid="blockContent-p">
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </p>
-        );
-      if (style === "h1")
-        return (
-          <h1
-            className="text-30 text-slate-900"
-            key={i}
-            data-testid="blockContent-h1"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h1>
-        );
-      if (style === "h2")
-        return (
-          <h2
-            className="text-24 text-slate-900"
-            key={i}
-            data-testid="blockContent-h2"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h2>
-        );
-      if (style === "h3")
-        return (
-          <h3
-            className="text-20 text-slate-900"
-            key={i}
-            data-testid="blockContent-h3"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h3>
-        );
-      if (style === "h4")
-        return (
-          <h4
-            className="text-18 text-slate-900"
-            key={i}
-            data-testid="blockContent-h4"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h4>
-        );
-      if (style === "h5")
-        return (
-          <h5
-            className="text-16 text-slate-900"
-            key={i}
-            data-testid="blockContent-h5"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h5>
-        );
-      if (style === "h6")
-        return (
-          <h6
-            className="text-14 text-slate-900"
-            key={i}
-            data-testid="blockContent-h6"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </h6>
-        );
-      if (style === "blockquote")
-        return (
-          <p
-            className="border-l-4 ml-4 bg-slate-400 p-4"
-            key={i}
-            data-testid="blockContent-blockquote"
-          >
-            <WithListItem listItem={listItem}>
-              <WithMarks blockChild={child} />
-            </WithListItem>
-          </p>
-        );
-    });
+    return (
+      <div>
+        {children.map((child, i) => {
+          if (style === "normal")
+            return (
+              <p
+                key={i}
+                className="text-slate-900 inline"
+                data-testid="blockContent-p"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </p>
+            );
+          if (style === "h1")
+            return (
+              <h1
+                className="text-30 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h1"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h1>
+            );
+          if (style === "h2")
+            return (
+              <h2
+                className="text-24 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h2"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h2>
+            );
+          if (style === "h3")
+            return (
+              <h3
+                className="text-20 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h3"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h3>
+            );
+          if (style === "h4")
+            return (
+              <h4
+                className="text-18 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h4"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h4>
+            );
+          if (style === "h5")
+            return (
+              <h5
+                className="text-16 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h5"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h5>
+            );
+          if (style === "h6")
+            return (
+              <h6
+                className="text-14 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h6"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </h6>
+            );
+          if (style === "blockquote")
+            return (
+              <p
+                className="border-l-4 ml-4 bg-slate-400 p-4 inline"
+                key={i}
+                data-testid="blockContent-blockquote"
+              >
+                <WithListItem listItem={listItem}>
+                  <WithMarks blockChild={child} />
+                </WithListItem>
+              </p>
+            );
+        })}
+      </div>
+    );
   }
 };

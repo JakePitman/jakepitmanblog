@@ -76,6 +76,8 @@ export default async function Article({ params }: ArticleProps) {
     tags,
     mainContent,
   } = article;
+
+  console.log(mainContent);
   return (
     <div className="w-full flex flex-col items-center mt-12">
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
