@@ -41,7 +41,14 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
     element = <s data-testid="blockContent-s">{element}</s>;
   }
   if (marks.includes("code")) {
-    element = <code data-testid="blockContent-code">{element}</code>;
+    element = (
+      <code
+        className="bg-slate-900 text-slate-300"
+        data-testid="blockContent-code"
+      >
+        {element}
+      </code>
+    );
   }
   return element;
 };
