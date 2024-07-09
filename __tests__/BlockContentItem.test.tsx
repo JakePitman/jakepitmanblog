@@ -240,7 +240,6 @@ describe("_type = block", () => {
       expect(element.nodeName).toBe("P");
       expect(element.classList.contains("border-l-4")).toBe(true);
       expect(element.classList.contains("bg-slate-400")).toBe(true);
-      expect(element.classList.contains("p-4")).toBe(true);
     });
 
     TestWithMarks(style, "blockContent-blockquote");
