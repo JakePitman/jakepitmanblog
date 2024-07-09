@@ -66,6 +66,12 @@ const config: Config = {
       lg: "4px 4px 0px 0px rgb(0, 0, 0, 0.3)",
     },
     extend: {
+      width: {
+        1040: "65rem",
+      },
+      maxWidth: {
+        1040: "65rem",
+      },
       borderWidth: {
         "1": "1px",
       },
