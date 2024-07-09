@@ -1,10 +1,8 @@
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { motion } from "framer-motion";
 
 import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
-import { showContentVariants } from "./Article";
 
 type BlockContentItemProps = {
   blockContent: BlockContentItemData;
@@ -16,17 +14,9 @@ type WithListItemProps = {
 };
 const WithListItem = ({ listItem, children }: WithListItemProps) => {
   if (listItem === "bullet" || listItem === "number") {
-    return (
-      <motion.li variants={showContentVariants} data-testid="blockContent-li">
-        {children}
-      </motion.li>
-    );
+    return <li data-testid="blockContent-li">{children}</li>;
   }
-  return (
-    <motion.div variants={showContentVariants} className="my-8">
-      {children}
-    </motion.div>
-  );
+  return <div className="my-8">{children}</div>;
 };
 
 type WithMarksProps = {
@@ -66,16 +56,14 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "code") {
     return (
-      <motion.div variants={showContentVariants}>
-        <SyntaxHighlighter
-          language={blockContent.language}
-          showLineNumbers
-          style={tomorrowNightBright}
-          customStyle={{ padding: "1rem" }}
-        >
-          {blockContent.code}
-        </SyntaxHighlighter>
-      </motion.div>
+      <SyntaxHighlighter
+        language={blockContent.language}
+        showLineNumbers
+        style={tomorrowNightBright}
+        customStyle={{ padding: "1rem" }}
+      >
+        {blockContent.code}
+      </SyntaxHighlighter>
     );
   }
 

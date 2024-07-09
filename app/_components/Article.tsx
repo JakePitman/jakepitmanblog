@@ -25,10 +25,6 @@ const containerVariants = {
   hidden: { opacity: 0, left: 20 },
   showContent: { opacity: 1, left: 0 },
 };
-export const showContentVariants = {
-  hidden: { opacity: 0 },
-  showContent: { opacity: 1 },
-};
 
 export const Article = ({
   createdAt,
@@ -46,36 +42,22 @@ export const Article = ({
       transition={{ staggerChildren: 0.04 }}
     >
       <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
-        <motion.h1
-          variants={showContentVariants}
-          className={cx("text-24 mb-8", bebasNeue.className)}
-        >
-          {title}
-        </motion.h1>
+        <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
 
-        <motion.h3
-          variants={showContentVariants}
-          className="border-l-8 border-slate-800 pl-8 mb-12"
-        >
+        <h3 className="border-l-8 border-slate-800 pl-8 mb-12">
           {description}
-        </motion.h3>
+        </h3>
 
-        <motion.div
-          variants={showContentVariants}
-          className="flex flex-wrap mb-8"
-        >
+        <div className="flex flex-wrap mb-8">
           {tags.map(({ value }, i) => (
             <Tag label={value} key={value + i} />
           ))}
-        </motion.div>
+        </div>
 
-        <motion.em
-          variants={showContentVariants}
-          className="w-full flex items-center text-12"
-        >
+        <em className="w-full flex items-center text-12">
           <hr className="flex-grow text-slate-500 mr-4" />
           <FormattedDate value={createdAt} />
-        </motion.em>
+        </em>
       </div>
 
       {/* Main content */}
