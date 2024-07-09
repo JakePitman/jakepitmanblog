@@ -66,14 +66,16 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
 export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   if (blockContent._type === "code") {
     return (
-      <SyntaxHighlighter
-        language={blockContent.language}
-        showLineNumbers
-        style={tomorrowNightBright}
-        customStyle={{ padding: "1rem" }}
-      >
-        {blockContent.code}
-      </SyntaxHighlighter>
+      <motion.div variants={showContentVariants}>
+        <SyntaxHighlighter
+          language={blockContent.language}
+          showLineNumbers
+          style={tomorrowNightBright}
+          customStyle={{ padding: "1rem" }}
+        >
+          {blockContent.code}
+        </SyntaxHighlighter>
+      </motion.div>
     );
   }
 
