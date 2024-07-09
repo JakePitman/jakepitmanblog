@@ -45,7 +45,7 @@ export const Article = ({
       className="w-full flex flex-col items-center mt-12 relative"
       transition={{ staggerChildren: 0.04 }}
     >
-      <div className="w-full shadow-lg border-1 border-slate-600 p-8 mb-16">
+      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
         <motion.h1
           variants={showContentVariants}
           className={cx("text-24 mb-8", bebasNeue.className)}
@@ -79,7 +79,7 @@ export const Article = ({
       </div>
 
       {/* Main content */}
-      <div className="w-full shadow-lg border-1 border-slate-600 p-8 mb-16">
+      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
         {<BlockContent blockContent={mainContent} />}
       </div>
     </motion.div>
