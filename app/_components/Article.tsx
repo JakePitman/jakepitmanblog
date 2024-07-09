@@ -1,8 +1,7 @@
 "use client";
-import { useEffect } from "react";
 import { Bebas_Neue } from "next/font/google";
 import cx from "classnames";
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 
 import { FormattedDate } from "@components/FormattedDate";
 import { BlockContent } from "@components/BlockContent";
@@ -34,21 +33,10 @@ export const Article = ({
   tags,
   mainContent,
 }: ArticleProps) => {
-  const controls = useAnimation();
-
-  useEffect(() => {
-    const sequence = async () => {
-      await controls.start("showPages");
-      await controls.start("showContent");
-    };
-
-    sequence();
-  }, [controls]);
-
   return (
     <motion.div
       initial="hidden"
-      animate={controls}
+      animate="showContent"
       className="w-full flex flex-col items-center mt-12"
       transition={{ staggerChildren: 0.04 }}
     >
