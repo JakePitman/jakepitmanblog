@@ -163,6 +163,30 @@ const TestWithMarks = (
 };
 
 describe("_type = block", () => {
+  describe("text is empty", () => {
+    const withEmptyText: BlockContentItemData = {
+      _type: "block",
+      _key: "123",
+      markDefs: [],
+      style: "normal",
+      children: [
+        {
+          _key: "123",
+          _type: "span",
+          text: "",
+          marks: [],
+        },
+      ],
+    };
+
+    it("Renders a <br> tag", () => {
+      render(<BlockContentItem blockContent={withEmptyText} />);
+
+      const element = screen.getByTestId("blockContent-br");
+
+      expect(element.nodeName).toBe("BR");
+    });
+  });
   describe("style = normal", () => {
     const style = "normal"; // <p>
     it("Renders in a <p> tag", () => {

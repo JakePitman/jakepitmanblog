@@ -16,7 +16,7 @@ const WithListItem = ({ listItem, children }: WithListItemProps) => {
   if (listItem === "bullet" || listItem === "number") {
     return <li data-testid="blockContent-li">{children}</li>;
   }
-  return <div>{children}</div>;
+  return <div className="my-8">{children}</div>;
 };
 
 type WithMarksProps = {
@@ -88,6 +88,8 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
     return (
       <WithListItem listItem={listItem}>
         {children.map((child, i) => {
+          if (child.text === "")
+            return <br key={i} data-testid="blockContent-br" />;
           if (style === "normal")
             return (
               <p

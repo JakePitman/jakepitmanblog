@@ -16,7 +16,7 @@ type BlockBase = {
   children: {
     _type?: "span";
     _key?: string;
-    text: string | null; // TODO: Check if empty lines are null or ""
+    text: string;
     marks: Mark[];
   }[];
   language?: undefined;
