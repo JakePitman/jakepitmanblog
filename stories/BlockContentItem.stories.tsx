@@ -10,6 +10,7 @@ import {
   DUMMY_BLOCK_CONTENT_INLINE_CODE,
   DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK,
   DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS,
+  DUMMY_BLOCK_CONTENT_COMPREHENSIVE,
 } from "./dummyBlockContent";
 
 const meta = {
@@ -103,5 +104,11 @@ export const WithLists: Story = {
 export const WithCodeBlockPlugin: Story = {
   render: () => {
     return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK} />;
+  },
+};
+
+export const WithComprehensiveData: Story = {
+  render: () => {
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_COMPREHENSIVE} />;
   },
 };

@@ -293,3 +293,196 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: GroupedBlockCon
       level: 2,
     },
   ];
+
+export const DUMMY_BLOCK_CONTENT_COMPREHENSIVE: BlockContentItemData[] = [
+  {
+    markDefs: [],
+    children: [
+      {
+        marks: [],
+        text: "My cool title",
+        _key: "637a46bee410",
+        _type: "span",
+      },
+    ],
+    _type: "block",
+    style: "h1",
+    _key: "e5c70833c225",
+  },
+  {
+    markDefs: [],
+    children: [
+      {
+        _key: "53339e6c9a8f",
+        _type: "span",
+        marks: [],
+        text: "Lorem ipsum oogum boogum. Tutant Meenage Neetle Teetles have been running amuck in the city of New York. How can we stop these mean green fighting machines?",
+      },
+    ],
+    _type: "block",
+    style: "normal",
+    _key: "ae1909e3a3a9",
+  },
+  {
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Option 1.",
+        _key: "45364ca5dabb",
+      },
+    ],
+    _type: "block",
+    style: "h2",
+    _key: "94477f485991",
+  },
+  {
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "We do nothing. Leave the turtles be. This is ",
+        _key: "5e95efde0bb8",
+      },
+      {
+        marks: ["strong"],
+        text: "bold as shit, and not to be fucked with. ",
+        _key: "d3daf799a4e2",
+        _type: "span",
+      },
+      {
+        _type: "span",
+        marks: ["em"],
+        text: "This however, is italic, and must be fucked with.",
+        _key: "b94943abd8df",
+      },
+    ],
+    _type: "block",
+    style: "normal",
+    _key: "454b339845c9",
+  },
+  {
+    _type: "block",
+    style: "h2",
+    _key: "ff37e482545c",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Option deuce;",
+        _key: "f0ede33c3355",
+      },
+    ],
+  },
+  {
+    _key: "5d71976483d3",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Bribe with pizza in this three step plan:",
+        _key: "aabd41d6b1a3",
+      },
+    ],
+    _type: "block",
+    style: "normal",
+  },
+  {
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Buy some pizza",
+        _key: "80c56ac72085",
+      },
+    ],
+    level: 1,
+    _type: "block",
+    style: "normal",
+    _key: "73cabd734817",
+    listItem: "number",
+    markDefs: [],
+  },
+  {
+    _type: "block",
+    style: "normal",
+    _key: "94e882640770",
+    listItem: "number",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Throw it in the sewers",
+        _key: "e27c5062bc57",
+      },
+    ],
+    level: 1,
+  },
+  {
+    _type: "block",
+    style: "normal",
+    _key: "86c491227b80",
+    listItem: "number",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: ["strike-through"],
+        text: "Actually it's just a two step plan",
+        _key: "8e998ab9dd05",
+      },
+    ],
+    level: 1,
+  },
+  {
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "Third option:",
+        _key: "7afefc3f580d",
+      },
+    ],
+    _type: "block",
+    style: "h2",
+    _key: "e9151bbd80a2",
+  },
+  {
+    style: "normal",
+    _key: "b761fd874fe5",
+    markDefs: [],
+    children: [
+      {
+        _type: "span",
+        marks: [],
+        text: "We write some ",
+        _key: "40c345d9b514",
+      },
+      {
+        _type: "span",
+        marks: ["code"],
+        text: "code",
+        _key: "c0397323dcd6",
+      },
+      {
+        _type: "span",
+        marks: [],
+        text: " to blow up their database:",
+        _key: "78d361eda04c",
+      },
+    ],
+    _type: "block",
+  },
+  {
+    code: ".shredder {\n  display: flex;\n}",
+    _type: "code",
+    language: "css",
+    _key: "2d8920b95f83",
+  },
+];
