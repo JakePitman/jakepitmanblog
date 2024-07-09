@@ -27,11 +27,16 @@ const ARTICLES_PAGE_MESSAGES = {
   "articles.go": "読む",
 };
 
+const ARTICLE_PAGE_MESSAGES = {
+  "article.backButton": "帰る",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...NAVBAR_MESSAGES,
     ...HOME_PAGE_MESSAGES,
     ...ARTICLES_PAGE_MESSAGES,
+    ...ARTICLE_PAGE_MESSAGES,
   },
 };
 
