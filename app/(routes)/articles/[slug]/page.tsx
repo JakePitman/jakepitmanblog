@@ -2,6 +2,7 @@ import { client } from "@/sanity/client";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
 
 import { Article } from "@components/Article";
+import { BackButton } from "@components/BackButton";
 
 const SLUGS_QUERY = `
 *[
@@ -69,12 +70,19 @@ export default async function Page({ params }: ArticleProps) {
   } = article;
 
   return (
-    <Article
-      createdAt={createdAt}
-      title={title}
-      description={description}
-      tags={tags}
-      mainContent={mainContent}
-    />
+    <div className="relative">
+      <div className="w-full m-w-768 flex justify-center">
+        <div className="w-11/12">
+          <BackButton />
+        </div>
+      </div>
+      <Article
+        createdAt={createdAt}
+        title={title}
+        description={description}
+        tags={tags}
+        mainContent={mainContent}
+      />
+    </div>
   );
 }
