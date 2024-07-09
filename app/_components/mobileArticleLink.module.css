@@ -24,10 +24,6 @@
   background: linear-gradient(to right, rgba(218, 212, 187, 0), rgba(218, 212, 187, 1));
 }
 
-.tag {
-  text-wrap: nowrap;
-}
-
 .show {
   opacity: 1;
   margin-left: 0;

@@ -8,6 +8,7 @@ import { BsBoxArrowRight } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
 import styles from "./mobileArticleLink.module.css";
+import { Tag } from "@components/Tag";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -117,18 +118,7 @@ export const MobileArticleLink = ({
             })}
           >
             {tags.map(({ value }, i) => (
-              <p
-                className={cx(
-                  "text-14 bg-slate-500 py-4 px-8 text-slate-900 mr-8",
-                  styles.tag,
-                  {
-                    "mt-12": isExpanded,
-                  }
-                )}
-                key={value + i}
-              >
-                {value}
-              </p>
+              <Tag label={value} key={value + i} />
             ))}
           </div>
         </div>
