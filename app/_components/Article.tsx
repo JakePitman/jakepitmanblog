@@ -1,5 +1,8 @@
+"use client";
+import { useEffect } from "react";
 import { Bebas_Neue } from "next/font/google";
 import cx from "classnames";
+import { motion, useAnimation } from "framer-motion";
 
 import { FormattedDate } from "@components/FormattedDate";
 import { BlockContent } from "@components/BlockContent";
@@ -19,6 +22,11 @@ type ArticleProps = {
   mainContent: BlockContentItemData[];
 };
 
+export const showContentVariants = {
+  hidden: { opacity: 0 },
+  showContent: { opacity: 1 },
+};
+
 export const Article = ({
   createdAt,
   title,
@@ -26,31 +34,61 @@ export const Article = ({
   tags,
   mainContent,
 }: ArticleProps) => {
+  const controls = useAnimation();
+
+  useEffect(() => {
+    const sequence = async () => {
+      await controls.start("showPages");
+      await controls.start("showContent");
+    };
+
+    sequence();
+  }, [controls]);
+
   return (
-    <div className="w-full flex flex-col items-center mt-12">
+    <motion.div
+      initial="hidden"
+      animate={controls}
+      className="w-full flex flex-col items-center mt-12"
+      transition={{ staggerChildren: 0.04 }}
+    >
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
-        <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
+        <motion.h1
+          variants={showContentVariants}
+          className={cx("text-24 mb-8", bebasNeue.className)}
+        >
+          {title}
+        </motion.h1>
 
-        <h3 className="border-l-8 border-slate-800 pl-8 mb-12">
+        <motion.h3
+          variants={showContentVariants}
+          className="border-l-8 border-slate-800 pl-8 mb-12"
+        >
           {description}
-        </h3>
+        </motion.h3>
 
-        <div className="flex flex-wrap mb-8">
+        <motion.div
+          variants={showContentVariants}
+          className="flex flex-wrap mb-8"
+        >
           {tags.map(({ value }, i) => (
             <Tag label={value} key={value + i} />
           ))}
-        </div>
+        </motion.div>
 
-        <em className="w-full flex items-center text-12">
+        <motion.em
+          variants={showContentVariants}
+          className="w-full flex items-center text-12"
+        >
           <hr className="flex-grow text-slate-500 mr-4" />
           <FormattedDate value={createdAt} />
-        </em>
+        </motion.em>
       </div>
 
       {/* Main content */}
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
         {<BlockContent blockContent={mainContent} />}
       </div>
-    </div>
+    </motion.div>
   );
 };
