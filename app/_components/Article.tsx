@@ -21,6 +21,10 @@ type ArticleProps = {
   mainContent: BlockContentItemData[];
 };
 
+const containerVariants = {
+  hidden: { opacity: 0, left: 20 },
+  showContent: { opacity: 1, left: 0 },
+};
 export const showContentVariants = {
   hidden: { opacity: 0 },
   showContent: { opacity: 1 },
@@ -37,7 +41,8 @@ export const Article = ({
     <motion.div
       initial="hidden"
       animate="showContent"
-      className="w-full flex flex-col items-center mt-12"
+      variants={containerVariants}
+      className="w-full flex flex-col items-center mt-12 relative"
       transition={{ staggerChildren: 0.04 }}
     >
       <div className="w-11/12 max-w-768 shadow-lg border-1 border-slate-600 p-8 mb-16">
