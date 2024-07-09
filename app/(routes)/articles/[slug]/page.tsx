@@ -71,18 +71,18 @@ export default async function Page({ params }: ArticleProps) {
 
   return (
     <div className="relative">
-      <div className="w-full m-w-768 flex justify-center">
-        <div className="w-11/12">
+      <div className="w-full flex justify-center">
+        <div className="w-11/12 max-w-1040">
           <BackButton />
+          <Article
+            createdAt={createdAt}
+            title={title}
+            description={description}
+            tags={tags}
+            mainContent={mainContent}
+          />
         </div>
       </div>
-      <Article
-        createdAt={createdAt}
-        title={title}
-        description={description}
-        tags={tags}
-        mainContent={mainContent}
-      />
     </div>
   );
 }

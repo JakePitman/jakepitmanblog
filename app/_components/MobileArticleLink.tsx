@@ -53,7 +53,7 @@ export const MobileArticleLink = ({
 
   return (
     <div
-      className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 max-w-768 shadow-sm border-1 border-slate-600 opacity-0 mr-48 transition-all"
+      className="bg-slate-300 mb-16 pt-4 pb-8 px-8 w-11/12 max-w-640 shadow-sm border-1 border-slate-600 opacity-0 mr-48 transition-all"
       ref={ref}
     >
       <div className="w-full flex items-start mb-2">
