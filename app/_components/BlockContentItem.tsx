@@ -29,37 +29,21 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
   const { text, marks } = blockChild;
   let element: React.ReactNode = text;
   if (marks.includes("strong")) {
-    element = (
-      <strong className="p-4" data-testid="blockContent-strong">
-        {element}
-      </strong>
-    );
+    element = <strong data-testid="blockContent-strong">{element}</strong>;
   }
   if (marks.includes("em")) {
-    element = (
-      <em className="p-4" data-testid="blockContent-em">
-        {element}
-      </em>
-    );
+    element = <em data-testid="blockContent-em">{element}</em>;
   }
   if (marks.includes("underline")) {
-    element = (
-      <u className="p-4" data-testid="blockContent-u">
-        {element}
-      </u>
-    );
+    element = <u data-testid="blockContent-u">{element}</u>;
   }
   if (marks.includes("strike-through")) {
-    element = (
-      <s className="p-4" data-testid="blockContent-s">
-        {element}
-      </s>
-    );
+    element = <s data-testid="blockContent-s">{element}</s>;
   }
   if (marks.includes("code")) {
     element = (
       <code
-        className="bg-slate-900 text-slate-300 p-4"
+        className="bg-slate-900 text-slate-300 "
         data-testid="blockContent-code"
       >
         {element}
@@ -163,7 +147,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
           if (style === "blockquote")
             return (
               <p
-                className="border-l-4 ml-4 bg-slate-400 p-4 inline"
+                className="border-l-4 bg-slate-400  inline"
                 key={i}
                 data-testid="blockContent-blockquote"
               >
