@@ -2,11 +2,13 @@
 import { Bebas_Neue } from "next/font/google";
 import cx from "classnames";
 import { motion } from "framer-motion";
+import { useIntl } from "react-intl";
 
 import { FormattedDate } from "@components/FormattedDate";
 import { BlockContent } from "@components/BlockContent";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
 import { Tag } from "@components/Tag";
+import { useEffect, useState, useMemo } from "react";
 
 const bebasNeue = Bebas_Neue({
   weight: "400",
@@ -41,6 +43,41 @@ export const Article = ({
   mainContent,
   jpMainContent,
 }: ArticleProps) => {
+  const intl = useIntl();
+  const { locale } = intl;
+
+  const enContent = useMemo(
+    () => ({
+      title,
+      description,
+      tags,
+      mainContent,
+    }),
+    []
+  );
+  const jpContent = useMemo(
+    () => ({
+      title: jpTitle,
+      description: jpDescription,
+      tags: jpTags,
+      mainContent: jpMainContent,
+    }),
+    []
+  );
+  const [content, setContent] = useState(enContent);
+  useEffect(() => {
+    switch (locale) {
+      case "en-uk":
+        setContent(enContent);
+        break;
+      case "ja-jp":
+        setContent(jpContent);
+        break;
+      default:
+        setContent(enContent);
+    }
+  }, [locale, enContent, jpContent]);
+
   return (
     <motion.div
       initial="hidden"
@@ -50,14 +87,16 @@ export const Article = ({
       transition={{ staggerChildren: 0.04 }}
     >
       <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
-        <h1 className={cx("text-24 mb-8", bebasNeue.className)}>{title}</h1>
+        <h1 className={cx("text-24 mb-8", bebasNeue.className)}>
+          {content.title}
+        </h1>
 
         <h3 className="border-l-8 border-slate-800 pl-8 mb-12">
-          {description}
+          {content.description}
         </h3>
 
         <div className="flex flex-wrap mb-8">
-          {tags.map(({ value }, i) => (
+          {content.tags.map(({ value }, i) => (
             <Tag label={value} key={value + i} />
           ))}
         </div>
@@ -70,7 +109,7 @@ export const Article = ({
 
       {/* Main content */}
       <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
-        {<BlockContent blockContent={mainContent} />}
+        {<BlockContent blockContent={content.mainContent} />}
       </div>
     </motion.div>
   );
