@@ -17,7 +17,7 @@ type Slug = {
 type Tag = {
   value: string;
 };
-type ArticleData = {
+export type ArticleData = {
   _createdAt: string;
   title: string;
   jpTitle: string;

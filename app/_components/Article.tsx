@@ -53,7 +53,7 @@ export const Article = ({
       tags,
       mainContent,
     }),
-    []
+    [title, description, tags, mainContent]
   );
   const jpContent = useMemo(
     () => ({
@@ -62,7 +62,7 @@ export const Article = ({
       tags: jpTags,
       mainContent: jpMainContent,
     }),
-    []
+    [jpTitle, jpDescription, jpTags, jpMainContent]
   );
   const [content, setContent] = useState(enContent);
   useEffect(() => {
