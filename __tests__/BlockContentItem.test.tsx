@@ -1,5 +1,7 @@
 import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
+import { mocked } from "jest-mock";
+import NextImage from "next/image";
 
 import { BlockContentItem } from "@components/BlockContentItem";
 import {
@@ -10,6 +12,10 @@ import {
 
 jest.mock("react-syntax-highlighter", () => ({}));
 jest.mock("react-syntax-highlighter/dist/esm/styles/hljs", () => ({}));
+
+jest.mock("next/image", () => jest.fn());
+
+const mockedNextImage = mocked(NextImage);
 
 const TestWithListItem = (
   style: Style,
@@ -161,6 +167,24 @@ const TestWithMarks = (
     });
   });
 };
+
+describe("_type = image", () => {
+  const withImage: BlockContentItemData = {
+    _key: "3657e4482fec",
+    _type: "image",
+    alt: "my-cool-alt-text",
+    asset: {
+      _ref: "image-e5270bee947b5a03a882f377730e52bcf4357ac0-1280x720-png",
+      _type: "reference",
+    },
+  };
+
+  fit("Renders the image", () => {
+    render(<BlockContentItem blockContent={withImage} />);
+
+    expect(NextImage).toHaveBeenCalledTimes(1);
+  });
+});
 
 describe("_type = block", () => {
   describe("text is empty", () => {
