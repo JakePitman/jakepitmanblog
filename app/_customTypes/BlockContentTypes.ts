@@ -46,7 +46,7 @@ export type Code = {
 export type Image = {
   _key: string;
   _type: "image";
-  alt: "string";
+  alt: string;
   asset: {
     _ref: string;
     _type: "reference";
