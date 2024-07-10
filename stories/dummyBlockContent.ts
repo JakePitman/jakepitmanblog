@@ -527,4 +527,27 @@ export const DUMMY_BLOCK_CONTENT_COMPREHENSIVE: BlockContentItemData[] = [
     code: ".shredder {\n  display: flex;\n}",
     _type: "code",
   },
+  {
+    _type: "block",
+    style: "normal",
+    _key: "b761fd874fe5",
+    markDefs: [],
+    children: [
+      {
+        text: "",
+        _key: "78d361eda04c",
+        _type: "span",
+        marks: [],
+      },
+    ],
+  },
+  {
+    _key: "3657e4482fec",
+    _type: "image",
+    alt: "my-cool-alt-text",
+    asset: {
+      _ref: "image-e5270bee947b5a03a882f377730e52bcf4357ac0-1280x720-png",
+      _type: "reference",
+    },
+  },
 ];
