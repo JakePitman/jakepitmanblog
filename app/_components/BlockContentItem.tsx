@@ -3,6 +3,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
+import { urlFor } from "@/sanity/client";
 
 type BlockContentItemProps = {
   blockContent: BlockContentItemData;
@@ -64,6 +65,15 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
       >
         {blockContent.code}
       </SyntaxHighlighter>
+    );
+  }
+
+  if (blockContent._type === "image") {
+    return (
+      <img
+        src={urlFor(blockContent.asset._ref).width(200).url()}
+        alt={blockContent.alt}
+      />
     );
   }
 
