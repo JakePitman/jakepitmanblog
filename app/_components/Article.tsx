@@ -16,9 +16,13 @@ const bebasNeue = Bebas_Neue({
 type ArticleProps = {
   createdAt: string;
   title: string;
+  jpTitle: string;
   description: string;
+  jpDescription: string;
   tags: { value: string }[];
+  jpTags: { value: string }[];
   mainContent: BlockContentItemData[];
+  jpMainContent: BlockContentItemData[];
 };
 
 const containerVariants = {
@@ -29,9 +33,13 @@ const containerVariants = {
 export const Article = ({
   createdAt,
   title,
+  jpTitle,
   description,
+  jpDescription,
   tags,
+  jpTags,
   mainContent,
+  jpMainContent,
 }: ArticleProps) => {
   return (
     <motion.div
