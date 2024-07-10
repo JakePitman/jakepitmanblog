@@ -13,6 +13,7 @@
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.0.2",
     "@storybook/addon-backgrounds": "^8.1.11",
     "classnames": "^2.5.1",
     "framer-motion": "^11.2.12",
