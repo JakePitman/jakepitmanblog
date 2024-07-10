@@ -9,13 +9,17 @@ import {
   Mark,
   Style,
 } from "@customTypes/BlockContentTypes";
+import { urlFor } from "../sanity/client";
 
 jest.mock("react-syntax-highlighter", () => ({}));
 jest.mock("react-syntax-highlighter/dist/esm/styles/hljs", () => ({}));
 
 jest.mock("next/image", () => jest.fn());
-
 const mockedNextImage = mocked(NextImage);
+
+jest.mock("../sanity/client", () => ({
+  urlFor: (url: string) => ({ url: () => url }),
+}));
 
 const TestWithListItem = (
   style: Style,
@@ -179,10 +183,16 @@ describe("_type = image", () => {
     },
   };
 
-  fit("Renders the image", () => {
+  it("Renders the image", () => {
     render(<BlockContentItem blockContent={withImage} />);
 
-    expect(NextImage).toHaveBeenCalledTimes(1);
+    expect(NextImage).toHaveBeenCalledWith(
+      expect.objectContaining({
+        src: withImage.asset._ref,
+        alt: withImage.alt,
+      }),
+      {}
+    );
   });
 });
 
