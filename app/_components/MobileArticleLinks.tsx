@@ -75,6 +75,10 @@ export const MobileArticleLinks = ({ articles }: Props) => {
     }
   );
 
+  if (!localisedArticles) {
+    return null;
+  }
+
   return (
     <div className="w-full flex flex-col items-center mt-12" ref={containerRef}>
       {localisedArticles.map((article, i) => (
