@@ -43,7 +43,17 @@ export type Code = {
   level?: undefined;
 };
 
-export type BlockContentItemData = Block | Code;
+export type Image = {
+  _key: string;
+  _type: "image";
+  alt: string;
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+};
+
+export type BlockContentItemData = Block | Code | Image;
 
 export type GroupedListItems = {
   _type: "groupedListItems";
