@@ -73,7 +73,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
     return (
       // TODO: Ensure this looks good on various image sizes
       // TODO: Test this
-      <div className="w-full h-512 relative">
+      <div className="relative w-full h-192 sm:h-512 bg-slate-400">
         <Image
           src={urlFor(blockContent.asset._ref).url()}
           alt={blockContent.alt}
