@@ -1,10 +1,9 @@
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import Image from "next/image";
 
 import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
-import { urlFor } from "@/sanity/client";
+import { ArticleImage } from "@components/ArticleImage";
 
 type BlockContentItemProps = {
   blockContent: BlockContentItemData;
@@ -71,16 +70,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
 
   if (blockContent._type === "image") {
     return (
-      // TODO: Ensure this looks good on various image sizes
-      // TODO: Test this
-      <div className="relative w-full h-256 sm:h-512 bg-slate-400">
-        <Image
-          src={urlFor(blockContent.asset._ref).url()}
-          alt={blockContent.alt}
-          fill
-          style={{ objectFit: "contain" }}
-        />
-      </div>
+      <ArticleImage src={blockContent.asset._ref} alt={blockContent.alt} />
     );
   }
 
