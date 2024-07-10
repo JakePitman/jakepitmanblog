@@ -2,6 +2,7 @@ import { SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/client";
 import { MobileArticleLinks } from "@components/MobileArticleLinks";
+import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
 
 const EVENTS_QUERY = `
 *[
@@ -9,16 +10,19 @@ const EVENTS_QUERY = `
 ]{
   _createdAt,
   title,
+  jpTitle,
   slug,
   description,
+  jpDescription,
   tags,
-  titleImage,
+  jpTags,
   mainContent,
+  jpMainContent,
 } | order(_createdAt desc)
 `;
 
 const getArticles = async () => {
-  const res = await client.fetch<SanityDocument[]>(EVENTS_QUERY);
+  const res = await client.fetch<ArticleData[]>(EVENTS_QUERY);
   return res;
 };
 

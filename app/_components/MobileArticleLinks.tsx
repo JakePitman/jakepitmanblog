@@ -1,15 +1,61 @@
 "use client";
-import { useRef, useEffect } from "react";
-import { MobileArticleLink } from "./MobileArticleLink";
-import { SanityDocument } from "next-sanity";
-import { Inter } from "next/font/google";
+import { useState, useRef, useEffect, useMemo } from "react";
+import { useIntl } from "react-intl";
+import { MobileArticleLink, ArticleProps } from "./MobileArticleLink";
 import mobileArticleLinkStyles from "./mobileArticleLink.module.css";
+import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
 
 type Props = {
-  articles: SanityDocument[];
+  articles: ArticleData[];
 };
 export const MobileArticleLinks = ({ articles }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const intl = useIntl();
+  const { locale } = intl;
+
+  const localisedArticleSets = useMemo(() => {
+    const enArticles: ArticleProps[] = [];
+    const jpArticles: ArticleProps[] = [];
+
+    articles.forEach((article) => {
+      enArticles.push({
+        title: article.title,
+        description: article.description,
+        tags: article.tags,
+        createdAt: article._createdAt,
+        slug: article.slug.current,
+      });
+      jpArticles.push({
+        title: article.jpTitle,
+        description: article.jpDescription,
+        tags: article.jpTags,
+        createdAt: article._createdAt,
+        slug: article.slug.current,
+      });
+    });
+
+    return {
+      enArticles,
+      jpArticles,
+    };
+  }, [articles]);
+
+  const [localisedArticles, setLocalisedArticles] = useState(
+    localisedArticleSets.enArticles
+  );
+
+  useEffect(() => {
+    switch (locale) {
+      case "en-uk":
+        setLocalisedArticles(localisedArticleSets.enArticles);
+        break;
+      case "ja-jp":
+        setLocalisedArticles(localisedArticleSets.jpArticles);
+        break;
+      default:
+        setLocalisedArticles(localisedArticleSets.enArticles);
+    }
+  }, [locale, localisedArticleSets]);
 
   const intersectionObserver = new IntersectionObserver(
     (entries) => {
@@ -31,13 +77,13 @@ export const MobileArticleLinks = ({ articles }: Props) => {
 
   return (
     <div className="w-full flex flex-col items-center mt-12" ref={containerRef}>
-      {articles.map((article, i) => (
+      {localisedArticles.map((article, i) => (
         <MobileArticleLink
           key={article.title + i}
           title={article.title}
-          slug={article.slug.current}
+          slug={article.slug}
           description={article.description}
-          createdAt={article._createdAt}
+          createdAt={article.createdAt}
           tags={article.tags}
           interSectionObserver={intersectionObserver}
         />

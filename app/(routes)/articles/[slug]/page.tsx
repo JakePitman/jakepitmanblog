@@ -17,14 +17,17 @@ type Slug = {
 type Tag = {
   value: string;
 };
-type ArticleData = {
+export type ArticleData = {
   _createdAt: string;
   title: string;
+  jpTitle: string;
   slug: Slug;
   description: string;
+  jpDescription: string;
   tags: Tag[];
-  titleImage: typeof Image;
+  jpTags: Tag[];
   mainContent: BlockContentItemData[];
+  jpMainContent: BlockContentItemData[];
 };
 export async function generateStaticParams() {
   const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
@@ -49,11 +52,14 @@ export default async function Page({ params }: ArticleProps) {
     ]{
       _createdAt,
       title,
+      jpTitle,
       slug,
       description,
+      jpDescription,
       tags,
-      titleImage,
+      jpTags,
       mainContent,
+      jpMainContent
     }[0]
   `);
 
@@ -64,9 +70,13 @@ export default async function Page({ params }: ArticleProps) {
   const {
     _createdAt: createdAt,
     title,
+    jpTitle,
     description,
+    jpDescription,
     tags,
+    jpTags,
     mainContent,
+    jpMainContent,
   } = article;
 
   return (
@@ -77,9 +87,13 @@ export default async function Page({ params }: ArticleProps) {
           <Article
             createdAt={createdAt}
             title={title}
+            jpTitle={jpTitle}
             description={description}
+            jpDescription={jpDescription}
             tags={tags}
+            jpTags={jpTags}
             mainContent={mainContent}
+            jpMainContent={jpMainContent}
           />
         </div>
       </div>
