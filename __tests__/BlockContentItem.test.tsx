@@ -1,6 +1,5 @@
 import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
-import { mocked } from "jest-mock";
 import NextImage from "next/image";
 
 import { BlockContentItem } from "@components/BlockContentItem";
@@ -9,13 +8,11 @@ import {
   Mark,
   Style,
 } from "@customTypes/BlockContentTypes";
-import { urlFor } from "../sanity/client";
 
 jest.mock("react-syntax-highlighter", () => ({}));
 jest.mock("react-syntax-highlighter/dist/esm/styles/hljs", () => ({}));
 
 jest.mock("next/image", () => jest.fn());
-const mockedNextImage = mocked(NextImage);
 
 jest.mock("../sanity/client", () => ({
   urlFor: (url: string) => ({ url: () => url }),
