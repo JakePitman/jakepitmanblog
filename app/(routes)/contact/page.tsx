@@ -27,7 +27,7 @@ export default function ContactPage() {
       <div className="max-w-640 w-11/12 relative">
         <motion.div
           variants={fadeInVariants}
-          className="mb-48 border-1 border-slate-900 shadow-lg p-12 relative"
+          className="mb-48 border-1 border-slate-900 shadow-lg p-12 relative text-slate-900 font-medium"
         >
           <p className="text-center text-18">
             <FormattedMessage
@@ -48,7 +48,7 @@ export default function ContactPage() {
           variants={fadeInVariants}
           method="POST"
         >
-          <label className="block mb-12">
+          <label className="block mb-12 text-slate-900 font-medium">
             <p className="mb-4">
               <FormattedMessage
                 id="contactDataYourEmail"
@@ -58,10 +58,10 @@ export default function ContactPage() {
             <input
               type="email"
               name="email"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full"
+              className="border-slate-700 border-2 bg-slate-400 p-8 w-full"
             />
           </label>
-          <label className="block mb-12">
+          <label className="block mb-12 text-slate-900 font-medium">
             <p className="mb-4">
               <FormattedMessage
                 id="contactDataYourMessage"
@@ -70,13 +70,13 @@ export default function ContactPage() {
             </p>
             <textarea
               name="message"
-              className="border-sky-700 border-2 rounded bg-sky-950 w-full h-384"
+              className="border-slate-700 border-2 bg-slate-400 p-8 w-full h-384"
             ></textarea>
           </label>
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="border-2 rounded border-sky-500 px-16 py-8 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
+              className="border-2 border-sky-500 px-16 py-8 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
             >
               <FormattedMessage id="contactDataSend" defaultMessage="Send" />
             </button>
