@@ -4,7 +4,6 @@ import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hl
 
 import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
 import { ArticleImage } from "@components/ArticleImage";
-import { isBlock } from "typescript";
 
 type BlockContentItemProps = {
   blockContent: BlockContentItemData;
