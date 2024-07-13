@@ -1,6 +1,6 @@
 import { client } from "@/sanity/client";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 
 import { Article } from "@components/Article";
 import { BackButton } from "@components/BackButton";
