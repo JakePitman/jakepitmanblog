@@ -1,4 +1,5 @@
 "use client";
+import cx from "classnames";
 import { BsBoxArrowLeft } from "react-icons/bs";
 import { FormattedMessage } from "react-intl";
 import { motion } from "framer-motion";
@@ -11,7 +12,10 @@ export const BackButton = () => (
   >
     <Link
       href="/articles"
-      className="lg:absolute lg:left-12 mt-8 flex items-center text-18 text-slate-900 z-20"
+      className={cx(
+        "lg:absolute lg:left-12 mt-8 flex items-center text-18 text-slate-900 z-20",
+        "focus-styles"
+      )}
     >
       <BsBoxArrowLeft className="mr-8" />
       <FormattedMessage id="article.backButton" defaultMessage="Back" />

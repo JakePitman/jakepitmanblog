@@ -75,6 +75,7 @@ export const MobileArticleLink = ({
             <button
               onClick={() => setIsExpanded(false)}
               data-testid="mobile-article-link-chevron-up"
+              className="focus-styles"
             >
               <LuChevronUpSquare />
             </button>
@@ -82,6 +83,7 @@ export const MobileArticleLink = ({
             <button
               onClick={() => setIsExpanded(true)}
               data-testid="mobile-article-link-chevron-down"
+              className="focus-styles"
             >
               <LuChevronDownSquare />
             </button>
@@ -140,7 +142,10 @@ export const MobileArticleLink = ({
           </p>
           <hr className="flex-grow border-slate-600" />
           <button
-            className="ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center"
+            className={cx(
+              "ml-12 bg-slate-900 text-14 py-4 px-8 text-slate-300 flex items-center",
+              "focus-styles"
+            )}
             onClick={() => router.push(`/articles/${slug}`)}
           >
             <p className="inline-block mr-8 w-max">

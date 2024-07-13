@@ -21,6 +21,7 @@ const OptionButton = ({
       onClick={onClick}
       className={cx(
         "w-max px-8 py-4 border-solid border-2 border-transparent border-b-slate-900 mr-8 last:mr-0",
+        "focus-styles",
         {
           "text-slate-900": !isActive,
           "bg-slate-900 text-slate-300": isActive,

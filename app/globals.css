@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .focus-styles {
+    @apply focus:outline-none focus:ring-2 focus:ring-focusBlue focus:ring-offset-2 focus:ring-offset-slate-300 focus:border-transparent;
+  }
+  .focus-styles-dark {
+    @apply focus:outline-none focus:ring-2 focus:ring-focusBlue focus:ring-offset-2 focus:ring-offset-slate-900 focus:border-transparent;
+  }
+  .focus-styles-field {
+    @apply focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent;
+  }
+}
