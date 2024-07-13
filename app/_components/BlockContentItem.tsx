@@ -28,7 +28,7 @@ const WithBlockQuote = ({ isBlockQuote, children }: WithBlockQuoteProps) => {
   if (isBlockQuote) {
     return (
       <div
-        className="border-l-4 border-slate-900 bg-slate-400 pl-4"
+        className="border-l-4 border-slate-900 bg-slate-400 p-8"
         data-testid="blockContent-blockquote"
       >
         {children}
