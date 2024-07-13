@@ -98,7 +98,7 @@ export default function ContactPage() {
               onChange={(e) => setMessage(e.target.value)}
               onFocus={() => setMessageHasBeenTouched(true)}
               className={cx(
-                "border-2 bg-slate-400 p-8 w-full h-384",
+                "border-2 bg-slate-400 p-8 w-full sm:h-384 h-128",
                 "focus-styles-field",
                 {
                   "border-slate-700": !messageHasBeenTouched || messageIsValid,
