@@ -61,16 +61,17 @@ export default function ContactPage() {
           variants={fadeInVariants}
           method="POST"
         >
-          <label className="block mb-12 text-slate-900 font-medium">
-            <p className="mb-4">
+          <div className="block mb-12 text-slate-900 font-medium">
+            <label htmlFor="email-input" className="mb-4">
               <FormattedMessage
                 id="contact.yourEmail"
                 defaultMessage="Your email:"
               />
-            </p>
+            </label>
             <input
               type="email"
               name="email"
+              id="email-input"
               ref={emailRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -84,17 +85,18 @@ export default function ContactPage() {
                 }
               )}
             />
-          </label>
-          <label className="block mb-12 text-slate-900 font-medium">
-            <p className="mb-4">
+          </div>
+          <div className="block mb-12 text-slate-900 font-medium">
+            <label htmlFor="message-input" className="mb-4">
               <FormattedMessage
                 id="contact.yourMessage"
                 defaultMessage="Your message:"
               />
-            </p>
+            </label>
             <textarea
               name="message"
               value={message}
+              id="message-input"
               onChange={(e) => setMessage(e.target.value)}
               onFocus={() => setMessageHasBeenTouched(true)}
               className={cx(
@@ -106,7 +108,7 @@ export default function ContactPage() {
                 }
               )}
             ></textarea>
-          </label>
+          </div>
           <div className="w-full flex justify-center">
             <button
               type="submit"
