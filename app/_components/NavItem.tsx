@@ -22,7 +22,7 @@ export const NavItem = ({
   return (
     <motion.button
       variants={fadeIn}
-      className={cx("px-8 py-8 mr-12 h-min font-medium", {
+      className={cx("px-8 py-8 mr-12 h-min font-medium", "focus-styles", {
         "bg-slate-500 mb-8": !isActive,
         "bg-slate-900 mt-8": isActive,
       })}

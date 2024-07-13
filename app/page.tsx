@@ -126,7 +126,10 @@ export default function Home() {
           <a
             href="https://jakepitman.com"
             target="_blank"
-            className=" underline underline-offset-2 relative"
+            className={cx(
+              "underline underline-offset-2 relative",
+              "focus-styles"
+            )}
           >
             <FormattedMessage
               id="home.goToPortfolio"

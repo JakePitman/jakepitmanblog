@@ -76,10 +76,10 @@ export default function ContactPage() {
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailHasBeenTouched(true)}
               className={cx(
-                "border-2 bg-slate-400 p-8 w-full",
-                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent",
+                "border-slate-700 border-2 bg-slate-400 p-8 w-full",
+                "focus-styles-field",
                 {
-                  "border-slate-700": !emailHasBeenTouched || emailIsValid,
+                  "border-slate-700": !emailHasBeenTouched || messageIsValid,
                   "border-errorRed": emailHasBeenTouched && !emailIsValid,
                 }
               )}
@@ -99,7 +99,7 @@ export default function ContactPage() {
               onFocus={() => setMessageHasBeenTouched(true)}
               className={cx(
                 "border-2 bg-slate-400 p-8 w-full h-384",
-                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent",
+                "focus-styles-field",
                 {
                   "border-slate-700": !messageHasBeenTouched || messageIsValid,
                   "border-errorRed": messageHasBeenTouched && !messageIsValid,

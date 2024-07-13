@@ -19,6 +19,7 @@ const config: Config = {
       },
       black: "black",
       errorRed: "#C40000",
+      focusBlue: "#0085cc",
       transparent: "transparent",
     },
     spacing: {

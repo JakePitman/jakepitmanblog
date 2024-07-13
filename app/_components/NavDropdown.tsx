@@ -156,7 +156,11 @@ export const NavDropdown = ({
           <h2 className="text-20 text-slate-300 tracking-wide sm:hidden">
             <FormattedMessage id="navbar.menu" defaultMessage="Menu" />
           </h2>
-          <button onClick={dismiss} data-testid="dropdown-dismiss-button">
+          <button
+            onClick={dismiss}
+            className="focus-styles-dark"
+            data-testid="dropdown-dismiss-button"
+          >
             <IoCloseSharp className="text-slate-300 text-30 sm:text-24" />
           </button>
         </div>

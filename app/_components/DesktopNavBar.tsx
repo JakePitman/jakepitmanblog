@@ -1,5 +1,6 @@
 import { IoSettingsOutline } from "react-icons/io5";
 import { motion } from "framer-motion";
+import cx from "classnames";
 
 import { Bookend } from "@components/Bookend";
 import { NavItem } from "@components/NavItem";
@@ -54,7 +55,7 @@ export const DesktopNavBar = ({
       </motion.div>
       <motion.button
         variants={fadeIn}
-        className="hidden sm:block mb-8"
+        className={cx("hidden sm:block mb-8", "focus-styles")}
         onClick={toggleDropdown}
         data-testid="desktop-nav-settings-button"
       >
