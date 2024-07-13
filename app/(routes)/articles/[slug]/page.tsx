@@ -1,5 +1,6 @@
 import { client } from "@/sanity/client";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
+import { Metadata } from "next";
 
 import { Article } from "@components/Article";
 import { BackButton } from "@components/BackButton";
@@ -44,6 +45,29 @@ type ArticleProps = {
     slug: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: ArticleProps): Promise<Metadata> {
+  // read route params
+  const { slug } = params;
+  // fetch data
+  const article = await client.fetch<ArticleData>(`
+    *[
+      _type == "blogEntry" &&
+      slug.current == "${params.slug}"
+    ]{
+      title,
+      description,
+    }[0]
+  `);
+
+  return {
+    title: article.title,
+    description: article.description,
+  };
+}
+
 export default async function Page({ params }: ArticleProps) {
   const article = await client.fetch<ArticleData>(`
     *[
