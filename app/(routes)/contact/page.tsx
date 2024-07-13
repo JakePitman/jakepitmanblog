@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
 import cx from "classnames";
@@ -18,6 +19,11 @@ const fadeInVariants = {
 };
 
 export default function ContactPage() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const isFormValid = email.length > 0 && message.length > 0;
+
   return (
     <motion.div
       className="w-full h-full flex flex-col justify-center items-center"
@@ -59,6 +65,8 @@ export default function ContactPage() {
             <input
               type="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className={cx(
                 "border-slate-700 border-2 bg-slate-400 p-8 w-full",
                 "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
@@ -74,6 +82,8 @@ export default function ContactPage() {
             </p>
             <textarea
               name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className={cx(
                 "border-slate-700 border-2 bg-slate-400 p-8 w-full h-384",
                 "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
@@ -83,9 +93,14 @@ export default function ContactPage() {
           <div className="w-full flex justify-center">
             <button
               type="submit"
+              disabled={!isFormValid}
               className={cx(
-                "border-2 border-sky-500 px-16 py-8",
-                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                "border-2 px-16 py-8",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent",
+                {
+                  "text-slate-700 border-slate-700 bg-slate-400": !isFormValid,
+                  "bg-slate-900 text-slate-300": isFormValid,
+                }
               )}
             >
               <FormattedMessage id="contact.send" defaultMessage="Send" />
