@@ -18,6 +18,7 @@ const config: Config = {
         900: "#4E4B42",
       },
       black: "black",
+      errorRed: "#C40000",
       transparent: "transparent",
     },
     spacing: {

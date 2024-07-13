@@ -21,7 +21,9 @@ const fadeInVariants = {
 export default function ContactPage() {
   const emailRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
+  const [emailHasBeenTouched, setEmailHasBeenTouched] = useState(false);
   const [message, setMessage] = useState("");
+  const [messageHasBeenTouched, setMessageHasBeenTouched] = useState(false);
 
   const emailIsValid = emailRef.current?.validity.valid && email.length > 0;
   const messageIsValid = message.length > 0;
@@ -72,9 +74,14 @@ export default function ContactPage() {
               ref={emailRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              onFocus={() => setEmailHasBeenTouched(true)}
               className={cx(
-                "border-slate-700 border-2 bg-slate-400 p-8 w-full",
-                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                "border-2 bg-slate-400 p-8 w-full",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent",
+                {
+                  "border-slate-700": !emailHasBeenTouched || emailIsValid,
+                  "border-errorRed": emailHasBeenTouched && !emailIsValid,
+                }
               )}
             />
           </label>
@@ -89,9 +96,14 @@ export default function ContactPage() {
               name="message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
+              onFocus={() => setMessageHasBeenTouched(true)}
               className={cx(
-                "border-slate-700 border-2 bg-slate-400 p-8 w-full h-384",
-                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+                "border-2 bg-slate-400 p-8 w-full h-384",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent",
+                {
+                  "border-slate-700": !messageHasBeenTouched || messageIsValid,
+                  "border-errorRed": messageHasBeenTouched && !messageIsValid,
+                }
               )}
             ></textarea>
           </label>
