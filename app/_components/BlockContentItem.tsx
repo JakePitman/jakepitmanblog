@@ -62,7 +62,7 @@ const WithMarks = ({ blockChild }: WithMarksProps) => {
   if (marks.includes("code")) {
     element = (
       <code
-        className="bg-slate-900 text-slate-300 "
+        className="bg-slate-900 text-slate-300 px-4"
         data-testid="blockContent-code"
       >
         {element}
