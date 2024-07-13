@@ -154,7 +154,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
           if (style === "blockquote")
             return (
               <p
-                className="border-l-4 bg-slate-400  inline"
+                className="border-l-4 pl-4 bg-slate-400"
                 key={i}
                 data-testid="blockContent-blockquote"
               >
