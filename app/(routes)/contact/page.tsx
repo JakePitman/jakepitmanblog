@@ -32,13 +32,13 @@ export default function ContactPage() {
         >
           <p className="text-center text-18">
             <FormattedMessage
-              id="contactDataMainBody"
+              id="contact.mainBody1"
               defaultMessage="Thanks for checking out my blog!"
             />
           </p>
           <p className="text-center text-18">
             <FormattedMessage
-              id="contactDataMainBody"
+              id="contact.mainBody2"
               defaultMessage="If you have any thoughts, I'd love to chat."
             />
           </p>
@@ -52,7 +52,7 @@ export default function ContactPage() {
           <label className="block mb-12 text-slate-900 font-medium">
             <p className="mb-4">
               <FormattedMessage
-                id="contactDataYourEmail"
+                id="contact.yourEmail"
                 defaultMessage="Your email:"
               />
             </p>
@@ -68,7 +68,7 @@ export default function ContactPage() {
           <label className="block mb-12 text-slate-900 font-medium">
             <p className="mb-4">
               <FormattedMessage
-                id="contactDataYourMessage"
+                id="contact.yourMessage"
                 defaultMessage="Your message:"
               />
             </p>
@@ -88,7 +88,7 @@ export default function ContactPage() {
                 "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
               )}
             >
-              <FormattedMessage id="contactDataSend" defaultMessage="Send" />
+              <FormattedMessage id="contact.send" defaultMessage="Send" />
             </button>
           </div>
         </motion.form>

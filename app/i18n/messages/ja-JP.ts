@@ -31,12 +31,21 @@ const ARTICLE_PAGE_MESSAGES = {
   "article.backButton": "帰る",
 };
 
+const CONTACT_PAGE_MESSAGES = {
+  "contact.mainBody1": "ブログを見てくれてありがとうございまうす！",
+  "contact.mainBody2": "もし連絡したかったら、喜んで返事します。",
+  "contact.yourEmail": "あなたのメールアドレス：",
+  "contact.yourMessage": "あなたのメッセージ：",
+  "contact.send": "送る",
+};
+
 const messages = {
   [LOCALES.JAPANESE]: {
     ...NAVBAR_MESSAGES,
     ...HOME_PAGE_MESSAGES,
     ...ARTICLES_PAGE_MESSAGES,
     ...ARTICLE_PAGE_MESSAGES,
+    ...CONTACT_PAGE_MESSAGES,
   },
 };
 

@@ -31,12 +31,21 @@ const ARTICLE_PAGE_MESSAGES = {
   "article.backButton": "Back",
 };
 
+const CONTACT_PAGE_MESSAGES = {
+  "contact.mainBody1": "Thanks for checking out my blog!",
+  "contact.mainBody2": "If you have any thoughts, I'd love to chat.",
+  "contact.yourEmail": "Your email:",
+  "contact.yourMessage": "Your message:",
+  "contact.send": "Send",
+};
+
 const messages = {
   [LOCALES.ENGLISH]: {
     ...NAVBAR_MESSAGES,
     ...HOME_PAGE_MESSAGES,
     ...ARTICLES_PAGE_MESSAGES,
     ...ARTICLE_PAGE_MESSAGES,
+    ...CONTACT_PAGE_MESSAGES,
   },
 };
 
