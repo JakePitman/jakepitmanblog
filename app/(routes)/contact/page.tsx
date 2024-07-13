@@ -77,7 +77,7 @@ export default function ContactPage() {
               onChange={(e) => setEmail(e.target.value)}
               onFocus={() => setEmailHasBeenTouched(true)}
               className={cx(
-                "border-slate-700 border-2 bg-slate-400 p-8 w-full",
+                "border-2 bg-slate-400 p-8 w-full",
                 "focus-styles-field",
                 {
                   "border-slate-700": !emailHasBeenTouched || messageIsValid,
