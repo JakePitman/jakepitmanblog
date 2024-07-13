@@ -268,7 +268,7 @@ describe("_type = block", () => {
 
       const element = screen.getByTestId("blockContent-blockquote");
 
-      expect(element.nodeName).toBe("P");
+      expect(element.nodeName).toBe("DIV");
       expect(element.classList.contains("border-l-4")).toBe(true);
       expect(element.classList.contains("bg-slate-400")).toBe(true);
     });

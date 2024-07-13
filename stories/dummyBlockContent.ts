@@ -70,6 +70,36 @@ export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
   generateWithUniqueStyle("normal"),
 ];
 
+export const DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE: BlockContentItemData[] =
+  [
+    {
+      _key: "123",
+      markDefs: [],
+      children: [
+        {
+          _type: "span",
+          marks: [],
+          text: `This is a really long block quote. When this wraps around, the dark border should remain consistent of the left side. Tutant meenage neetle teetles have been running amuck. `,
+          _key: "123",
+        },
+        {
+          _type: "span",
+          marks: ["code"],
+          text: `some code`,
+          _key: "123",
+        },
+        {
+          _type: "span",
+          marks: [],
+          text: ` Here's some more text. This whole thing should be inline`,
+          _key: "123",
+        },
+      ],
+      _type: "block",
+      style: "blockquote",
+    },
+  ];
+
 const ul1_1: BlockContentItemData = {
   _type: "block",
   style: "normal",
