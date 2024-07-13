@@ -43,7 +43,7 @@ export default function ContactPage() {
           </p>
         </motion.div>
         <motion.form
-          action="https://formspree.io/f/xbjnnjaq"
+          action="https://formspree.io/f/xyzgzwyd"
           className="border-1 border-slate-900 p-12 shadow-lg relative"
           variants={fadeInVariants}
           method="POST"
