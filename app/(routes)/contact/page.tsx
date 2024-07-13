@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
+import cx from "classnames";
 
 const fadeInVariants = {
   hidden: {
@@ -58,7 +59,10 @@ export default function ContactPage() {
             <input
               type="email"
               name="email"
-              className="border-slate-700 border-2 bg-slate-400 p-8 w-full"
+              className={cx(
+                "border-slate-700 border-2 bg-slate-400 p-8 w-full",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+              )}
             />
           </label>
           <label className="block mb-12 text-slate-900 font-medium">
@@ -70,13 +74,19 @@ export default function ContactPage() {
             </p>
             <textarea
               name="message"
-              className="border-slate-700 border-2 bg-slate-400 p-8 w-full h-384"
+              className={cx(
+                "border-slate-700 border-2 bg-slate-400 p-8 w-full h-384",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+              )}
             ></textarea>
           </label>
           <div className="w-full flex justify-center">
             <button
               type="submit"
-              className="border-2 border-sky-500 px-16 py-8 hover:bg-transparent bg-sky-500 hover:text-sky-300 text-sky-950 transition-all"
+              className={cx(
+                "border-2 border-sky-500 px-16 py-8",
+                "focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent"
+              )}
             >
               <FormattedMessage id="contactDataSend" defaultMessage="Send" />
             </button>
