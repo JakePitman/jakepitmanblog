@@ -4,6 +4,7 @@ import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hl
 
 import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
 import { ArticleImage } from "@components/ArticleImage";
+import { isBlock } from "typescript";
 
 type BlockContentItemProps = {
   blockContent: BlockContentItemData;
@@ -18,6 +19,24 @@ const WithListItem = ({ listItem, children }: WithListItemProps) => {
     return <li data-testid="blockContent-li">{children}</li>;
   }
   return <div className="my-8">{children}</div>;
+};
+
+type WithBlockQuoteProps = {
+  isBlockQuote: boolean;
+  children: React.ReactNode;
+};
+const WithBlockQuote = ({ isBlockQuote, children }: WithBlockQuoteProps) => {
+  if (isBlockQuote) {
+    return (
+      <div
+        className="border-l-4 border-slate-900 bg-slate-400 pl-4"
+        data-testid="blockContent-blockquote"
+      >
+        {children}
+      </div>
+    );
+  }
+  return children;
 };
 
 type WithMarksProps = {
@@ -78,90 +97,84 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
     const { _type, style, children, listItem } = blockContent;
     return (
       <WithListItem listItem={listItem}>
-        {children.map((child, i) => {
-          if (child.text === "")
-            return <br key={i} data-testid="blockContent-br" />;
-          if (style === "normal")
-            return (
-              <p
-                key={i}
-                className="text-slate-900 inline"
-                data-testid="blockContent-p"
-              >
-                <WithMarks blockChild={child} />
-              </p>
-            );
-          if (style === "h1")
-            return (
-              <h1
-                className="text-30 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h1"
-              >
-                <WithMarks blockChild={child} />
-              </h1>
-            );
-          if (style === "h2")
-            return (
-              <h2
-                className="text-24 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h2"
-              >
-                <WithMarks blockChild={child} />
-              </h2>
-            );
-          if (style === "h3")
-            return (
-              <h3
-                className="text-20 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h3"
-              >
-                <WithMarks blockChild={child} />
-              </h3>
-            );
-          if (style === "h4")
-            return (
-              <h4
-                className="text-18 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h4"
-              >
-                <WithMarks blockChild={child} />
-              </h4>
-            );
-          if (style === "h5")
-            return (
-              <h5
-                className="text-16 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h5"
-              >
-                <WithMarks blockChild={child} />
-              </h5>
-            );
-          if (style === "h6")
-            return (
-              <h6
-                className="text-14 text-slate-900 inline"
-                key={i}
-                data-testid="blockContent-h6"
-              >
-                <WithMarks blockChild={child} />
-              </h6>
-            );
-          if (style === "blockquote")
-            return (
-              <p
-                className="border-l-4 pl-4 bg-slate-400"
-                key={i}
-                data-testid="blockContent-blockquote"
-              >
-                <WithMarks blockChild={child} />
-              </p>
-            );
-        })}
+        <WithBlockQuote isBlockQuote={style === "blockquote"}>
+          {children.map((child, i) => {
+            if (child.text === "")
+              return <br key={i} data-testid="blockContent-br" />;
+            if (style === "normal")
+              return (
+                <p
+                  key={i}
+                  className="text-slate-900 inline"
+                  data-testid="blockContent-p"
+                >
+                  <WithMarks blockChild={child} />
+                </p>
+              );
+            if (style === "h1")
+              return (
+                <h1
+                  className="text-30 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h1"
+                >
+                  <WithMarks blockChild={child} />
+                </h1>
+              );
+            if (style === "h2")
+              return (
+                <h2
+                  className="text-24 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h2"
+                >
+                  <WithMarks blockChild={child} />
+                </h2>
+              );
+            if (style === "h3")
+              return (
+                <h3
+                  className="text-20 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h3"
+                >
+                  <WithMarks blockChild={child} />
+                </h3>
+              );
+            if (style === "h4")
+              return (
+                <h4
+                  className="text-18 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h4"
+                >
+                  <WithMarks blockChild={child} />
+                </h4>
+              );
+            if (style === "h5")
+              return (
+                <h5
+                  className="text-16 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h5"
+                >
+                  <WithMarks blockChild={child} />
+                </h5>
+              );
+            if (style === "h6")
+              return (
+                <h6
+                  className="text-14 text-slate-900 inline"
+                  key={i}
+                  data-testid="blockContent-h6"
+                >
+                  <WithMarks blockChild={child} />
+                </h6>
+              );
+            if (style === "blockquote")
+              return <WithMarks blockChild={child} key={i} />;
+          })}
+        </WithBlockQuote>
       </WithListItem>
     );
   }

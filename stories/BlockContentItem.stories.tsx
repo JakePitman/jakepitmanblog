@@ -10,7 +10,7 @@ import {
   DUMMY_BLOCK_CONTENT_INLINE_CODE,
   DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK,
   DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS,
-  DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE,
+  DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE,
   DUMMY_BLOCK_CONTENT_COMPREHENSIVE,
 } from "./dummyBlockContent";
 
@@ -99,7 +99,9 @@ export const BlockInlineCode: Story = {
 export const WithLongBlockQuote: Story = {
   render: () => {
     return (
-      <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE} />
+      <BlockContent
+        blockContent={DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE}
+      />
     );
   },
 };
