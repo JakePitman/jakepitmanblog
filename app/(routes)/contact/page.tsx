@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FormattedMessage } from "react-intl";
 import cx from "classnames";
@@ -19,10 +19,14 @@ const fadeInVariants = {
 };
 
 export default function ContactPage() {
+  const emailRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const isFormValid = email.length > 0 && message.length > 0;
+  const emailIsValid = emailRef.current?.validity.valid && email.length > 0;
+  const messageIsValid = message.length > 0;
+
+  const isFormValid = emailIsValid && messageIsValid;
 
   return (
     <motion.div
@@ -65,6 +69,7 @@ export default function ContactPage() {
             <input
               type="email"
               name="email"
+              ref={emailRef}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={cx(
