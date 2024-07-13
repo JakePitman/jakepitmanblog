@@ -32,7 +32,7 @@ const ARTICLE_PAGE_MESSAGES = {
 };
 
 const CONTACT_PAGE_MESSAGES = {
-  "contact.mainBody1": "ブログを見てくれてありがとうございまうす！",
+  "contact.mainBody1": "ブログを見てくれてありがとうございます！",
   "contact.mainBody2": "もし連絡したかったら、喜んで返事します。",
   "contact.yourEmail": "あなたのメールアドレス：",
   "contact.yourMessage": "あなたのメッセージ：",
