@@ -16,7 +16,7 @@ const NAVBAR_MESSAGES = {
 
 const HOME_PAGE_MESSAGES = {
   "home.helloFriend": "こんにちは",
-  "home.welcome": "私はジェイクです。私のブログえようこそ。",
+  "home.welcome": "私はジェイクです。私のブログへようこそ。",
   "home.objectiveOne": "プログラミングの知識を深める。",
   "home.objectiveTwo": "習った知識をみんなにシェアする。",
   "home.objectiveThree": "日本語でプログラミングについての話し合いを練習する。",
