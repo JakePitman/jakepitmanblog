@@ -16,11 +16,11 @@ const NAVBAR_MESSAGES = {
 
 const HOME_PAGE_MESSAGES = {
   "home.helloFriend": "こんにちは",
-  "home.welcome": "私はジェイクです。私のブログへようこそ。",
-  "home.objectiveOne": "プログラミングの知識を深める。",
-  "home.objectiveTwo": "習った知識をみんなにシェアする。",
-  "home.objectiveThree": "日本語でプログラミングについての話し合いを練習する。",
-  "home.goToPortfolio": "私のポートフォリオサイトはこっちです",
+  "home.welcome": "ジェイクです。私のブログへようこそ。",
+  "home.objectiveOne": "プログラミングの知識を深める",
+  "home.objectiveTwo": "習った知識をみんなにシェアする",
+  "home.objectiveThree": "日本語でプログラミングについての話し合いを練習する",
+  "home.goToPortfolio": "私のポートフォリオサイトはこっちらです",
 };
 
 const ARTICLES_PAGE_MESSAGES = {
@@ -33,10 +33,11 @@ const ARTICLE_PAGE_MESSAGES = {
 
 const CONTACT_PAGE_MESSAGES = {
   "contact.mainBody1": "ブログを見てくれてありがとうございます！",
-  "contact.mainBody2": "もし連絡したかったら、喜んで返事します。",
+  "contact.mainBody2":
+    "ご質問やご意見があれば、ぜひご連絡ください。喜んでお返事いたします。",
   "contact.yourEmail": "あなたのメールアドレス：",
   "contact.yourMessage": "あなたのメッセージ：",
-  "contact.send": "送る",
+  "contact.send": "送信",
 };
 
 const messages = {
