@@ -54,7 +54,8 @@ export async function generateMetadata({
   // read route params
   const { slug } = params;
   // fetch data
-  const article = await client.fetch<ArticleData>(`
+  const article = await client.fetch<ArticleData>(
+    `
     *[
       _type == "blogEntry" &&
       slug.current == "${slug}"
@@ -62,7 +63,10 @@ export async function generateMetadata({
       title,
       description,
     }[0]
-  `);
+  `,
+    {},
+    { next: { revalidate: 3600 } }
+  );
 
   return {
     title: article.title,
@@ -90,7 +94,7 @@ export default async function Page({ params }: ArticleProps) {
     }[0]
   `,
     {},
-    { next: { revalidate: 300 } }
+    { next: { revalidate: 3600 } }
   );
 
   if (!article) {
