@@ -30,15 +30,17 @@ export type ArticleData = {
   mainContent: BlockContentItemData[];
   jpMainContent: BlockContentItemData[];
 };
-export async function generateStaticParams() {
-  const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
 
-  const slugs: { params: { slug: string } }[] = res.map((articleData) => ({
-    params: { slug: articleData.slug.current },
-  }));
+// TODO: Find a better way to handle this
+// export async function generateStaticParams() {
+//   const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
 
-  return slugs;
-}
+//   const slugs: { params: { slug: string } }[] = res.map((articleData) => ({
+//     params: { slug: articleData.slug.current },
+//   }));
+
+//   return slugs;
+// }
 
 type ArticleProps = {
   params: {
@@ -55,7 +57,7 @@ export async function generateMetadata({
   const article = await client.fetch<ArticleData>(`
     *[
       _type == "blogEntry" &&
-      slug.current == "${params.slug}"
+      slug.current == "${slug}"
     ]{
       title,
       description,
