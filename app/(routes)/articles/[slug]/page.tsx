@@ -71,7 +71,8 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: ArticleProps) {
-  const article = await client.fetch<ArticleData>(`
+  const article = await client.fetch<ArticleData>(
+    `
     *[
       _type == "blogEntry" &&
       slug.current == "${params.slug}"
@@ -87,7 +88,10 @@ export default async function Page({ params }: ArticleProps) {
       mainContent,
       jpMainContent
     }[0]
-  `);
+  `,
+    {},
+    { next: { revalidate: 300 } }
+  );
 
   if (!article) {
     return <div>Article of slug {params.slug} not found</div>;
