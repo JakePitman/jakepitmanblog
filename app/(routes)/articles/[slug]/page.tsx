@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { client } from "@/sanity/client";
 import { BlockContentItemData } from "@customTypes/BlockContentTypes";
 import { Metadata } from "next";
@@ -5,13 +6,6 @@ import { Metadata } from "next";
 import { Article } from "@components/Article";
 import { BackButton } from "@components/BackButton";
 
-const SLUGS_QUERY = `
-*[
-  _type == "blogEntry"
-]{
-  slug,
-}
-`;
 type Slug = {
   current: string;
 };
@@ -31,55 +25,12 @@ export type ArticleData = {
   jpMainContent: BlockContentItemData[];
 };
 
-// TODO: Find a better way to handle this
-// export async function generateStaticParams() {
-//   const res = await client.fetch<ArticleData[]>(SLUGS_QUERY);
-
-//   const slugs: { params: { slug: string } }[] = res.map((articleData) => ({
-//     params: { slug: articleData.slug.current },
-//   }));
-
-//   return slugs;
-// }
-
-type ArticleProps = {
-  params: {
-    slug: string;
-  };
-};
-
-export async function generateMetadata({
-  params,
-}: ArticleProps): Promise<Metadata> {
-  // read route params
-  const { slug } = params;
-  // fetch data
+const getArticle = cache(async (slug: string) => {
   const article = await client.fetch<ArticleData>(
     `
     *[
       _type == "blogEntry" &&
       slug.current == "${slug}"
-    ]{
-      title,
-      description,
-    }[0]
-  `,
-    {},
-    { next: { revalidate: 3600 } }
-  );
-
-  return {
-    title: article.title,
-    description: article.description,
-  };
-}
-
-export default async function Page({ params }: ArticleProps) {
-  const article = await client.fetch<ArticleData>(
-    `
-    *[
-      _type == "blogEntry" &&
-      slug.current == "${params.slug}"
     ]{
       _createdAt,
       title,
@@ -96,6 +47,30 @@ export default async function Page({ params }: ArticleProps) {
     {},
     { next: { revalidate: 3600 } }
   );
+
+  return article;
+});
+
+type ArticleProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({
+  params,
+}: ArticleProps): Promise<Metadata> {
+  const { slug } = params;
+  const article = await getArticle(slug);
+
+  return {
+    title: article.title,
+    description: article.description,
+  };
+}
+
+export default async function Page({ params }: ArticleProps) {
+  const article = await getArticle(params.slug);
 
   if (!article) {
     return <div>Article of slug {params.slug} not found</div>;
