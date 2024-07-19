@@ -72,7 +72,7 @@ const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
       );
     } else {
       // In this case, mark may be a reference to a markdef _key field
-      // Checks to see if corresponding markDef exists, and wraps according to type
+      // Checks to see if corresponding markDef exists, and wraps according to type. So far just handling "link" type.
       markDefs?.forEach((markDef) => {
         if (markDef._key === mark && markDef._type === "link") {
           element = (
