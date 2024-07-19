@@ -104,7 +104,6 @@ const TestWithMarks = (
   });
   describe("marks includes 'underline'", () => {
     it("Wraps contents of element in <u>", () => {
-      const text = "Hello";
       const blockContent: BlockContentItemData = generatePropsWithMarks([
         "underline",
       ]);
