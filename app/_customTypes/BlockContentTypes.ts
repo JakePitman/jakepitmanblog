@@ -7,11 +7,22 @@ export type Style =
   | "h6"
   | "blockquote"
   | "normal";
-export type Mark = "strong" | "em" | "underline" | "strike-through" | "code";
+export type Mark =
+  | "strong"
+  | "em"
+  | "underline"
+  | "strike-through"
+  | "code"
+  | string;
+export type MarkDef = {
+  _type: "link";
+  href: string;
+  _key: string;
+};
 type BlockBase = {
   _type: "block";
   _key?: string;
-  markDefs?: unknown[];
+  markDefs?: MarkDef[];
   style: Style;
   children: {
     _type?: "span";

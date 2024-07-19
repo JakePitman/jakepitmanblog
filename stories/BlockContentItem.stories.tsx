@@ -8,6 +8,7 @@ import {
   DUMMY_BLOCK_CONTENT_STRIKETHROUGH,
   DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH,
   DUMMY_BLOCK_CONTENT_INLINE_CODE,
+  DUMMY_BLOCK_CONTENT_LINKS,
   DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK,
   DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS,
   DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE,
@@ -93,6 +94,12 @@ export const BlockStrongEmUnderlineStrikethrough: Story = {
 export const BlockInlineCode: Story = {
   render: () => {
     return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_INLINE_CODE} />;
+  },
+};
+
+export const BlockLinks: Story = {
+  render: () => {
+    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_LINKS} />;
   },
 };
 

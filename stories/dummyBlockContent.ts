@@ -1,6 +1,7 @@
 import {
   BlockContentItemData,
   Mark,
+  MarkDef,
   Style,
   GroupedBlockContent,
 } from "@customTypes/BlockContentTypes";
@@ -18,10 +19,11 @@ const STYLES = [
 
 const generateWithUniqueStyle = (
   style: Style,
-  marks: Mark[] = []
+  marks: Mark[] = [],
+  markDefs: MarkDef[] = []
 ): BlockContentItemData => ({
   _key: "123",
-  markDefs: [],
+  markDefs,
   children: [
     {
       _type: "span",
@@ -58,6 +60,14 @@ export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent
   );
 export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContentItemData[] =
   STYLES.map((style) => generateWithUniqueStyle(style, ["code"]));
+export const DUMMY_BLOCK_CONTENT_LINKS: BlockContentItemData[] = STYLES.map(
+  (style, i) =>
+    generateWithUniqueStyle(
+      style,
+      [`123${i}`],
+      [{ _type: "link", href: "https://www.google.com", _key: `123${i}` }]
+    )
+);
 
 export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
   generateWithUniqueStyle("h2"),
