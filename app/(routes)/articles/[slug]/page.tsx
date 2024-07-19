@@ -5,6 +5,7 @@ import { Metadata } from "next";
 
 import { Article } from "@components/Article";
 import { BackButton } from "@components/BackButton";
+import { EndOfPageBackButton } from "@components/EndOfPageBackButton";
 
 type Slug = {
   current: string;
@@ -104,6 +105,7 @@ export default async function Page({ params }: ArticleProps) {
             mainContent={mainContent}
             jpMainContent={jpMainContent}
           />
+          <EndOfPageBackButton />
         </div>
       </div>
     </div>
