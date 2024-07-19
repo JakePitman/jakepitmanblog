@@ -76,7 +76,12 @@ const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
       markDefs?.forEach((markDef) => {
         if (markDef._key === mark && markDef._type === "link") {
           element = (
-            <a className="underline" target="_blank" href={markDef.href}>
+            <a
+              className="underline"
+              target="_blank"
+              href={markDef.href}
+              data-testid="blockContent-a"
+            >
               {element}
             </a>
           );

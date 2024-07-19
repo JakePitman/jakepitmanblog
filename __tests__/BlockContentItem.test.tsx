@@ -6,6 +6,7 @@ import { BlockContentItem } from "@components/BlockContentItem";
 import {
   BlockContentItemData,
   Mark,
+  MarkDef,
   Style,
 } from "@customTypes/BlockContentTypes";
 
@@ -60,12 +61,15 @@ const TestWithMarks = (
   testId: string,
   listItem?: "bullet" | "number"
 ) => {
-  const generatePropsWithMarks = (marks: Mark[]): BlockContentItemData => {
+  const generatePropsWithMarks = (
+    marks: Mark[],
+    markDefs: MarkDef[] = []
+  ): BlockContentItemData => {
     const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
     return {
       _type: "block",
       _key: "123",
-      markDefs: [],
+      markDefs,
       style: style,
       children: [
         {
@@ -86,7 +90,7 @@ const TestWithMarks = (
       const element = screen.getByTestId(testId);
       const em = within(element).getByTestId("blockContent-em");
 
-      expect(em).toBeInTheDocument();
+      expect(em.nodeName).toBe("EM");
     });
   });
   describe("marks includes 'strong'", () => {
@@ -99,7 +103,7 @@ const TestWithMarks = (
       const element = screen.getByTestId(testId);
       const strong = within(element).getByTestId("blockContent-strong");
 
-      expect(strong).toBeInTheDocument();
+      expect(strong.nodeName).toBe("STRONG");
     });
   });
   describe("marks includes 'underline'", () => {
@@ -112,7 +116,7 @@ const TestWithMarks = (
       const element = screen.getByTestId(testId);
       const underline = within(element).getByTestId("blockContent-u");
 
-      expect(underline).toBeInTheDocument();
+      expect(underline.nodeName).toBe("U");
     });
   });
   describe("marks includes 'strikethrough'", () => {
@@ -125,7 +129,7 @@ const TestWithMarks = (
       const element = screen.getByTestId(testId);
       const strikethrough = within(element).getByTestId("blockContent-s");
 
-      expect(strikethrough).toBeInTheDocument();
+      expect(strikethrough.nodeName).toBe("S");
     });
   });
   describe("marks includes 'code'", () => {
@@ -139,6 +143,22 @@ const TestWithMarks = (
       const code = within(element).getByTestId("blockContent-code");
 
       expect(code).toBeInTheDocument();
+    });
+  });
+  describe("marks includes a non-standard string", () => {
+    describe("mark references a markDef of _type='link'", () => {
+      it("Wraps contents of element in <a>", () => {
+        const blockContent: BlockContentItemData = generatePropsWithMarks(
+          ["123"],
+          [{ _type: "link", href: "https://example.com", _key: "123" }]
+        );
+        render(<BlockContentItem blockContent={blockContent} />);
+
+        const element = screen.getByTestId(testId);
+        const a = within(element).getByTestId("blockContent-a");
+
+        expect(a.nodeName).toBe("A");
+      });
     });
   });
   describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
@@ -159,10 +179,10 @@ const TestWithMarks = (
       const s = within(element).getByTestId("blockContent-s");
       const code = within(element).getByTestId("blockContent-code");
 
-      expect(strong).toBeInTheDocument();
-      expect(em).toBeInTheDocument();
-      expect(u).toBeInTheDocument();
-      expect(s).toBeInTheDocument();
+      expect(strong.nodeName).toBe("STRONG");
+      expect(em.nodeName).toBe("EM");
+      expect(u.nodeName).toBe("U");
+      expect(s.nodeName).toBe("S");
       expect(code).toBeInTheDocument();
     });
   });
