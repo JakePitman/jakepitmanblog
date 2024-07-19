@@ -23,13 +23,9 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active{
     -webkit-box-shadow: 0 0 0 30px #CDC8B0 inset !important;
     -webkit-text-fill-color: #4E4B42 !important;
-    outline-style: solid;
 }
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active{
-  /* border: 2px solid #4E4B42; */
   outline: 2px solid #4E4B42;
-  outline-offset: 2px;
-  /* border-color: #CDC8B0; */
-  border-color: transparent;
+  border-color: #CDC8B0;
 }
