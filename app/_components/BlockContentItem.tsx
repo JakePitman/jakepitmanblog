@@ -47,7 +47,7 @@ type WithMarksProps = {
     text: string | null;
     marks: Mark[];
   };
-  markDefs: MarkDef[];
+  markDefs: MarkDef[] | undefined;
 };
 const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
   const { text, marks } = blockChild;
