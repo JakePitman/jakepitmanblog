@@ -28,7 +28,7 @@ export default function RootLayout({
         <UserSettingsContextProvider>
           <AnimationContextProvider>
             <I18nProvider>
-              <div className="w-screen h-screen flex flex-col">
+              <div className="w-screen h-[100dvh] flex flex-col">
                 <Navbar />
                 <MainContentWrapper>{children}</MainContentWrapper>
               </div>
