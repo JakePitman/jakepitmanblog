@@ -2,7 +2,11 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import { BlockContentItemData, Mark } from "@customTypes/BlockContentTypes";
+import {
+  BlockContentItemData,
+  Mark,
+  MarkDef,
+} from "@customTypes/BlockContentTypes";
 import { ArticleImage } from "@components/ArticleImage";
 
 type BlockContentItemProps = {
@@ -43,32 +47,48 @@ type WithMarksProps = {
     text: string | null;
     marks: Mark[];
   };
+  markDefs: MarkDef[] | undefined;
 };
-const WithMarks = ({ blockChild }: WithMarksProps) => {
+const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
   const { text, marks } = blockChild;
   let element: React.ReactNode = text;
-  if (marks.includes("strong")) {
-    element = <strong data-testid="blockContent-strong">{element}</strong>;
-  }
-  if (marks.includes("em")) {
-    element = <em data-testid="blockContent-em">{element}</em>;
-  }
-  if (marks.includes("underline")) {
-    element = <u data-testid="blockContent-u">{element}</u>;
-  }
-  if (marks.includes("strike-through")) {
-    element = <s data-testid="blockContent-s">{element}</s>;
-  }
-  if (marks.includes("code")) {
-    element = (
-      <code
-        className="bg-slate-900 text-slate-300 px-4"
-        data-testid="blockContent-code"
-      >
-        {element}
-      </code>
-    );
-  }
+  marks.forEach((mark) => {
+    if (mark === "strong") {
+      element = <strong data-testid="blockContent-strong">{element}</strong>;
+    } else if (mark === "em") {
+      element = <em data-testid="blockContent-em">{element}</em>;
+    } else if (mark === "underline") {
+      element = <u data-testid="blockContent-u">{element}</u>;
+    } else if (mark === "strike-through") {
+      element = <s data-testid="blockContent-s">{element}</s>;
+    } else if (mark === "code") {
+      element = (
+        <code
+          className="bg-slate-900 text-slate-300 px-4"
+          data-testid="blockContent-code"
+        >
+          {element}
+        </code>
+      );
+    } else {
+      // In this case, mark may be a reference to a markdef _key field
+      // Checks to see if corresponding markDef exists, and wraps according to type
+      markDefs?.forEach((markDef) => {
+        if (markDef._key === mark && markDef._type === "link") {
+          element = (
+            <a
+              className="underline"
+              target="_blank"
+              href={markDef.href}
+              data-testid="blockContent-a"
+            >
+              {element}
+            </a>
+          );
+        }
+      });
+    }
+  });
   return element;
 };
 
@@ -93,7 +113,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
   }
 
   if (blockContent._type === "block") {
-    const { _type, style, children, listItem } = blockContent;
+    const { _type, style, children, listItem, markDefs } = blockContent;
     return (
       <WithListItem listItem={listItem}>
         <WithBlockQuote isBlockQuote={style === "blockquote"}>
@@ -107,7 +127,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   className="text-slate-900 inline"
                   data-testid="blockContent-p"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </p>
               );
             if (style === "h1")
@@ -117,7 +137,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h1"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h1>
               );
             if (style === "h2")
@@ -127,7 +147,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h2"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h2>
               );
             if (style === "h3")
@@ -137,7 +157,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h3"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h3>
               );
             if (style === "h4")
@@ -147,7 +167,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h4"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h4>
               );
             if (style === "h5")
@@ -157,7 +177,7 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h5"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h5>
               );
             if (style === "h6")
@@ -167,11 +187,13 @@ export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
                   key={i}
                   data-testid="blockContent-h6"
                 >
-                  <WithMarks blockChild={child} />
+                  <WithMarks blockChild={child} markDefs={markDefs} />
                 </h6>
               );
             if (style === "blockquote")
-              return <WithMarks blockChild={child} key={i} />;
+              return (
+                <WithMarks blockChild={child} key={i} markDefs={markDefs} />
+              );
           })}
         </WithBlockQuote>
       </WithListItem>
