@@ -13,3 +13,23 @@
     @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:border-transparent;
   }
 }
+
+/* Reset autofill styles for input */
+/* Selecting an autofill option would normally set the input
+   background to white */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #CDC8B0 inset !important;
+    -webkit-text-fill-color: #4E4B42 !important;
+    outline-style: solid;
+}
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+  /* border: 2px solid #4E4B42; */
+  outline: 2px solid #4E4B42;
+  outline-offset: 2px;
+  /* border-color: #CDC8B0; */
+  border-color: transparent;
+}
