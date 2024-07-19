@@ -5,4 +5,4 @@
 - 💭 Things that puzzle me
 
 
-[jakepitmanblog.vercel.app](jakepitmanblog.vercel.app)
+[jakepitmanblog.vercel.app](https://jakepitmanblog.vercel.app)
