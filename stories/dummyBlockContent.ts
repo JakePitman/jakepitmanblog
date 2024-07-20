@@ -454,14 +454,14 @@ export const DUMMY_BLOCK_CONTENT_COMPREHENSIVE: PortableTextItem[] = [
       {
         _type: "span",
         marks: ["strong"],
-        text: "bold as shit, and not to be fucked with. ",
+        text: "bold, and not to be messed around with. ",
         _key: "d3daf799a4e2",
       },
       {
         _key: "b94943abd8df",
         _type: "span",
         marks: ["em"],
-        text: "This however, is italic, and must be fucked with.",
+        text: "This however, is italic, and may be messed around with.",
       },
     ],
   },

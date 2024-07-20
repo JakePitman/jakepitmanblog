@@ -14,7 +14,6 @@ import {
   DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE,
   DUMMY_BLOCK_CONTENT_COMPREHENSIVE,
 } from "./dummyBlockContent";
-import { PortableText } from "next-sanity";
 
 const meta = {
   title: "Components/PortableTextConverter",
