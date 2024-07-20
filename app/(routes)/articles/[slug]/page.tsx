@@ -1,6 +1,6 @@
 import { cache } from "react";
 import { client } from "@/sanity/client";
-import { BlockContentItemData } from "@customTypes/BlockContentTypes";
+import { PortableTextItem } from "@customTypes/PortableTextTypes";
 import { Metadata } from "next";
 
 import { Article } from "@components/Article";
@@ -22,8 +22,8 @@ export type ArticleData = {
   jpDescription: string;
   tags: Tag[];
   jpTags: Tag[];
-  mainContent: BlockContentItemData[];
-  jpMainContent: BlockContentItemData[];
+  mainContent: PortableTextItem[];
+  jpMainContent: PortableTextItem[];
 };
 
 const getArticle = cache(async (slug: string) => {

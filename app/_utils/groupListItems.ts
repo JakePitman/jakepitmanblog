@@ -1,16 +1,15 @@
 import {
-  BlockContentItemData,
-  GroupedListItems,
-} from "@customTypes/BlockContentTypes";
-type ReturnValue = (BlockContentItemData | GroupedListItems)[];
+  PortableTextItem,
+  PortableTextWithListItemsGrouped,
+} from "@customTypes/PortableTextTypes";
 
 // Block content list items come from Sanity as separate items with a listItem property of "bullet" | "number". However, to make this distinction in html, <li> items need to be wrapped in either <ul> | <ol>
 
 // This function groups consecutive list items of the same type into an object with _type: "groupedListItems" and listItem: "bullet" | "number", and all the list items grouped into an array called "blockContent"
 export const groupListItems = (
-  blockData: BlockContentItemData[]
-): ReturnValue => {
-  const blockContentWithListItemsGrouped: ReturnValue = [];
+  blockData: PortableTextItem[]
+): PortableTextWithListItemsGrouped => {
+  const blockContentWithListItemsGrouped: PortableTextWithListItemsGrouped = [];
 
   blockData.forEach((blockContentItem, i) => {
     if (

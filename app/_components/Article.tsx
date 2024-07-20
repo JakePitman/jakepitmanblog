@@ -5,8 +5,8 @@ import { motion } from "framer-motion";
 import { useIntl } from "react-intl";
 
 import { FormattedDate } from "@components/FormattedDate";
-import { BlockContent } from "@components/BlockContent";
-import { BlockContentItemData } from "@customTypes/BlockContentTypes";
+import { PortableTextConverter } from "@components/PortableTextConverter";
+import { PortableTextItem } from "@customTypes/PortableTextTypes";
 import { Tag } from "@components/Tag";
 import { useEffect, useState, useMemo } from "react";
 
@@ -23,8 +23,8 @@ type ArticleProps = {
   jpDescription: string;
   tags: { value: string }[];
   jpTags: { value: string }[];
-  mainContent: BlockContentItemData[];
-  jpMainContent: BlockContentItemData[];
+  mainContent: PortableTextItem[];
+  jpMainContent: PortableTextItem[];
 };
 
 const containerVariants = {
@@ -109,7 +109,7 @@ export const Article = ({
 
       {/* Main content */}
       <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
-        {<BlockContent blockContent={content.mainContent} />}
+        {<PortableTextConverter portableText={content.mainContent} />}
       </div>
     </motion.div>
   );

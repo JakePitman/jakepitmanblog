@@ -1,9 +1,9 @@
-import { BlockContentItem } from "@components/BlockContentItem";
+import { PortableTextItem } from "@components/PortableTextItem";
 import { groupListItems } from "@utils/groupListItems";
 import {
-  BlockContentItemData,
-  GroupedBlockContent,
-} from "@customTypes/BlockContentTypes";
+  PortableTextItem as PortableTextItemType,
+  PortableTextWithListItemsGrouped,
+} from "@customTypes/PortableTextTypes";
 
 type WrappedInListProps = {
   listItemType: "bullet" | "number";
@@ -31,12 +31,14 @@ const WrappedInList = ({
   }
 };
 
-type BlockContentProps = {
-  blockContent: BlockContentItemData[];
+type PortableTextConverterProps = {
+  portableText: PortableTextItemType[];
 };
-export const BlockContent = ({ blockContent }: BlockContentProps) => {
-  const blockContentWithListItemsGrouped: GroupedBlockContent =
-    groupListItems(blockContent);
+export const PortableTextConverter = ({
+  portableText,
+}: PortableTextConverterProps) => {
+  const blockContentWithListItemsGrouped: PortableTextWithListItemsGrouped =
+    groupListItems(portableText);
 
   return (
     <>
@@ -50,14 +52,14 @@ export const BlockContent = ({ blockContent }: BlockContentProps) => {
             >
               <>
                 {blockContentItem.blockContent.map((blockContentItem, i) => (
-                  <BlockContentItem key={i} blockContent={blockContentItem} />
+                  <PortableTextItem key={i} item={blockContentItem} />
                 ))}
               </>
             </WrappedInList>
           );
         }
 
-        return <BlockContentItem key={i} blockContent={blockContentItem} />;
+        return <PortableTextItem key={i} item={blockContentItem} />;
       })}
     </>
   );

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { BlockContent } from "@components/BlockContent";
+import { PortableTextConverter } from "@components/PortableTextConverter";
 import {
   DUMMY_BLOCK_CONTENT_NO_MARKS,
   DUMMY_BLOCK_CONTENT_STRONG,
@@ -16,13 +16,13 @@ import {
 } from "./dummyBlockContent";
 
 const meta = {
-  title: "Components/BlockContent",
-  component: BlockContent,
+  title: "Components/PortableTextConverter",
+  component: PortableTextConverter,
   parameters: {
     layout: "fullscreen",
   },
   args: {
-    blockContent: [
+    portableText: [
       {
         _type: "block",
         _key: "123",
@@ -46,46 +46,52 @@ const meta = {
       </div>
     ),
   ],
-} satisfies Meta<typeof BlockContent>;
+} satisfies Meta<typeof PortableTextConverter>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BlockNoMarks: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_NO_MARKS} />;
+    return (
+      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_NO_MARKS} />
+    );
   },
 };
 
 export const BlockStrong: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_STRONG} />;
+    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_STRONG} />;
   },
 };
 
 export const BlockEm: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_EM} />;
+    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_EM} />;
   },
 };
 
 export const BlockUnderline: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_UNDERLINE} />;
+    return (
+      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_UNDERLINE} />
+    );
   },
 };
 
 export const BlockStrikethrough: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_STRIKETHROUGH} />;
+    return (
+      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_STRIKETHROUGH} />
+    );
   },
 };
 
 export const BlockStrongEmUnderlineStrikethrough: Story = {
   render: () => {
     return (
-      <BlockContent
-        blockContent={DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH}
+      <PortableTextConverter
+        portableText={DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH}
       />
     );
   },
@@ -93,21 +99,23 @@ export const BlockStrongEmUnderlineStrikethrough: Story = {
 
 export const BlockInlineCode: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_INLINE_CODE} />;
+    return (
+      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_INLINE_CODE} />
+    );
   },
 };
 
 export const BlockLinks: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_LINKS} />;
+    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_LINKS} />;
   },
 };
 
 export const WithLongBlockQuote: Story = {
   render: () => {
     return (
-      <BlockContent
-        blockContent={DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE}
+      <PortableTextConverter
+        portableText={DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE}
       />
     );
   },
@@ -115,18 +123,28 @@ export const WithLongBlockQuote: Story = {
 
 export const WithLists: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS} />;
+    return (
+      <PortableTextConverter
+        portableText={DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS}
+      />
+    );
   },
 };
 
 export const WithCodeBlockPlugin: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK} />;
+    return (
+      <PortableTextConverter
+        portableText={DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK}
+      />
+    );
   },
 };
 
 export const WithComprehensiveData: Story = {
   render: () => {
-    return <BlockContent blockContent={DUMMY_BLOCK_CONTENT_COMPREHENSIVE} />;
+    return (
+      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_COMPREHENSIVE} />
+    );
   },
 };

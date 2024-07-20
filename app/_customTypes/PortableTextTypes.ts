@@ -64,13 +64,16 @@ export type Image = {
   };
 };
 
-export type BlockContentItemData = Block | Code | Image;
+export type PortableTextItem = Block | Code | Image;
 
 export type GroupedListItems = {
   _type: "groupedListItems";
   listItem: "bullet" | "number";
-  blockContent: BlockContentItemData[];
+  blockContent: PortableTextItem[];
   level: number;
 };
 
-export type GroupedBlockContent = (BlockContentItemData | GroupedListItems)[];
+export type PortableTextWithListItemsGrouped = (
+  | PortableTextItem
+  | GroupedListItems
+)[];
