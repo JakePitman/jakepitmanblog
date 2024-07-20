@@ -3,14 +3,14 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import {
-  BlockContentItemData,
+  PortableTextItem,
   Mark,
   MarkDef,
-} from "@customTypes/BlockContentTypes";
+} from "@customTypes/PortableTextTypes";
 import { ArticleImage } from "@components/ArticleImage";
 
 type BlockContentItemProps = {
-  blockContent: BlockContentItemData;
+  blockContent: PortableTextItem;
 };
 
 type WithListItemProps = {

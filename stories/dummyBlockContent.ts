@@ -1,10 +1,10 @@
 import {
-  BlockContentItemData,
+  PortableTextItem,
   Mark,
   MarkDef,
   Style,
-  GroupedBlockContent,
-} from "@customTypes/BlockContentTypes";
+  PortableTextWithListItemsGrouped,
+} from "@customTypes/PortableTextTypes";
 
 const STYLES = [
   "h1",
@@ -21,7 +21,7 @@ const generateWithUniqueStyle = (
   style: Style,
   marks: Mark[] = [],
   markDefs: MarkDef[] = []
-): BlockContentItemData => ({
+): PortableTextItem => ({
   _key: "123",
   markDefs,
   children: [
@@ -35,21 +35,22 @@ const generateWithUniqueStyle = (
   _type: "block",
   style,
 });
-export const DUMMY_BLOCK_CONTENT_NO_MARKS: BlockContentItemData[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_NO_MARKS: PortableTextItem[] = STYLES.map(
   (style) => generateWithUniqueStyle(style)
 );
-export const DUMMY_BLOCK_CONTENT_STRONG: BlockContentItemData[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_STRONG: PortableTextItem[] = STYLES.map(
   (style) => generateWithUniqueStyle(style, ["strong"])
 );
-export const DUMMY_BLOCK_CONTENT_EM: BlockContentItemData[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["em"])
+export const DUMMY_BLOCK_CONTENT_EM: PortableTextItem[] = STYLES.map((style) =>
+  generateWithUniqueStyle(style, ["em"])
 );
-export const DUMMY_BLOCK_CONTENT_UNDERLINE: BlockContentItemData[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_UNDERLINE: PortableTextItem[] = STYLES.map(
   (style) => generateWithUniqueStyle(style, ["underline"])
 );
-export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: BlockContentItemData[] =
-  STYLES.map((style) => generateWithUniqueStyle(style, ["strike-through"]));
-export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContentItemData[] =
+export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: PortableTextItem[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["strike-through"])
+);
+export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: PortableTextItem[] =
   STYLES.map((style) =>
     generateWithUniqueStyle(style, [
       "strong",
@@ -58,9 +59,10 @@ export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: BlockContent
       "strike-through",
     ])
   );
-export const DUMMY_BLOCK_CONTENT_INLINE_CODE: BlockContentItemData[] =
-  STYLES.map((style) => generateWithUniqueStyle(style, ["code"]));
-export const DUMMY_BLOCK_CONTENT_LINKS: BlockContentItemData[] = STYLES.map(
+export const DUMMY_BLOCK_CONTENT_INLINE_CODE: PortableTextItem[] = STYLES.map(
+  (style) => generateWithUniqueStyle(style, ["code"])
+);
+export const DUMMY_BLOCK_CONTENT_LINKS: PortableTextItem[] = STYLES.map(
   (style, i) =>
     generateWithUniqueStyle(
       style,
@@ -69,7 +71,7 @@ export const DUMMY_BLOCK_CONTENT_LINKS: BlockContentItemData[] = STYLES.map(
     )
 );
 
-export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
+export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: PortableTextItem[] = [
   generateWithUniqueStyle("h2"),
   {
     _type: "code",
@@ -80,7 +82,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: BlockContentItemData[] = [
   generateWithUniqueStyle("normal"),
 ];
 
-export const DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE: BlockContentItemData[] =
+export const DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE: PortableTextItem[] =
   [
     {
       _key: "123",
@@ -110,7 +112,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE: BlockContentItem
     },
   ];
 
-const ul1_1: BlockContentItemData = {
+const ul1_1: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -126,7 +128,7 @@ const ul1_1: BlockContentItemData = {
     },
   ],
 };
-const ul2_1: BlockContentItemData = {
+const ul2_1: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -142,7 +144,7 @@ const ul2_1: BlockContentItemData = {
     },
   ],
 };
-const ul1_2: BlockContentItemData = {
+const ul1_2: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -158,7 +160,7 @@ const ul1_2: BlockContentItemData = {
     },
   ],
 };
-const ul2_2: BlockContentItemData = {
+const ul2_2: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -174,7 +176,7 @@ const ul2_2: BlockContentItemData = {
     },
   ],
 };
-export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST: BlockContentItemData[] = [
+export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST: PortableTextItem[] = [
   generateWithUniqueStyle("h2"),
   ul1_1,
   ul2_1,
@@ -182,7 +184,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST: BlockContentItemData[] = [
   ul1_2,
   ul2_2,
 ];
-export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: GroupedBlockContent =
+export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
     generateWithUniqueStyle("h2"),
     {
@@ -200,7 +202,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: GroupedBloc
     },
   ];
 
-const ol1_1: BlockContentItemData = {
+const ol1_1: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -216,7 +218,7 @@ const ol1_1: BlockContentItemData = {
     },
   ],
 };
-const ol2_1: BlockContentItemData = {
+const ol2_1: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -232,7 +234,7 @@ const ol2_1: BlockContentItemData = {
     },
   ],
 };
-const ol1_2: BlockContentItemData = {
+const ol1_2: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -248,7 +250,7 @@ const ol1_2: BlockContentItemData = {
     },
   ],
 };
-const ol2_2: BlockContentItemData = {
+const ol2_2: PortableTextItem = {
   _type: "block",
   style: "normal",
   _key: "123",
@@ -264,7 +266,7 @@ const ol2_2: BlockContentItemData = {
     },
   ],
 };
-export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST: BlockContentItemData[] = [
+export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST: PortableTextItem[] = [
   generateWithUniqueStyle("h2"),
   ol1_1,
   ol2_1,
@@ -273,7 +275,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST: BlockContentItemData[] = [
   ol2_2,
 ];
 
-export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: GroupedBlockContent =
+export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
     generateWithUniqueStyle("h2"),
     {
@@ -291,7 +293,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: GroupedBlockC
     },
   ];
 
-export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: BlockContentItemData[] = [
+export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: PortableTextItem[] = [
   generateWithUniqueStyle("h2"),
   ol1_1,
   ol2_1,
@@ -304,7 +306,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: BlockContentItemData[] = [
   ul2_2,
 ];
 
-export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: GroupedBlockContent =
+export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
     generateWithUniqueStyle("h2"),
     {
@@ -334,7 +336,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: GroupedBlockCon
     },
   ];
 
-export const DUMMY_BLOCK_CONTENT_COMPREHENSIVE: BlockContentItemData[] = [
+export const DUMMY_BLOCK_CONTENT_COMPREHENSIVE: PortableTextItem[] = [
   {
     markDefs: [],
     children: [

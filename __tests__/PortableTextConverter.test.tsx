@@ -4,11 +4,11 @@ import NextImage from "next/image";
 
 import { BlockContentItem } from "@components/BlockContentItem";
 import {
-  BlockContentItemData,
+  PortableTextItem,
   Mark,
   MarkDef,
   Style,
-} from "@customTypes/BlockContentTypes";
+} from "@customTypes/PortableTextTypes";
 
 jest.mock("react-syntax-highlighter", () => ({}));
 jest.mock("react-syntax-highlighter/dist/esm/styles/hljs", () => ({}));
@@ -24,7 +24,7 @@ const TestWithListItem = (
   testId: string,
   listItem: "bullet" | "number"
 ) => {
-  const props: BlockContentItemData = {
+  const props: PortableTextItem = {
     _type: "block",
     _key: "123",
     style: style,
@@ -64,7 +64,7 @@ const TestWithMarks = (
   const generatePropsWithMarks = (
     marks: Mark[],
     markDefs: MarkDef[] = []
-  ): BlockContentItemData => {
+  ): PortableTextItem => {
     const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
     return {
       _type: "block",
@@ -84,7 +84,7 @@ const TestWithMarks = (
   };
   describe("marks includes 'em'", () => {
     it("Wraps contents of element in <em>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks(["em"]);
+      const blockContent: PortableTextItem = generatePropsWithMarks(["em"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -95,9 +95,7 @@ const TestWithMarks = (
   });
   describe("marks includes 'strong'", () => {
     it("Wraps contents of element in <strong>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks([
-        "strong",
-      ]);
+      const blockContent: PortableTextItem = generatePropsWithMarks(["strong"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -108,7 +106,7 @@ const TestWithMarks = (
   });
   describe("marks includes 'underline'", () => {
     it("Wraps contents of element in <u>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks([
+      const blockContent: PortableTextItem = generatePropsWithMarks([
         "underline",
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
@@ -121,7 +119,7 @@ const TestWithMarks = (
   });
   describe("marks includes 'strikethrough'", () => {
     it("Wraps contents of element in <s>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks([
+      const blockContent: PortableTextItem = generatePropsWithMarks([
         "strike-through",
       ]);
       render(<BlockContentItem blockContent={blockContent} />);
@@ -134,9 +132,7 @@ const TestWithMarks = (
   });
   describe("marks includes 'code'", () => {
     it("Wraps contents of element in <code>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks([
-        "code",
-      ]);
+      const blockContent: PortableTextItem = generatePropsWithMarks(["code"]);
       render(<BlockContentItem blockContent={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -148,7 +144,7 @@ const TestWithMarks = (
   describe("marks includes a non-standard string", () => {
     describe("mark references a markDef of _type='link'", () => {
       it("Wraps contents of element in <a>", () => {
-        const blockContent: BlockContentItemData = generatePropsWithMarks(
+        const blockContent: PortableTextItem = generatePropsWithMarks(
           ["123"],
           [{ _type: "link", href: "https://example.com", _key: "123" }]
         );
@@ -163,7 +159,7 @@ const TestWithMarks = (
   });
   describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
     it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
-      const blockContent: BlockContentItemData = generatePropsWithMarks([
+      const blockContent: PortableTextItem = generatePropsWithMarks([
         "strong",
         "em",
         "underline",
@@ -189,7 +185,7 @@ const TestWithMarks = (
 };
 
 describe("_type = image", () => {
-  const withImage: BlockContentItemData = {
+  const withImage: PortableTextItem = {
     _key: "3657e4482fec",
     _type: "image",
     alt: "my-cool-alt-text",
@@ -214,7 +210,7 @@ describe("_type = image", () => {
 
 describe("_type = block", () => {
   describe("text is empty", () => {
-    const withEmptyText: BlockContentItemData = {
+    const withEmptyText: PortableTextItem = {
       _type: "block",
       _key: "123",
       markDefs: [],
@@ -240,7 +236,7 @@ describe("_type = block", () => {
   describe("style = normal", () => {
     const style = "normal"; // <p>
     it("Renders in a <p> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -269,7 +265,7 @@ describe("_type = block", () => {
   describe("style = blockquote", () => {
     const style = "blockquote"; // <p>
     it("Renders in a <p> tag with blockquote styling", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -300,7 +296,7 @@ describe("_type = block", () => {
   describe("style = h1", () => {
     const style = "h1";
     it("Renders in a <h1> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -329,7 +325,7 @@ describe("_type = block", () => {
   describe("style = h2", () => {
     const style = "h2";
     it("Renders in a <h2> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -358,7 +354,7 @@ describe("_type = block", () => {
   describe("style = h3", () => {
     const style = "h3";
     it("Renders in a <h3> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -387,7 +383,7 @@ describe("_type = block", () => {
   describe("style = h4", () => {
     const style = "h4";
     it("Renders in a <h4> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         style: style,
@@ -416,7 +412,7 @@ describe("_type = block", () => {
   describe("style = h5", () => {
     const style = "h5";
     it("Renders in a <h5> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         style: style,
@@ -445,7 +441,7 @@ describe("_type = block", () => {
   describe("style = h6", () => {
     const style = "h6";
     it("Renders in a <h6> tag", () => {
-      const blockContent: BlockContentItemData = {
+      const blockContent: PortableTextItem = {
         _type: "block",
         _key: "123",
         style: style,
