@@ -1,7 +1,7 @@
-import { BlockContentItem } from "@components/BlockContentItem";
+import { PortableTextItem } from "@components/PortableTextItem";
 import { groupListItems } from "@utils/groupListItems";
 import {
-  PortableTextItem,
+  PortableTextItem as PortableTextItemType,
   PortableTextWithListItemsGrouped,
 } from "@customTypes/PortableTextTypes";
 
@@ -32,7 +32,7 @@ const WrappedInList = ({
 };
 
 type PortableTextConverterProps = {
-  portableText: PortableTextItem[];
+  portableText: PortableTextItemType[];
 };
 export const PortableTextConverter = ({
   portableText,
@@ -52,14 +52,14 @@ export const PortableTextConverter = ({
             >
               <>
                 {blockContentItem.blockContent.map((blockContentItem, i) => (
-                  <BlockContentItem key={i} blockContent={blockContentItem} />
+                  <PortableTextItem key={i} item={blockContentItem} />
                 ))}
               </>
             </WrappedInList>
           );
         }
 
-        return <BlockContentItem key={i} blockContent={blockContentItem} />;
+        return <PortableTextItem key={i} item={blockContentItem} />;
       })}
     </>
   );

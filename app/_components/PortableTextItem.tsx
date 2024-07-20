@@ -3,14 +3,14 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 import {
-  PortableTextItem,
+  PortableTextItem as PortableTextItemType,
   Mark,
   MarkDef,
 } from "@customTypes/PortableTextTypes";
 import { ArticleImage } from "@components/ArticleImage";
 
-type BlockContentItemProps = {
-  blockContent: PortableTextItem;
+type PortableTextItemProps = {
+  item: PortableTextItemType;
 };
 
 type WithListItemProps = {
@@ -92,28 +92,26 @@ const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
   return element;
 };
 
-export const BlockContentItem = ({ blockContent }: BlockContentItemProps) => {
-  if (blockContent._type === "code") {
+export const PortableTextItem = ({ item }: PortableTextItemProps) => {
+  if (item._type === "code") {
     return (
       <SyntaxHighlighter
-        language={blockContent.language}
+        language={item.language}
         showLineNumbers
         style={tomorrowNightBright}
         customStyle={{ padding: "1rem" }}
       >
-        {blockContent.code}
+        {item.code}
       </SyntaxHighlighter>
     );
   }
 
-  if (blockContent._type === "image") {
-    return (
-      <ArticleImage src={blockContent.asset._ref} alt={blockContent.alt} />
-    );
+  if (item._type === "image") {
+    return <ArticleImage src={item.asset._ref} alt={item.alt} />;
   }
 
-  if (blockContent._type === "block") {
-    const { _type, style, children, listItem, markDefs } = blockContent;
+  if (item._type === "block") {
+    const { _type, style, children, listItem, markDefs } = item;
     return (
       <WithListItem listItem={listItem}>
         <WithBlockQuote isBlockQuote={style === "blockquote"}>

@@ -2,9 +2,9 @@ import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
 import NextImage from "next/image";
 
-import { BlockContentItem } from "@components/BlockContentItem";
+import { PortableTextItem } from "@components/PortableTextItem";
 import {
-  PortableTextItem,
+  PortableTextItem as PortableTextItemType,
   Mark,
   MarkDef,
   Style,
@@ -24,7 +24,7 @@ const TestWithListItem = (
   testId: string,
   listItem: "bullet" | "number"
 ) => {
-  const props: PortableTextItem = {
+  const props: PortableTextItemType = {
     _type: "block",
     _key: "123",
     style: style,
@@ -43,7 +43,7 @@ const TestWithListItem = (
 
   describe("listItem = 'bullet' | 'number'", () => {
     it("Renders text content in a <li> tag within element", () => {
-      render(<BlockContentItem blockContent={props} />);
+      render(<PortableTextItem item={props} />);
 
       const li = screen.getByTestId("blockContent-li");
       const element = within(li).getByTestId(testId);
@@ -64,7 +64,7 @@ const TestWithMarks = (
   const generatePropsWithMarks = (
     marks: Mark[],
     markDefs: MarkDef[] = []
-  ): PortableTextItem => {
+  ): PortableTextItemType => {
     const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
     return {
       _type: "block",
@@ -84,8 +84,8 @@ const TestWithMarks = (
   };
   describe("marks includes 'em'", () => {
     it("Wraps contents of element in <em>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks(["em"]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      const blockContent: PortableTextItemType = generatePropsWithMarks(["em"]);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const em = within(element).getByTestId("blockContent-em");
@@ -95,8 +95,10 @@ const TestWithMarks = (
   });
   describe("marks includes 'strong'", () => {
     it("Wraps contents of element in <strong>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks(["strong"]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      const blockContent: PortableTextItemType = generatePropsWithMarks([
+        "strong",
+      ]);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const strong = within(element).getByTestId("blockContent-strong");
@@ -106,10 +108,10 @@ const TestWithMarks = (
   });
   describe("marks includes 'underline'", () => {
     it("Wraps contents of element in <u>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks([
+      const blockContent: PortableTextItemType = generatePropsWithMarks([
         "underline",
       ]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const underline = within(element).getByTestId("blockContent-u");
@@ -119,10 +121,10 @@ const TestWithMarks = (
   });
   describe("marks includes 'strikethrough'", () => {
     it("Wraps contents of element in <s>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks([
+      const blockContent: PortableTextItemType = generatePropsWithMarks([
         "strike-through",
       ]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const strikethrough = within(element).getByTestId("blockContent-s");
@@ -132,8 +134,10 @@ const TestWithMarks = (
   });
   describe("marks includes 'code'", () => {
     it("Wraps contents of element in <code>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks(["code"]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      const blockContent: PortableTextItemType = generatePropsWithMarks([
+        "code",
+      ]);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const code = within(element).getByTestId("blockContent-code");
@@ -144,11 +148,11 @@ const TestWithMarks = (
   describe("marks includes a non-standard string", () => {
     describe("mark references a markDef of _type='link'", () => {
       it("Wraps contents of element in <a>", () => {
-        const blockContent: PortableTextItem = generatePropsWithMarks(
+        const blockContent: PortableTextItemType = generatePropsWithMarks(
           ["123"],
           [{ _type: "link", href: "https://example.com", _key: "123" }]
         );
-        render(<BlockContentItem blockContent={blockContent} />);
+        render(<PortableTextItem item={blockContent} />);
 
         const element = screen.getByTestId(testId);
         const a = within(element).getByTestId("blockContent-a");
@@ -159,14 +163,14 @@ const TestWithMarks = (
   });
   describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
     it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
-      const blockContent: PortableTextItem = generatePropsWithMarks([
+      const blockContent: PortableTextItemType = generatePropsWithMarks([
         "strong",
         "em",
         "underline",
         "strike-through",
         "code",
       ]);
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
       const strong = within(element).getByTestId("blockContent-strong");
@@ -185,7 +189,7 @@ const TestWithMarks = (
 };
 
 describe("_type = image", () => {
-  const withImage: PortableTextItem = {
+  const withImage: PortableTextItemType = {
     _key: "3657e4482fec",
     _type: "image",
     alt: "my-cool-alt-text",
@@ -196,7 +200,7 @@ describe("_type = image", () => {
   };
 
   it("Renders the image", () => {
-    render(<BlockContentItem blockContent={withImage} />);
+    render(<PortableTextItem item={withImage} />);
 
     expect(NextImage).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -210,7 +214,7 @@ describe("_type = image", () => {
 
 describe("_type = block", () => {
   describe("text is empty", () => {
-    const withEmptyText: PortableTextItem = {
+    const withEmptyText: PortableTextItemType = {
       _type: "block",
       _key: "123",
       markDefs: [],
@@ -226,7 +230,7 @@ describe("_type = block", () => {
     };
 
     it("Renders a <br> tag", () => {
-      render(<BlockContentItem blockContent={withEmptyText} />);
+      render(<PortableTextItem item={withEmptyText} />);
 
       const element = screen.getByTestId("blockContent-br");
 
@@ -236,7 +240,7 @@ describe("_type = block", () => {
   describe("style = normal", () => {
     const style = "normal"; // <p>
     it("Renders in a <p> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -250,7 +254,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-p");
 
@@ -265,7 +269,7 @@ describe("_type = block", () => {
   describe("style = blockquote", () => {
     const style = "blockquote"; // <p>
     it("Renders in a <p> tag with blockquote styling", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -279,7 +283,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-blockquote");
 
@@ -296,7 +300,7 @@ describe("_type = block", () => {
   describe("style = h1", () => {
     const style = "h1";
     it("Renders in a <h1> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -310,7 +314,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h1");
 
@@ -325,7 +329,7 @@ describe("_type = block", () => {
   describe("style = h2", () => {
     const style = "h2";
     it("Renders in a <h2> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -339,7 +343,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h2");
 
@@ -354,7 +358,7 @@ describe("_type = block", () => {
   describe("style = h3", () => {
     const style = "h3";
     it("Renders in a <h3> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         markDefs: [],
@@ -368,7 +372,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h3");
 
@@ -383,7 +387,7 @@ describe("_type = block", () => {
   describe("style = h4", () => {
     const style = "h4";
     it("Renders in a <h4> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         style: style,
@@ -397,7 +401,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h4");
 
@@ -412,7 +416,7 @@ describe("_type = block", () => {
   describe("style = h5", () => {
     const style = "h5";
     it("Renders in a <h5> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         style: style,
@@ -426,7 +430,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h5");
 
@@ -441,7 +445,7 @@ describe("_type = block", () => {
   describe("style = h6", () => {
     const style = "h6";
     it("Renders in a <h6> tag", () => {
-      const blockContent: PortableTextItem = {
+      const blockContent: PortableTextItemType = {
         _type: "block",
         _key: "123",
         style: style,
@@ -455,7 +459,7 @@ describe("_type = block", () => {
           },
         ],
       };
-      render(<BlockContentItem blockContent={blockContent} />);
+      render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId("blockContent-h6");
 
