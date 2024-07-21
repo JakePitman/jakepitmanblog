@@ -17,7 +17,7 @@ const STYLES = [
   "blockquote",
 ] as const;
 
-const generateWithUniqueStyle = (
+const generatePortableTextItem = (
   style: Style,
   marks: Mark[] = [],
   markDefs: MarkDef[] = [],
@@ -44,21 +44,27 @@ const generateAllStylesWithAllListTypes = (
   marks: Mark[] = [],
   markDefs: MarkDef[] = []
 ) => {
-  const allStylesNoList = STYLES.map((style) =>
-    generateWithUniqueStyle(style, marks, markDefs)
-  );
-  const allStylesWithNumberedList = STYLES.map((style) =>
-    generateWithUniqueStyle(style, marks, markDefs, "number")
-  );
-  const allStylesWithBulletList = STYLES.map((style) =>
-    generateWithUniqueStyle(style, marks, markDefs, "bullet")
-  );
+  const allStylesNoList: PortableTextItem[] = [];
+  const allStylesWithNumberedList: PortableTextItem[] = [];
+  const allStylesWithBulletList: PortableTextItem[] = [];
+
+  STYLES.forEach((style) => {
+    allStylesNoList.push(generatePortableTextItem(style, marks, markDefs));
+    allStylesWithNumberedList.push(
+      generatePortableTextItem(style, marks, markDefs, "number")
+    );
+    allStylesWithBulletList.push(
+      generatePortableTextItem(style, marks, markDefs, "bullet")
+    );
+  });
+
   return [
     ...allStylesNoList,
     ...allStylesWithNumberedList,
     ...allStylesWithBulletList,
   ];
 };
+
 export const DUMMY_BLOCK_CONTENT_NO_MARKS: PortableTextItem[] =
   generateAllStylesWithAllListTypes();
 export const DUMMY_BLOCK_CONTENT_STRONG: PortableTextItem[] =
@@ -188,23 +194,23 @@ const ul2_2: PortableTextItem = {
   ],
 };
 export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST: PortableTextItem[] = [
-  generateWithUniqueStyle("h2"),
+  generatePortableTextItem("h2"),
   ul1_1,
   ul2_1,
-  generateWithUniqueStyle("h3"),
+  generatePortableTextItem("h3"),
   ul1_2,
   ul2_2,
 ];
 export const DUMMY_BLOCK_CONTENT_WITH_UNORDERED_LIST_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
-    generateWithUniqueStyle("h2"),
+    generatePortableTextItem("h2"),
     {
       _type: "groupedListItems",
       listItem: "bullet",
       blockContent: [ul1_1, ul2_1],
       level: 1,
     },
-    generateWithUniqueStyle("h3"),
+    generatePortableTextItem("h3"),
     {
       _type: "groupedListItems",
       listItem: "bullet",
@@ -278,24 +284,24 @@ const ol2_2: PortableTextItem = {
   ],
 };
 export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST: PortableTextItem[] = [
-  generateWithUniqueStyle("h2"),
+  generatePortableTextItem("h2"),
   ol1_1,
   ol2_1,
-  generateWithUniqueStyle("h3"),
+  generatePortableTextItem("h3"),
   ol1_2,
   ol2_2,
 ];
 
 export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
-    generateWithUniqueStyle("h2"),
+    generatePortableTextItem("h2"),
     {
       _type: "groupedListItems",
       listItem: "number",
       blockContent: [ol1_1, ol2_1],
       level: 1,
     },
-    generateWithUniqueStyle("h3"),
+    generatePortableTextItem("h3"),
     {
       _type: "groupedListItems",
       listItem: "number",
@@ -305,12 +311,12 @@ export const DUMMY_BLOCK_CONTENT_WITH_ORDERED_LIST_AFTER_GROUPING: PortableTextW
   ];
 
 export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: PortableTextItem[] = [
-  generateWithUniqueStyle("h2"),
+  generatePortableTextItem("h2"),
   ol1_1,
   ol2_1,
   ol1_2,
   ol2_2,
-  generateWithUniqueStyle("h3"),
+  generatePortableTextItem("h3"),
   ul1_1,
   ul2_1,
   ul1_2,
@@ -319,7 +325,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS: PortableTextItem[] = [
 
 export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: PortableTextWithListItemsGrouped =
   [
-    generateWithUniqueStyle("h2"),
+    generatePortableTextItem("h2"),
     {
       _type: "groupedListItems",
       listItem: "number",
@@ -332,7 +338,7 @@ export const DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS_AFTER_GROUPING: PortableTextWit
       blockContent: [ol1_2, ol2_2],
       level: 2,
     },
-    generateWithUniqueStyle("h3"),
+    generatePortableTextItem("h3"),
     {
       _type: "groupedListItems",
       listItem: "bullet",
