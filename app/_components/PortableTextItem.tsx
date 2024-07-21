@@ -24,24 +24,6 @@ const WithListItem = ({ listItem, children }: WithListItemProps) => {
   return <div className="my-8">{children}</div>;
 };
 
-type WithBlockQuoteProps = {
-  isBlockQuote: boolean;
-  children: React.ReactNode;
-};
-const WithBlockQuote = ({ isBlockQuote, children }: WithBlockQuoteProps) => {
-  if (isBlockQuote) {
-    return (
-      <div
-        className="border-l-4 border-slate-900 bg-slate-400 p-8"
-        data-testid="blockContent-blockquote"
-      >
-        {children}
-      </div>
-    );
-  }
-  return children;
-};
-
 type WithMarksProps = {
   blockChild: {
     text: string | null;
@@ -114,86 +96,90 @@ export const PortableTextItem = ({ item }: PortableTextItemProps) => {
     const { _type, style, children, listItem, markDefs } = item;
     return (
       <WithListItem listItem={listItem}>
-        <WithBlockQuote isBlockQuote={style === "blockquote"}>
-          {children.map((child, i) => {
-            if (child.text === "")
-              return <br key={i} data-testid="blockContent-br" />;
-            if (style === "normal")
-              return (
-                <p
-                  key={i}
-                  className="text-slate-900 inline"
-                  data-testid="blockContent-p"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </p>
-              );
-            if (style === "h1")
-              return (
-                <h1
-                  className="text-30 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h1"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h1>
-              );
-            if (style === "h2")
-              return (
-                <h2
-                  className="text-24 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h2"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h2>
-              );
-            if (style === "h3")
-              return (
-                <h3
-                  className="text-20 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h3"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h3>
-              );
-            if (style === "h4")
-              return (
-                <h4
-                  className="text-18 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h4"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h4>
-              );
-            if (style === "h5")
-              return (
-                <h5
-                  className="text-16 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h5"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h5>
-              );
-            if (style === "h6")
-              return (
-                <h6
-                  className="text-14 text-slate-900 inline"
-                  key={i}
-                  data-testid="blockContent-h6"
-                >
-                  <WithMarks blockChild={child} markDefs={markDefs} />
-                </h6>
-              );
-            if (style === "blockquote")
-              return (
+        {children.map((child, i) => {
+          if (child.text === "")
+            return <br key={i} data-testid="blockContent-br" />;
+          if (style === "normal")
+            return (
+              <p
+                key={i}
+                className="text-slate-900 inline"
+                data-testid="blockContent-p"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </p>
+            );
+          if (style === "h1")
+            return (
+              <h1
+                className="text-30 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h1"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h1>
+            );
+          if (style === "h2")
+            return (
+              <h2
+                className="text-24 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h2"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h2>
+            );
+          if (style === "h3")
+            return (
+              <h3
+                className="text-20 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h3"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h3>
+            );
+          if (style === "h4")
+            return (
+              <h4
+                className="text-18 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h4"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h4>
+            );
+          if (style === "h5")
+            return (
+              <h5
+                className="text-16 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h5"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h5>
+            );
+          if (style === "h6")
+            return (
+              <h6
+                className="text-14 text-slate-900 inline"
+                key={i}
+                data-testid="blockContent-h6"
+              >
+                <WithMarks blockChild={child} markDefs={markDefs} />
+              </h6>
+            );
+          if (style === "blockquote")
+            return (
+              <div
+                className="border-l-4 border-slate-900 bg-slate-400 p-8"
+                data-testid="blockContent-blockquote"
+                key={i}
+              >
                 <WithMarks blockChild={child} key={i} markDefs={markDefs} />
-              );
-          })}
-        </WithBlockQuote>
+              </div>
+            );
+        })}
       </WithListItem>
     );
   }
