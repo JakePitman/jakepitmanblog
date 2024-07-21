@@ -20,66 +20,77 @@ const STYLES = [
 const generateWithUniqueStyle = (
   style: Style,
   marks: Mark[] = [],
+  markDefs: MarkDef[] = [],
+  listItem: "bullet" | "number" | undefined = undefined
+): PortableTextItem => {
+  const listItemFields = listItem ? { listItem, level: 1 } : {};
+  return {
+    _key: "123",
+    markDefs,
+    children: [
+      {
+        _type: "span",
+        marks,
+        text: `This is a ${style} tag`,
+        _key: "123",
+      },
+    ],
+    _type: "block",
+    ...listItemFields,
+    style,
+  };
+};
+const generateAllStylesWithAllListTypes = (
+  marks: Mark[] = [],
   markDefs: MarkDef[] = []
-): PortableTextItem => ({
-  _key: "123",
-  markDefs,
-  children: [
-    {
-      _type: "span",
-      marks,
-      text: `This is a ${style} tag`,
-      _key: "123",
-    },
-  ],
-  _type: "block",
-  style,
-});
-export const DUMMY_BLOCK_CONTENT_NO_MARKS: PortableTextItem[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style)
-);
-export const DUMMY_BLOCK_CONTENT_STRONG: PortableTextItem[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["strong"])
-);
-export const DUMMY_BLOCK_CONTENT_EM: PortableTextItem[] = STYLES.map((style) =>
-  generateWithUniqueStyle(style, ["em"])
-);
-export const DUMMY_BLOCK_CONTENT_UNDERLINE: PortableTextItem[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["underline"])
-);
-export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: PortableTextItem[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["strike-through"])
-);
-export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: PortableTextItem[] =
-  STYLES.map((style) =>
-    generateWithUniqueStyle(style, [
-      "strong",
-      "em",
-      "underline",
-      "strike-through",
-    ])
+) => {
+  const allStylesNoList = STYLES.map((style) =>
+    generateWithUniqueStyle(style, marks, markDefs)
   );
-export const DUMMY_BLOCK_CONTENT_INLINE_CODE: PortableTextItem[] = STYLES.map(
-  (style) => generateWithUniqueStyle(style, ["code"])
-);
-export const DUMMY_BLOCK_CONTENT_LINKS: PortableTextItem[] = STYLES.map(
-  (style, i) =>
-    generateWithUniqueStyle(
-      style,
-      [`123${i}`],
-      [{ _type: "link", href: "https://www.google.com", _key: `123${i}` }]
-    )
-);
+  const allStylesWithNumberedList = STYLES.map((style) =>
+    generateWithUniqueStyle(style, marks, markDefs, "number")
+  );
+  const allStylesWithBulletList = STYLES.map((style) =>
+    generateWithUniqueStyle(style, marks, markDefs, "bullet")
+  );
+  return [
+    ...allStylesNoList,
+    ...allStylesWithNumberedList,
+    ...allStylesWithBulletList,
+  ];
+};
+export const DUMMY_BLOCK_CONTENT_NO_MARKS: PortableTextItem[] =
+  generateAllStylesWithAllListTypes();
+export const DUMMY_BLOCK_CONTENT_STRONG: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(["strong"]);
+export const DUMMY_BLOCK_CONTENT_EM: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(["em"]);
+export const DUMMY_BLOCK_CONTENT_UNDERLINE: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(["underline"]);
+export const DUMMY_BLOCK_CONTENT_STRIKETHROUGH: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(["strike-through"]);
+export const DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH: PortableTextItem[] =
+  generateAllStylesWithAllListTypes([
+    "strong",
+    "em",
+    "underline",
+    "strike-through",
+  ]);
+export const DUMMY_BLOCK_CONTENT_INLINE_CODE: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(["code"]);
+export const DUMMY_BLOCK_CONTENT_LINKS: PortableTextItem[] =
+  generateAllStylesWithAllListTypes(
+    ["123"],
+    [{ _type: "link", href: "https://www.google.com", _key: "123" }]
+  );
 
 export const DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK: PortableTextItem[] = [
-  generateWithUniqueStyle("h2"),
   {
     _type: "code",
     _key: "123",
     code: `// This is a TS code block\n\nconst foo = "bar"\nconst myObj {\n  foo: "bar"\n}\n"Will this be delineated?"`,
     language: "typescript",
   },
-  generateWithUniqueStyle("normal"),
 ];
 
 export const DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE: PortableTextItem[] =
