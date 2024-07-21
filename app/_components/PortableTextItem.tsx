@@ -2,11 +2,7 @@ import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { tomorrowNightBright } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import {
-  PortableTextItem as PortableTextItemType,
-  Mark,
-  MarkDef,
-} from "@customTypes/PortableTextTypes";
+import { PortableTextItem as PortableTextItemType } from "@customTypes/PortableTextTypes";
 import { ArticleImage } from "@components/ArticleImage";
 import { BlockItem } from "@components/BlockItem";
 
