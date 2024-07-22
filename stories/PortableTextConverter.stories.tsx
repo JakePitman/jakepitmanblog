@@ -66,11 +66,11 @@ export const BlockUnderline: Story = {
 export const BlockStrikethrough: Story = {
   args: { portableText: DUMMY_BLOCK_CONTENT_STRIKETHROUGH },
 };
-export const BlockStrongEmUnderlineStrikethrough: Story = {
-  args: { portableText: DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH },
-};
 export const BlockInlineCode: Story = {
   args: { portableText: DUMMY_BLOCK_CONTENT_INLINE_CODE },
+};
+export const BlockStrongEmUnderlineStrikethrough: Story = {
+  args: { portableText: DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH },
 };
 export const BlockLinks: Story = {
   args: { portableText: DUMMY_BLOCK_CONTENT_LINKS },
