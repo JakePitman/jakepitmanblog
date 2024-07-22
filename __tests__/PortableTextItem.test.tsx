@@ -190,11 +190,10 @@ describe("_type = block", () => {
     };
 
     it("Renders a <br> tag", () => {
-      render(<PortableTextItem item={withEmptyText} />);
+      const { container } = render(<PortableTextItem item={withEmptyText} />);
+      const brTag = container.querySelector("br");
 
-      const element = screen.getByTestId("blockContent-br");
-
-      expect(element.nodeName).toBe("BR");
+      expect(brTag).toBeTruthy();
     });
   });
 
