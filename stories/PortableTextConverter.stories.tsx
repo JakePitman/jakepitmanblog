@@ -52,99 +52,42 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const BlockNoMarks: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_NO_MARKS} />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_NO_MARKS },
 };
-
 export const BlockStrong: Story = {
-  render: () => {
-    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_STRONG} />;
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_STRONG },
 };
-
 export const BlockEm: Story = {
-  render: () => {
-    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_EM} />;
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_EM },
 };
-
 export const BlockUnderline: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_UNDERLINE} />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_UNDERLINE },
 };
-
 export const BlockStrikethrough: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_STRIKETHROUGH} />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_STRIKETHROUGH },
 };
-
 export const BlockStrongEmUnderlineStrikethrough: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter
-        portableText={DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH}
-      />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_STRONG_EM_UNDERLINE_STRIKETHROUGH },
 };
-
 export const BlockInlineCode: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_INLINE_CODE} />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_INLINE_CODE },
 };
-
 export const BlockLinks: Story = {
-  render: () => {
-    return <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_LINKS} />;
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_LINKS },
 };
 
 export const WithLongBlockQuote: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter
-        portableText={DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE}
-      />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_WITH_LONG_BLOCKQUOTE_AND_CODE },
 };
 
 export const WithLists: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter
-        portableText={DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS}
-      />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_WITH_BOTH_LISTS },
 };
 
 export const WithCodeBlockPlugin: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter
-        portableText={DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK}
-      />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_WITH_CODE_BLOCK },
 };
 
 export const WithComprehensiveData: Story = {
-  render: () => {
-    return (
-      <PortableTextConverter portableText={DUMMY_BLOCK_CONTENT_COMPREHENSIVE} />
-    );
-  },
+  args: { portableText: DUMMY_BLOCK_CONTENT_COMPREHENSIVE },
 };
