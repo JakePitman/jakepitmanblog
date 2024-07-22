@@ -148,6 +148,35 @@ const testWithStyles = (listItem: "bullet" | "number" | undefined) => {
   });
 };
 
+const listItemsToTest = [
+  { listItem: "bullet", selector: "li" },
+  { listItem: "number", selector: "li" },
+  { listItem: undefined, selector: "[data-testId='blockContentDivWrapper']" },
+] as const;
+
+const testWithListItems = () => {
+  listItemsToTest.forEach(({ listItem, selector }) => {
+    describe(`When listItem = '${listItem}'`, () => {
+      it(`Renders content inside an <${selector}> tag`, () => {
+        const portableTextItem = generatePortableTextItem(
+          "normal",
+          [],
+          [],
+          listItem
+        );
+        const { container } = render(
+          <PortableTextItem item={portableTextItem} />
+        );
+        const tag = container?.querySelector(selector);
+
+        expect(tag).toBeTruthy();
+      });
+
+      testWithStyles(listItem);
+    });
+  });
+};
+
 describe("_type = image", () => {
   const withImage: PortableTextItemType = {
     _key: "3657e4482fec",
@@ -197,13 +226,5 @@ describe("_type = block", () => {
     });
   });
 
-  describe("With no list styles", () => {
-    testWithStyles(undefined);
-  });
-  describe("With bullet list styles", () => {
-    testWithStyles("bullet");
-  });
-  describe("With numbered list styles", () => {
-    testWithStyles("number");
-  });
+  testWithListItems();
 });
