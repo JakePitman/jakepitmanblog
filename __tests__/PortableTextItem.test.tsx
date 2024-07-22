@@ -2,6 +2,7 @@ import "@testing-library/jest-dom";
 import { screen, render, within } from "@testing-library/react";
 import NextImage from "next/image";
 
+import { generatePortableTextItem } from "@/stories/dummyBlockContent";
 import { PortableTextItem } from "@components/PortableTextItem";
 import {
   PortableTextItem as PortableTextItemType,
@@ -61,30 +62,14 @@ const TestWithMarks = (
   testId: string,
   listItem?: "bullet" | "number"
 ) => {
-  const generatePropsWithMarks = (
-    marks: Mark[],
-    markDefs: MarkDef[] = []
-  ): PortableTextItemType => {
-    const listItemProps = listItem ? { listItem: listItem, level: 1 } : {};
-    return {
-      _type: "block",
-      _key: "123",
-      markDefs,
-      style: style,
-      children: [
-        {
-          _key: "123",
-          _type: "span",
-          marks: marks,
-          text: "Hello",
-        },
-      ],
-      ...listItemProps,
-    };
-  };
   describe("marks includes 'em'", () => {
     it("Wraps contents of element in <em>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks(["em"]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["em"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -95,9 +80,12 @@ const TestWithMarks = (
   });
   describe("marks includes 'strong'", () => {
     it("Wraps contents of element in <strong>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks([
-        "strong",
-      ]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["strong"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -108,9 +96,12 @@ const TestWithMarks = (
   });
   describe("marks includes 'underline'", () => {
     it("Wraps contents of element in <u>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks([
-        "underline",
-      ]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["underline"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -121,9 +112,12 @@ const TestWithMarks = (
   });
   describe("marks includes 'strikethrough'", () => {
     it("Wraps contents of element in <s>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks([
-        "strike-through",
-      ]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["strike-through"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -134,9 +128,12 @@ const TestWithMarks = (
   });
   describe("marks includes 'code'", () => {
     it("Wraps contents of element in <code>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks([
-        "code",
-      ]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["code"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);
@@ -148,9 +145,11 @@ const TestWithMarks = (
   describe("marks includes a non-standard string", () => {
     describe("mark references a markDef of _type='link'", () => {
       it("Wraps contents of element in <a>", () => {
-        const blockContent: PortableTextItemType = generatePropsWithMarks(
+        const blockContent: PortableTextItemType = generatePortableTextItem(
+          style,
           ["123"],
-          [{ _type: "link", href: "https://example.com", _key: "123" }]
+          [{ _type: "link", href: "https://example.com", _key: "123" }],
+          listItem
         );
         render(<PortableTextItem item={blockContent} />);
 
@@ -163,13 +162,12 @@ const TestWithMarks = (
   });
   describe("marks include 'strong', 'em', 'underline', 'strikethrough' and 'code'", () => {
     it("Wraps contents of element in <strong>, <em>, <underline>, <s> and <code>", () => {
-      const blockContent: PortableTextItemType = generatePropsWithMarks([
-        "strong",
-        "em",
-        "underline",
-        "strike-through",
-        "code",
-      ]);
+      const blockContent: PortableTextItemType = generatePortableTextItem(
+        style,
+        ["strong", "em", "underline", "strike-through", "code"],
+        [],
+        listItem
+      );
       render(<PortableTextItem item={blockContent} />);
 
       const element = screen.getByTestId(testId);

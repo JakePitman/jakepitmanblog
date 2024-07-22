@@ -17,7 +17,7 @@ const STYLES = [
   "blockquote",
 ] as const;
 
-const generatePortableTextItem = (
+export const generatePortableTextItem = (
   style: Style,
   marks: Mark[] = [],
   markDefs: MarkDef[] = [],
