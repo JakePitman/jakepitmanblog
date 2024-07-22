@@ -6,9 +6,13 @@ type WithListItemProps = {
 };
 const WithListItem = ({ listItem, children }: WithListItemProps) => {
   if (listItem === "bullet" || listItem === "number") {
-    return <li data-testid="blockContent-li">{children}</li>;
+    return <li>{children}</li>;
   }
-  return <div className="my-8">{children}</div>;
+  return (
+    <div className="my-8" data-testid="blockContentDivWrapper">
+      {children}
+    </div>
+  );
 };
 
 type WithStyleProps = {
@@ -62,7 +66,7 @@ const WithStyle = ({ style, children }: WithStyleProps) => {
     return (
       <div
         className="border-l-4 border-slate-900 bg-slate-400 p-8"
-        data-testid="blockContent-blockquote"
+        data-testid="blockContentBlockQuote"
       >
         {children}
       </div>

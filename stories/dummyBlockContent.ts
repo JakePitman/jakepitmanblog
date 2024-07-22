@@ -6,7 +6,7 @@ import {
   PortableTextWithListItemsGrouped,
 } from "@customTypes/PortableTextTypes";
 
-const STYLES = [
+export const STYLES = [
   "h1",
   "h2",
   "h3",
