@@ -6,7 +6,7 @@ import {
   PortableTextWithListItemsGrouped,
 } from "@customTypes/PortableTextTypes";
 
-const STYLES = [
+export const STYLES = [
   "h1",
   "h2",
   "h3",
@@ -17,7 +17,7 @@ const STYLES = [
   "blockquote",
 ] as const;
 
-const generatePortableTextItem = (
+export const generatePortableTextItem = (
   style: Style,
   marks: Mark[] = [],
   markDefs: MarkDef[] = [],

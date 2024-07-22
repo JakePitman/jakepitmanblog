@@ -6,9 +6,13 @@ type WithListItemProps = {
 };
 const WithListItem = ({ listItem, children }: WithListItemProps) => {
   if (listItem === "bullet" || listItem === "number") {
-    return <li data-testid="blockContent-li">{children}</li>;
+    return <li>{children}</li>;
   }
-  return <div className="my-8">{children}</div>;
+  return (
+    <div className="my-8" data-testid="blockContentDivWrapper">
+      {children}
+    </div>
+  );
 };
 
 type WithStyleProps = {
@@ -16,54 +20,22 @@ type WithStyleProps = {
   children: React.ReactNode;
 };
 const WithStyle = ({ style, children }: WithStyleProps) => {
-  if (style === "normal")
-    return (
-      <p className="text-slate-900" data-testid="blockContent-p">
-        {children}
-      </p>
-    );
+  if (style === "normal") return <p className="text-slate-900">{children}</p>;
   if (style === "h1")
-    return (
-      <h1 className="text-30 text-slate-900" data-testid="blockContent-h1">
-        {children}
-      </h1>
-    );
+    return <h1 className="text-30 text-slate-900">{children}</h1>;
   if (style === "h2")
-    return (
-      <h2 className="text-24 text-slate-900" data-testid="blockContent-h2">
-        {children}
-      </h2>
-    );
+    return <h2 className="text-24 text-slate-900">{children}</h2>;
   if (style === "h3")
-    return (
-      <h3 className="text-20 text-slate-900" data-testid="blockContent-h3">
-        {children}
-      </h3>
-    );
+    return <h3 className="text-20 text-slate-900">{children}</h3>;
   if (style === "h4")
-    return (
-      <h4 className="text-18 text-slate-900" data-testid="blockContent-h4">
-        {children}
-      </h4>
-    );
+    return <h4 className="text-18 text-slate-900">{children}</h4>;
   if (style === "h5")
-    return (
-      <h5 className="text-16 text-slate-900" data-testid="blockContent-h5">
-        {children}
-      </h5>
-    );
+    return <h5 className="text-16 text-slate-900">{children}</h5>;
   if (style === "h6")
-    return (
-      <h6 className="text-14 text-slate-900" data-testid="blockContent-h6">
-        {children}
-      </h6>
-    );
+    return <h6 className="text-14 text-slate-900">{children}</h6>;
   if (style === "blockquote")
     return (
-      <div
-        className="border-l-4 border-slate-900 bg-slate-400 p-8"
-        data-testid="blockContent-blockquote"
-      >
+      <div className="border-l-4 border-slate-900 bg-slate-400 p-8">
         {children}
       </div>
     );
@@ -81,21 +53,16 @@ const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
   let element: React.ReactNode = text;
   marks.forEach((mark) => {
     if (mark === "strong") {
-      element = <strong data-testid="blockContent-strong">{element}</strong>;
+      element = <strong>{element}</strong>;
     } else if (mark === "em") {
-      element = <em data-testid="blockContent-em">{element}</em>;
+      element = <em>{element}</em>;
     } else if (mark === "underline") {
-      element = <u data-testid="blockContent-u">{element}</u>;
+      element = <u>{element}</u>;
     } else if (mark === "strike-through") {
-      element = <s data-testid="blockContent-s">{element}</s>;
+      element = <s>{element}</s>;
     } else if (mark === "code") {
       element = (
-        <code
-          className="bg-slate-900 text-slate-300 px-4"
-          data-testid="blockContent-code"
-        >
-          {element}
-        </code>
+        <code className="bg-slate-900 text-slate-300 px-4">{element}</code>
       );
     } else {
       // In this case, mark may be a reference to a markdef _key field
@@ -103,12 +70,7 @@ const WithMarks = ({ blockChild, markDefs }: WithMarksProps) => {
       markDefs?.forEach((markDef) => {
         if (markDef._key === mark && markDef._type === "link") {
           element = (
-            <a
-              className="underline"
-              target="_blank"
-              href={markDef.href}
-              data-testid="blockContent-a"
-            >
+            <a className="underline" target="_blank" href={markDef.href}>
               {element}
             </a>
           );
@@ -129,8 +91,7 @@ export const BlockItem = ({ item }: BlockItemProps) => {
     <WithListItem listItem={listItem}>
       <WithStyle style={style}>
         {children.map((child, i) => {
-          if (child.text === "")
-            return <br key={i} data-testid="blockContent-br" />;
+          if (child.text === "") return <br key={i} />;
 
           return <WithMarks key={i} blockChild={child} markDefs={markDefs} />;
         })}
