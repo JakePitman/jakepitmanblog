@@ -1,13 +1,11 @@
 import "@testing-library/jest-dom";
-import { screen, render, within } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import NextImage from "next/image";
 
 import { generatePortableTextItem, STYLES } from "@/stories/dummyBlockContent";
 import { PortableTextItem } from "@components/PortableTextItem";
 import {
   PortableTextItem as PortableTextItemType,
-  Mark,
-  MarkDef,
   Style,
 } from "@customTypes/PortableTextTypes";
 
