@@ -40,9 +40,11 @@ const testWithMarks = (
   listItem: "bullet" | "number" | undefined,
   style: Style
 ) => {
+  const parentTag = getTagFromStyle(style);
+
   marksToTest.forEach(({ name, tag }) => {
-    describe(`and marks includes '${name}'`, () => {
-      it(`wraps contents in a <${tag}> tag`, () => {
+    describe(`and marks includes '${name}',`, () => {
+      it(`renders a <${tag}> tag inside the parent <${parentTag}>.`, () => {
         const portableTextItem: PortableTextItemType = generatePortableTextItem(
           style,
           [name],
@@ -53,7 +55,6 @@ const testWithMarks = (
           <PortableTextItem item={portableTextItem} />
         );
 
-        const parentTag = getTagFromStyle(style);
         const parentElement = container.querySelector(parentTag);
         const markElement = parentElement?.querySelector(tag);
 
@@ -63,7 +64,7 @@ const testWithMarks = (
   });
 
   describe("and marks includes 'em', 'strong', 'underline' and 'strike-through'", () => {
-    it("wraps contents in <em>, <strong>, <u> and <s> tags", () => {
+    it(`renders <em>, <strong>, <u> and <s> tags inside the parent <${parentTag}>.`, () => {
       const portableTextItem: PortableTextItemType = generatePortableTextItem(
         style,
         ["em", "strong", "underline", "strike-through"],
@@ -90,7 +91,7 @@ const testWithMarks = (
 
   describe("and marks includes a non-standard string", () => {
     describe("and the mark references a markDef of _type='link'", () => {
-      it("Wraps contents of element in an <a> tag", () => {
+      it(`renders an <a> tag inside the parent <${parentTag}>.`, () => {
         const href = "https://example.com/";
         const portableTextItem: PortableTextItemType = generatePortableTextItem(
           style,
@@ -114,11 +115,16 @@ const testWithMarks = (
 };
 
 const testWithStyles = (listItem: "bullet" | "number" | undefined) => {
+  const parentElementTag = listItem ? "<li>" : "<div>";
+  const parentSelector = listItem
+    ? "li"
+    : "[data-testId='blockContentDivWrapper']";
+
   STYLES.forEach((style) => {
     const tag = getTagFromStyle(style);
 
     describe(`and style = ${style}`, () => {
-      it(`Renders in a <${tag}> tag`, () => {
+      it(`Renders a <${tag}> tag inside the parent ${parentElementTag}`, () => {
         const portableTextItem = generatePortableTextItem(
           style,
           [],
@@ -129,9 +135,7 @@ const testWithStyles = (listItem: "bullet" | "number" | undefined) => {
         const { container } = render(
           <PortableTextItem item={portableTextItem} />
         );
-        const parentElement = listItem
-          ? container.querySelector("li")
-          : container.querySelector("[data-testId='blockContentDivWrapper']");
+        const parentElement = container.querySelector(parentSelector);
 
         const styleElement = parentElement?.querySelector(tag);
         if (!styleElement) {
