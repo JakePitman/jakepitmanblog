@@ -57,7 +57,7 @@ const testWithMarks = (
         const parentElement = container.querySelector(parentTag);
         const markElement = parentElement?.querySelector(tag);
 
-        expect(markElement).toBeTruthy();
+        expect(markElement).toBeInTheDocument();
       });
     });
   });
@@ -81,10 +81,10 @@ const testWithMarks = (
       const underlineTag = parentElement?.querySelector("u");
       const strikethroughTag = parentElement?.querySelector("s");
 
-      expect(emTag).toBeTruthy();
-      expect(strongTag).toBeTruthy();
-      expect(underlineTag).toBeTruthy();
-      expect(strikethroughTag).toBeTruthy();
+      expect(emTag).toBeInTheDocument();
+      expect(strongTag).toBeInTheDocument();
+      expect(underlineTag).toBeInTheDocument();
+      expect(strikethroughTag).toBeInTheDocument();
     });
   });
 
@@ -106,7 +106,7 @@ const testWithMarks = (
         const parentElement = container.querySelector(parentTag);
         const anchorTag = parentElement?.querySelector("a");
 
-        expect(anchorTag).toBeTruthy();
+        expect(anchorTag).toBeInTheDocument();
         expect(anchorTag?.href).toBe(href);
       });
     });
@@ -138,7 +138,7 @@ const testWithStyles = (listItem: "bullet" | "number" | undefined) => {
           console.log(tag);
         }
 
-        expect(styleElement).toBeTruthy();
+        expect(styleElement).toBeInTheDocument();
       });
 
       testWithMarks(listItem, style);
@@ -167,7 +167,7 @@ const testWithListItems = () => {
         );
         const tag = container?.querySelector(selector);
 
-        expect(tag).toBeTruthy();
+        expect(tag).toBeInTheDocument();
       });
 
       testWithStyles(listItem);
@@ -220,7 +220,7 @@ describe("_type = block", () => {
       const { container } = render(<PortableTextItem item={withEmptyText} />);
       const brTag = container.querySelector("br");
 
-      expect(brTag).toBeTruthy();
+      expect(brTag).toBeInTheDocument();
     });
   });
 
