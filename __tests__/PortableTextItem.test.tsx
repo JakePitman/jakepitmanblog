@@ -131,16 +131,11 @@ const testWithStyles = (listItem: "bullet" | "number" | undefined) => {
           [],
           listItem
         );
-
         const { container } = render(
           <PortableTextItem item={portableTextItem} />
         );
         const parentElement = container.querySelector(parentSelector);
-
         const styleElement = parentElement?.querySelector(tag);
-        if (!styleElement) {
-          console.log(tag);
-        }
 
         expect(styleElement).toBeInTheDocument();
       });
