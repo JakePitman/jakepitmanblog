@@ -100,6 +100,8 @@ const testWithMarks = (
           listItem
         );
 
+        console.log(portableTextItem);
+
         const { container } = render(
           <PortableTextItem item={portableTextItem} />
         );
