@@ -1,10 +1,8 @@
-import { SanityDocument } from "next-sanity";
-
 import { client } from "@/sanity/client";
 import { MobileArticleLinks } from "@components/MobileArticleLinks";
 import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
 
-const EVENTS_QUERY = `
+const ARTICLES_QUERY = `
 *[
   _type == "blogEntry"
 ]{
@@ -22,7 +20,11 @@ const EVENTS_QUERY = `
 `;
 
 const getArticles = async () => {
-  const res = await client.fetch<ArticleData[]>(EVENTS_QUERY);
+  const res = await client.fetch<ArticleData[]>(
+    ARTICLES_QUERY,
+    {},
+    { next: { revalidate: 3600 } }
+  );
   return res;
 };
 
