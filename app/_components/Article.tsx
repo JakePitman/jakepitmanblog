@@ -122,7 +122,7 @@ export const Article = ({ articlePromise }: ArticleProps) => {
       </div>
 
       {/* Main content */}
-      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
+      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16">
         {<PortableTextConverter portableText={content.mainContent} />}
       </div>
     </motion.div>

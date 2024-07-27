@@ -58,14 +58,20 @@ export default function Page({ params }: ArticleProps) {
   const articlePromise = getArticle(params.slug);
 
   return (
-    <div className="relative">
-      <div className="w-full flex justify-center">
-        <div className="w-11/12 max-w-1040">
+    <div className="relative h-full">
+      <div className="w-full flex justify-center h-full">
+        <div className="w-11/12 max-w-1040 flex flex-col">
           <BackButton />
-          <Suspense fallback={<LoadingSpinner />}>
+          <Suspense
+            fallback={
+              <div className="flex-grow">
+                <LoadingSpinner />
+              </div>
+            }
+          >
             <Article articlePromise={articlePromise} />
+            <EndOfPageBackButton />
           </Suspense>
-          <EndOfPageBackButton />
         </div>
       </div>
     </div>

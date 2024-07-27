@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export const EndOfPageBackButton = () => (
   <motion.div
-    className="flex w-full justify-center mb-16"
+    className="flex w-full justify-center py-24"
     initial={{ opacity: 0 }}
     animate={{ opacity: 1, transition: { duration: 0.6 } }}
   >
