@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { client } from "@/sanity/client";
 import { MobileArticleLinks } from "@components/MobileArticleLinks";
-import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
+import { ArticleData } from "@components/Article";
 import { LoadingSpinner } from "@components/LoadingSpinner";
 
 const ARTICLES_QUERY = `
