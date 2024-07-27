@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { client } from "@/sanity/client";
 import { MobileArticleLinks } from "@components/MobileArticleLinks";
 import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
+import { LoadingSpinner } from "@components/LoadingSpinner";
 
 const ARTICLES_QUERY = `
 *[
@@ -31,5 +33,9 @@ const getArticles = async () => {
 export default function Articles() {
   const articlesPromise = getArticles();
 
-  return <MobileArticleLinks articlesPromise={articlesPromise} />;
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <MobileArticleLinks articlesPromise={articlesPromise} />
+    </Suspense>
+  );
 }
