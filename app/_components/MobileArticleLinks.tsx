@@ -1,14 +1,16 @@
 "use client";
-import { useState, useRef, useEffect, useMemo } from "react";
+import { use, useState, useRef, useEffect, useMemo } from "react";
 import { useIntl } from "react-intl";
 import { MobileArticleLink, ArticleProps } from "./MobileArticleLink";
 import mobileArticleLinkStyles from "./mobileArticleLink.module.css";
 import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
 
 type Props = {
-  articles: ArticleData[];
+  articlesPromise: Promise<ArticleData[]>;
 };
-export const MobileArticleLinks = ({ articles }: Props) => {
+export const MobileArticleLinks = ({ articlesPromise }: Props) => {
+  const articles = use(articlesPromise);
+
   const containerRef = useRef<HTMLDivElement>(null);
   const intl = useIntl();
   const { locale } = intl;
