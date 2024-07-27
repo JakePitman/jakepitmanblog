@@ -3,7 +3,7 @@ import { use, useState, useRef, useEffect, useMemo } from "react";
 import { useIntl } from "react-intl";
 import { MobileArticleLink, ArticleProps } from "./MobileArticleLink";
 import mobileArticleLinkStyles from "./mobileArticleLink.module.css";
-import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
+import { ArticleData } from "@components/Article";
 
 type Props = {
   articlesPromise: Promise<ArticleData[]>;

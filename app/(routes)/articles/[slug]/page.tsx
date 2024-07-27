@@ -1,6 +1,6 @@
 import { cache, Suspense } from "react";
 import { client } from "@/sanity/client";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
 import { Article, ArticleData } from "@components/Article";
 import { BackButton } from "@components/BackButton";
