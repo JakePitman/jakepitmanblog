@@ -1,4 +1,5 @@
 "use client";
+import { use } from "react";
 import { Bebas_Neue } from "next/font/google";
 import cx from "classnames";
 import { motion } from "framer-motion";
@@ -10,21 +11,32 @@ import { PortableTextItem } from "@customTypes/PortableTextTypes";
 import { Tag } from "@components/Tag";
 import { useEffect, useState, useMemo } from "react";
 
+type Slug = {
+  current: string;
+};
+type Tag = {
+  value: string;
+};
+export type ArticleData = {
+  _createdAt: string;
+  title: string;
+  jpTitle: string;
+  slug: Slug;
+  description: string;
+  jpDescription: string;
+  tags: Tag[];
+  jpTags: Tag[];
+  mainContent: PortableTextItem[];
+  jpMainContent: PortableTextItem[];
+};
+
 const bebasNeue = Bebas_Neue({
   weight: "400",
   subsets: ["latin"],
 });
 
 type ArticleProps = {
-  createdAt: string;
-  title: string;
-  jpTitle: string;
-  description: string;
-  jpDescription: string;
-  tags: { value: string }[];
-  jpTags: { value: string }[];
-  mainContent: PortableTextItem[];
-  jpMainContent: PortableTextItem[];
+  articlePromise: Promise<ArticleData>;
 };
 
 const containerVariants = {
@@ -32,17 +44,19 @@ const containerVariants = {
   showContent: { opacity: 1, left: 0 },
 };
 
-export const Article = ({
-  createdAt,
-  title,
-  jpTitle,
-  description,
-  jpDescription,
-  tags,
-  jpTags,
-  mainContent,
-  jpMainContent,
-}: ArticleProps) => {
+export const Article = ({ articlePromise }: ArticleProps) => {
+  const {
+    _createdAt: createdAt,
+    title,
+    jpTitle,
+    description,
+    jpDescription,
+    tags,
+    jpTags,
+    mainContent,
+    jpMainContent,
+  } = use(articlePromise);
+
   const intl = useIntl();
   const { locale } = intl;
 
@@ -108,7 +122,7 @@ export const Article = ({
       </div>
 
       {/* Main content */}
-      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16 mb-16">
+      <div className="w-full shadow-lg border-1 border-slate-600 p-8 sm:p-16">
         {<PortableTextConverter portableText={content.mainContent} />}
       </div>
     </motion.div>

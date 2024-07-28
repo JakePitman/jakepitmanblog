@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { client } from "@/sanity/client";
 import { MobileArticleLinks } from "@components/MobileArticleLinks";
-import { ArticleData } from "@/app/(routes)/articles/[slug]/page";
+import { ArticleData } from "@components/Article";
+import { LoadingSpinner } from "@components/LoadingSpinner";
 
 const ARTICLES_QUERY = `
 *[
@@ -20,7 +22,7 @@ const ARTICLES_QUERY = `
 `;
 
 const getArticles = async () => {
-  const res = await client.fetch<ArticleData[]>(
+  const res = client.fetch<ArticleData[]>(
     ARTICLES_QUERY,
     {},
     { next: { revalidate: 3600 } }
@@ -28,8 +30,12 @@ const getArticles = async () => {
   return res;
 };
 
-export default async function Articles() {
-  const articles = await getArticles();
+export default function Articles() {
+  const articlesPromise = getArticles();
 
-  return <MobileArticleLinks articles={articles} />;
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <MobileArticleLinks articlesPromise={articlesPromise} />
+    </Suspense>
+  );
 }

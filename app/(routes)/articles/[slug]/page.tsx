@@ -1,30 +1,13 @@
-import { cache } from "react";
+import { cache, Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { client } from "@/sanity/client";
-import { PortableTextItem } from "@customTypes/PortableTextTypes";
-import { Metadata } from "next";
+// import { Metadata } from "next";
 
-import { Article } from "@components/Article";
+import { Article, ArticleData } from "@components/Article";
 import { BackButton } from "@components/BackButton";
 import { EndOfPageBackButton } from "@components/EndOfPageBackButton";
-
-type Slug = {
-  current: string;
-};
-type Tag = {
-  value: string;
-};
-export type ArticleData = {
-  _createdAt: string;
-  title: string;
-  jpTitle: string;
-  slug: Slug;
-  description: string;
-  jpDescription: string;
-  tags: Tag[];
-  jpTags: Tag[];
-  mainContent: PortableTextItem[];
-  jpMainContent: PortableTextItem[];
-};
+import { LoadingSpinner } from "@components/LoadingSpinner";
+import { ArticleNotFound } from "@components/ArticleNotFound";
 
 const getArticle = cache(async (slug: string) => {
   const article = await client.fetch<ArticleData>(
@@ -58,54 +41,41 @@ type ArticleProps = {
   };
 };
 
-export async function generateMetadata({
-  params,
-}: ArticleProps): Promise<Metadata> {
-  const { slug } = params;
-  const article = await getArticle(slug);
+// TODO: Find a way to re-implement this, without causing a delay in the rendering of the page
+// Currently, this will stop the page from appearing until getArticle has finished
 
-  return {
-    title: article.title,
-    description: article.description,
-  };
-}
+// export async function generateMetadata({
+//   params,
+// }: ArticleProps): Promise<Metadata> {
+//   const { slug } = params;
+//   const article = await getArticle(slug);
 
-export default async function Page({ params }: ArticleProps) {
-  const article = await getArticle(params.slug);
+//   return {
+//     title: article.title,
+//     description: article.description,
+//   };
+// }
 
-  if (!article) {
-    return <div>Article of slug {params.slug} not found</div>;
-  }
-
-  const {
-    _createdAt: createdAt,
-    title,
-    jpTitle,
-    description,
-    jpDescription,
-    tags,
-    jpTags,
-    mainContent,
-    jpMainContent,
-  } = article;
+export default function Page({ params }: ArticleProps) {
+  const articlePromise = getArticle(params.slug);
 
   return (
-    <div className="relative">
-      <div className="w-full flex justify-center">
-        <div className="w-11/12 max-w-1040">
+    <div className="relative h-full">
+      <div className="w-full flex justify-center h-full">
+        <div className="w-11/12 max-w-1040 flex flex-col">
           <BackButton />
-          <Article
-            createdAt={createdAt}
-            title={title}
-            jpTitle={jpTitle}
-            description={description}
-            jpDescription={jpDescription}
-            tags={tags}
-            jpTags={jpTags}
-            mainContent={mainContent}
-            jpMainContent={jpMainContent}
-          />
-          <EndOfPageBackButton />
+          <ErrorBoundary fallback={<ArticleNotFound />}>
+            <Suspense
+              fallback={
+                <div className="flex-grow">
+                  <LoadingSpinner />
+                </div>
+              }
+            >
+              <Article articlePromise={articlePromise} />
+              <EndOfPageBackButton />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </div>
     </div>
