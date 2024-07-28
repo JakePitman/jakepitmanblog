@@ -1,4 +1,5 @@
 import { cache, Suspense } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { client } from "@/sanity/client";
 // import { Metadata } from "next";
 
@@ -6,6 +7,7 @@ import { Article, ArticleData } from "@components/Article";
 import { BackButton } from "@components/BackButton";
 import { EndOfPageBackButton } from "@components/EndOfPageBackButton";
 import { LoadingSpinner } from "@components/LoadingSpinner";
+import { ArticleNotFound } from "@components/ArticleNotFound";
 
 const getArticle = cache(async (slug: string) => {
   const article = await client.fetch<ArticleData>(
@@ -62,16 +64,18 @@ export default function Page({ params }: ArticleProps) {
       <div className="w-full flex justify-center h-full">
         <div className="w-11/12 max-w-1040 flex flex-col">
           <BackButton />
-          <Suspense
-            fallback={
-              <div className="flex-grow">
-                <LoadingSpinner />
-              </div>
-            }
-          >
-            <Article articlePromise={articlePromise} />
-            <EndOfPageBackButton />
-          </Suspense>
+          <ErrorBoundary fallback={<ArticleNotFound />}>
+            <Suspense
+              fallback={
+                <div className="flex-grow">
+                  <LoadingSpinner />
+                </div>
+              }
+            >
+              <Article articlePromise={articlePromise} />
+              <EndOfPageBackButton />
+            </Suspense>
+          </ErrorBoundary>
         </div>
       </div>
     </div>
